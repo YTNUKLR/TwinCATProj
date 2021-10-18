@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <GVL Name="g_ast" Id="{9a07de3e-fac6-4d95-bdb4-dc41a09f3101}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+		// INPUT array structs for mapping to Physical I/O (PIO)
+//	gast_SensorInput		AT %I* : ARRAY[0..gc.usiMaxNrOfSensor] OF typ_FBInt_Debounce;
+	
+	//2 Sensors on each valve (assumed)
+//	gast_ValveSensorInput	AT %I* : ARRAY[0..(2*gc.usiMaxNrOfValveCtrl)] OF typ_FBInt_Debounce;
+//	gast_AnalogInput		AT %I* : ARRAY[0..gc.usiMaxNrOfAnalogIn] OF typ_FBInt_Analog;
+	
+// OUTPUT array structs for mapping to Physical I/O (PIO)
+//	gast_ValveCtrlOutput	AT %Q* : ARRAY[0..gc.usiMaxNrOfValveCtrl] OF typ_FBInt_ValveCtrl;
+//	gast_DigCtrlOutput		AT %Q* : ARRAY[0..gc.usiMaxNrOfDigCtrl] OF typ_FBInt_DigCtrl;
+	DMX						: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF typ_FBInt_DMX;
+	DMXPhysOut				: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BYTE; (* software buffer *)
+	DMXHWOut		AT %Q*	: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BYTE; (* Defined to allow Multi-Link of I/O in Physical I/O tree *)
+	arrFBIntPNP				: ARRAY[0..gc.uiMaxNrDMXTestCh] OF typ_FBInt_Debounce;
+	arrFBIntNPN				: ARRAY[0..gc.uiMaxNrDMXTestCh] OF typ_FBInt_Debounce;
+	arrInputPNP		AT %I*	: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	arrInputNPN		AT %I*	: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

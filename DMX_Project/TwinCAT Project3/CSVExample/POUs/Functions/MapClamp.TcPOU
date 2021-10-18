@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="MapClamp" Id="{99180469-7fa6-47c0-b540-696eba09b4bf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION MapClamp : REAL
+VAR_INPUT
+	flArg				: LREAL; //fFnGenChanVal
+	flInMin				: LREAL;
+	flInMax				: LREAL;
+	flOutMin			: LREAL;
+	flOutMax			: LREAL;
+	usiBitDepth			: USINT;
+END_VAR
+VAR
+	flValueRange		: LREAL;
+	flOutputIncrement	: LREAL;
+	diOutputIncrement	: DINT;
+	flUnroundedVal		: LREAL;
+	diUnroundedVal		: DINT;
+	flMapClampFloor		: LREAL;
+	flMapClampTemp		: LREAL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF (flInMax - flInMin) <> 0 THEN
+	flUnroundedVal := (((flArg - flInMin) * (flOutMax - flOutMin)) / (flInMax - flInMin)) + flOutMin;
+END_IF
+
+//Basically a sub-function (possibly could be written as a separate function that is called) to compute the nearest value for the output, based on the user input params
+flValueRange	:= flOutMax - flOutMin; //Entire possible range of output values;
+
+flOutputIncrement	:= flValueRange/EXPT(2,usiBitDepth);
+diOutputIncrement	:= LREAL_TO_DINT(flOutputIncrement);
+
+diUnroundedVal		:= LREAL_TO_INT(flUnroundedVal);
+
+IF flOutputIncrement <> 0 THEN //avoid div by 0
+	flMapClampFloor	:= FLOOR(flUnroundedVal / flOutputIncrement);//Truncate? UnroundedValue, add one increment
+END_IF
+
+IF flOutputIncrement <> 0 THEN //avoid div by 0
+	IF (diUnroundedVal MOD diOutputIncrement) >= (0.5 * flOutputIncrement) THEN
+		MapClamp	:=	(flMapClampFloor * flOutputIncrement) + flOutputIncrement;		//Truncate? UnroundedValue, add one increment 
+	ELSIF (diUnroundedVal MOD diOutputIncrement) < (0.5 * flOutputIncrement) THEN
+		MapClamp	:=	(flMapClampFloor * flOutputIncrement);
+	END_IF
+END_IF
+
+IF MapClamp > flOutMax THEN
+	MapClamp	:= flOutMax;
+ELSIF MapClamp < flOutMin THEN
+	MapClamp	:= flOutMin;	
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="MapClamp">
+      <LineId Id="23" Count="1" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="28" Count="4" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="75" Count="1" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="54" Count="3" />
+      <LineId Id="52" Count="1" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="106" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

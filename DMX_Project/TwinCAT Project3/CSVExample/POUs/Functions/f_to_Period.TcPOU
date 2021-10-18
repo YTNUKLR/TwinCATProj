@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="f_to_Period" Id="{e957decd-057e-401d-ad93-1f9d94d5157e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION f_to_Period : REAL
+VAR_INPUT
+	fFrequency : REAL;
+END_VAR
+VAR	
+	fFracOfTime			: REAL;
+	fReferenceTimeTemp	: REAL;	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF fFrequency <> 0 THEN
+	fFracOfTime	:= (1/fFrequency);
+END_IF
+
+fReferenceTimeTemp	:= TIME_TO_REAL(T#1MS);
+
+f_to_Period	:= fReferenceTimeTemp * fFracOfTime;]]></ST>
+    </Implementation>
+    <LineIds Name="f_to_Period">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="25" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

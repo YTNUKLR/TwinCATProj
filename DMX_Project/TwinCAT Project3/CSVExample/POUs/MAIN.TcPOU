@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="MAIN" Id="{dfb670b1-7fad-4b69-9923-8a1cfddd9bc2}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+(*	In USA/UK the CSV field separator is a comma.
+	In Germany and some other European countries the CSV field separator is a semicolon. *)
+	bChangeSeparatorToComma	: BOOL := TRUE;
+	iLoopDMXCtrlQ			: INT;
+	ENBufferMgmt			: ENUM_BufferMgmt;
+	diMapTest				: DINT;
+	arrfFnGenerVal			: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF LREAL;
+	uiIndexFnGenSend		: UINT;
+	uiIndexFnGenRtn			: UINT;
+	uiLoopDebouncePNPII		: UINT;
+	uiLoopDebounceNPNII		: UINT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bChangeSeparatorToComma THEN
+	DEFAULT_CSV_FIELD_SEP := 16#2C;(* Comma ASCII code *)
+ELSE
+	DEFAULT_CSV_FIELD_SEP := 16#3B;(* Semicolon ASCII code *)
+END_IF
+
+P_TextModeRead();(* This sample program opens and reads CSV file in text mode *)
+
+P_TextModeWrite();(* This sample program opens and writes CSV file in text mode *)
+
+P_BinaryModeRead();(* This sample program opens and reads CSV file in binary mode *)
+
+P_BinaryModeWrite();(* This sample program opens and writes CSV file in binary mode *)
+
+P_ArgToConvExample();(* This sample program shows the usage of the ARG_TO_CSVFIELD and CSVFILED_TO_ARG conversion functions *)
+
+P_StringToConvExample();(* This sample program shows the usage of the STRING_TO_CSVFIELD and CSVFIELD_TO_STRING conversion functions *)
+
+//DMX Code
+//Special case to handle function calls outside ("send" and "return" to FB for SIN (or potentially other) function output types)
+IF g_ast.DMX[uiIndexFnGenSend].I.ENWaveform = ENUM_I_Waveform.EN_Sin THEN
+	FOR uiIndexFnGenSend := 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
+		//SIN Function MUST be called from MAIN; not within FunctionBlock (FB_DMX)
+		arrfFnGenerVal[uiIndexFnGenSend]	:= 1+(SIN(g_ast.DMX[uiIndexFnGenSend].IQ.fFnGenerValTempSin));
+	END_FOR
+	
+	FOR uiIndexFnGenRtn := 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
+		//SIN Function MUST be called from MAIN; not within FunctionBlock (FB_DMX)
+		g_ast.DMX[uiIndexFnGenRtn].IQ.fFnGenerValRtn	:= arrfFnGenerVal[uiIndexFnGenRtn];
+	END_FOR
+END_IF
+
+//Link AST to hardware inputs - PNP
+FOR uiLoopDebouncePNPII	:= 0 TO gc.uiMaxNrDMXTestCh BY 1 DO
+	g_ast.arrFBIntPNP[uiLoopDebouncePNPII].IQ.xTrig		:= g_ast.arrInputPNP[uiLoopDebouncePNPII];
+END_FOR
+
+//Link AST to hardware inputs - NPN
+FOR uiLoopDebounceNPNII	:= 0 TO gc.uiMaxNrDMXTestCh BY 1 DO
+	g_ast.arrFBIntNPN[uiLoopDebounceNPNII].IQ.xTrig		:= g_ast.arrInputNPN[uiLoopDebounceNPNII];
+END_FOR]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="3" Count="15" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="28" Count="10" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="51" Count="8" />
+      <LineId Id="50" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

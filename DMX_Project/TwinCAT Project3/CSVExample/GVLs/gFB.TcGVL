@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <GVL Name="gFB" Id="{1f97118f-cc6f-4486-93d2-2340b491ce3c}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	arrFB_DMX				: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF FB_DMX;
+	arrFB_DebouncePNP		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF FB_InputDebounce;
+	arrFB_DebounceNPN		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF FB_InputDebounce;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

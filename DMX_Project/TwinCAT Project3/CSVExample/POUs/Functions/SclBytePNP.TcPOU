@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="SclBytePNP" Id="{9e36fe55-d402-4065-ab28-8572f72e7b29}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION SclBytePNP : BYTE
+VAR_INPUT
+	byUnscaled	: BYTE;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF byUnscaled = 0 THEN
+	SclBytePNP	:= 0;
+ELSE
+	SclBytePNP	:= 255;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="SclBytePNP">
+      <LineId Id="9" Count="3" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

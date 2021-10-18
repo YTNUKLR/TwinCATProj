@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="Map" Id="{867a4e44-aff0-4348-8a24-0be96e3ada61}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION Map : REAL
+VAR_INPUT
+	fArg		: REAL; //x
+	fInMin		: REAL;
+	fInMax		: REAL;
+	fOutMin		: REAL;
+	fOutMax		: REAL;	
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF (fInMax - fInMin) <> 0 THEN
+	Map := (((fArg - fInMin) * (fOutMax - fOutMin)) / (fInMax - fInMin)) + fOutMin;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Map">
+      <LineId Id="26" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

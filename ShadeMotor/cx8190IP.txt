@@ -1,0 +1,12 @@
+CX8190 - Window Shade 19-Feb-2021
+AmsNetId
+5.82.5.222.1.1
+
+initial ip
+169.254.92.167
+
+https://CX-5205DE/config
+https://192.168.1.27/config
+
+on wifi:
+192.168.100.16

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="MAIN" Id="{e5d15e63-e8ca-4ab2-8b70-a028e7480ab2}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	xBool	: BOOL;
+	xSigC	AT %I* : BOOL;
+	xSigO	AT %I* : BOOL;
+	iHumidityRaw AT %I* : INT;
+	iTempRaw	AT %I* : INT;
+	fbTONR	: TONReset;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbTONR(PT	:= T#4S);
+
+IF fbTONR.rtTimerDone.Q THEN
+	xBool	:= TRUE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="12" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="47" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

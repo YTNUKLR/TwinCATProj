@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <GVL Name="gc" Id="{46c74c2d-2a16-41ce-a7b1-5a3121723af8}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	uiMaxNrOfDMXChannel				: UINT := 511;
+	wChannelLength			AT %Q*	: WORD := 512;
+	fPi								: REAL	:= 3.141592653589793238462643383279;
+	uiMinNrDMXTestCh				: UINT	:= 0;
+	uiMaxNrDMXTestCh				: UINT	:= 79; // Dictated by hardware constraints (80 channels input)
+	uiChannelsUT	 				: UINT	:= 80;		(*Channels Under Test *)
+	uiVisualizationIndexLim			: UINT	:= 7;
+	uiDUTConfigCountSplit			: UINT	:= 255;
+	uiChannelSplitCount				: UINT	:= 256;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

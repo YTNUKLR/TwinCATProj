@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="typFBDInput" Id="{cd9c84c9-5df5-4077-a30c-b1665c193205}">
+    <Declaration><![CDATA[TYPE typFBDInput :
+	STRUCT
+		tOnDelay	: TIME;
+		tOffDelay	: TIME;
+	END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

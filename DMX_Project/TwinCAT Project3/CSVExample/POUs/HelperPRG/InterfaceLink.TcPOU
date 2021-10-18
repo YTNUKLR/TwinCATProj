@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="InterfaceLink" Id="{e5515fc8-d968-4a6f-8e7a-8841024cd466}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM InterfaceLink
+VAR
+	iResult					: INT;
+	iLoopFBAnalogIn			: INT;
+	iLoopFBSensor			: INT;
+	iLoopFBValveSensor		: INT;
+	iLoopFBDigCtrl			: INT;
+	iLoopFBValveCtrl		: INT;
+	uiLoopDMXCtrlI			: UINT;
+	uiLoopDMXCtrlII			: UINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Call all the I/O Function Blocks continuously; link to array-structs with every call;
+(*
+FOR iLoopFBAnalogIn := 0 TO gc.usiMaxNrOfAnalogIn BY 1 DO
+	gFB.arrFB_AnalogInput[iLoopFBAnalogIn](I:=gast_AnalogInput[iLoopFBAnalogIn].I, IQ:=gast_AnalogInput[iLoopFBAnalogIn].IQ, Q=>gast_AnalogInput[iLoopFBAnalogIn].Q);
+END_FOR
+
+FOR iLoopFBSensor := 0 TO gc.usiMaxNrOfSensor BY 1 DO
+	gFB.arrFB_Sensor[iLoopFBSensor](I:=gast_SensorInput[iLoopFBSensor].I, IQ:=gast_SensorInput[iLoopFBSensor].IQ, Q=>gast_SensorInput[iLoopFBSensor].Q);
+END_FOR
+
+FOR iLoopFBValveSensor := 0 TO (2*gc.usiMaxNrOfValveCtrl) BY 1 DO
+	gFB.arrFB_Sensor[iLoopFBValveSensor](I:=gast_ValveSensorInput[iLoopFBValveSensor].I, IQ:=gast_ValveSensorInput[iLoopFBValveSensor].IQ, Q=>gast_ValveSensorInput[iLoopFBValveSensor].Q);
+END_FOR
+
+FOR iLoopFBDigCtrl := 0 TO gc.usiMaxNrOfSensor BY 1 DO
+	gFB.arrFB_DigCtrl[iLoopFBDigCtrl](I:=gast_DigCtrlOutput[iLoopFBDigCtrl].I, IQ:=gast_DigCtrlOutput[iLoopFBDigCtrl].IQ, Q=>gast_DigCtrlOutput[iLoopFBDigCtrl].Q);
+END_FOR
+
+FOR iLoopFBValveCtrl := 0 TO gc.usiMaxNrOfValveCtrl BY 1 DO
+	gFB.arrFB_ValveCtrl[iLoopFBValveCtrl](I:=gast_ValveCtrlOutput[iLoopFBValveCtrl].I, IQ:=gast_ValveCtrlOutput[iLoopFBValveCtrl].IQ, Q=>gast_ValveCtrlOutput[iLoopFBValveCtrl].Q);
+END_FOR
+*)
+FOR uiLoopDMXCtrlI := 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
+	gFB.arrFB_DMX[uiLoopDMXCtrlI](I:=g_ast.DMX[uiLoopDMXCtrlI].I, IQ:=g_ast.DMX[uiLoopDMXCtrlI].IQ, Q=>g_ast.DMX[uiLoopDMXCtrlI].Q);
+END_FOR
+
+//Expose an array of bytes that can be ultimately 'multi-linked' to hardware
+FOR uiLoopDMXCtrlII := 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
+	g_ast.DMXPhysOut[uiLoopDMXCtrlII]	:= g_ast.DMX[uiLoopDMXCtrlII].Q.byStatValue;
+END_FOR]]></ST>
+    </Implementation>
+    <LineIds Name="InterfaceLink">
+      <LineId Id="65" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="47" Count="17" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="88" Count="1" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="102" Count="3" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

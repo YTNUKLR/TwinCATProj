@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="typ_FBInt_DMX" Id="{cc353f3e-9311-42bf-92d4-926d4e90d1e4}">
+    <Declaration><![CDATA[TYPE typ_FBInt_DMX :
+STRUCT
+	I		: typDMXInput;
+	IQ		: typDMXInOut;
+	Q		: typDMXOutput;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

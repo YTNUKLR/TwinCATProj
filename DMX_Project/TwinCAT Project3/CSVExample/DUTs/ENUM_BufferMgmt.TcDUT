@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ENUM_BufferMgmt" Id="{14ad7696-7642-4075-b5cd-a0486e48cdbd}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE ENUM_BufferMgmt :
+(
+	EN_Idle 		:= 0,
+	EN_TestWrite	:= 1,
+	EN_Test			:= 2,
+	EN_Write		:= 3,
+	EN_TestWritten	:= 4	
+);
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

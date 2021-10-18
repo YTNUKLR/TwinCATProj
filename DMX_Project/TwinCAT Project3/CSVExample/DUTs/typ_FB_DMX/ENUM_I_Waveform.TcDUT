@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ENUM_I_Waveform" Id="{98d30602-9d32-4445-874b-de7d87b9fb27}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE ENUM_I_Waveform :
+(
+	EN_Square		:= 10,
+	EN_Rand			:= 20,
+	EN_Sin			:= 30,
+	EN_Triangle		:= 40,
+	EN_SubTriFall	:= 42,
+	EN_SubTriRise	:= 44, 
+	EN_Saw			:= 50,
+	EN_Ramp			:= 60,
+	EN_GateConfig	:= 70, //Non-periodic Square
+	EN_GateCtrl		:= 80 //Non-periodic Square
+);
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

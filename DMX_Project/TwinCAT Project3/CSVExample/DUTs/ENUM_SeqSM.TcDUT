@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ENUM_SeqSM" Id="{f017f8af-f1d7-4e02-a4f5-e19b8d3a4417}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE ENUM_SeqSM :
+(
+	Once		:=0, //(Lights, Dry Contacts)
+	OnceDC		:=1, // Dry Contact (HVAC)
+	Twice		:=2 //(Motors)
+);
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>
