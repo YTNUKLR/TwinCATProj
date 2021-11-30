@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
   <POU Name="IOParams" Id="{a5664a88-4512-4669-bbf3-ce5ec238c33e}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM IOParams
 VAR
@@ -118,8 +118,8 @@ END_FOR
 
 //Input Debounce Params PNP
 FOR uiForLoopDebouncePNP	:= 0 TO gc.uiMaxNrDMXTestCh BY 1 DO
-	g_ast.arrFBIntPNP[uiForLoopDebouncePNP].I.tOnDelay	:= T#0S;
-	g_ast.arrFBIntPNP[uiForLoopDebouncePNP].I.tOffDelay	:= T#10MS;
+	g_ast.arrFBIntPNP[uiForLoopDebouncePNP].I.tOnDelay	:= T#5MS;
+	g_ast.arrFBIntPNP[uiForLoopDebouncePNP].I.tOffDelay	:= T#5MS;
 END_FOR
 
 //Input Debounce Params NPN

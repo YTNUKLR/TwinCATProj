@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.0.24">
-  <POU Name="P_ArgToConvExample" Id="{9227025e-83e6-43cc-b460-21c7de6b6e98}">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="P_ArgToConvExample" Id="{9227025e-83e6-43cc-b460-21c7de6b6e98}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_ArgToConvExample
 VAR
 	(* PLC data to be converted to or from CSV format *)
@@ -47,10 +47,10 @@ cbVar2 := CSVFIELD_TO_ARG( ADR( field2 ), cbField2, TRUE, F_LREAL( fAxPos ) );
 cbVar3 := CSVFIELD_TO_ARG( ADR( field3 ), cbField3, TRUE, F_UDINT( nCounter ) );
 cbVar4 := CSVFIELD_TO_ARG( ADR( field4 ), cbField4, TRUE, F_STRING( sName ) );
 cbVar5 := CSVFIELD_TO_ARG( ADR( field5 ), cbField5, TRUE, F_BIGTYPE( ADR( binData ), SIZEOF( binData ) ) );
-cbVar6 := CSVFIELD_TO_ARG( ADR( field6 ), cbField6, TRUE, F_BIGTYPE( ADR( sShort ), INT_TO_DWORD( LEN( sShort ) ) ) );
-
-]]></ST>
+cbVar6 := CSVFIELD_TO_ARG( ADR( field6 ), cbField6, TRUE, F_BIGTYPE( ADR( sShort ), INT_TO_DWORD( LEN( sShort ) ) ) );]]></ST>
     </Implementation>
-    <ObjectProperties />
+    <LineIds Name="P_ArgToConvExample">
+      <LineId Id="3" Count="12" />
+    </LineIds>
   </POU>
 </TcPlcObject>
