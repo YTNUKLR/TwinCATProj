@@ -3,7 +3,6 @@
   <POU Name="DMXTest" Id="{56d10ee8-0ed5-46cc-a7ec-34100a2134e6}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM DMXTest
 VAR
-	xConfigSet					: BOOL;
 	xStatTestInProgress			: BOOL;
 	xDMXSeqTestInProgressOnce	: BOOL;
 	xDMXSeqTestInProgressTwice	: BOOL;
@@ -31,18 +30,12 @@ VAR
 	iForLoopRecipeFindMax1		: INT;
 	iForLoopRecipeMin			: INT;
 	uiForLoopRecipe				: UINT;
-	uiLoopIterDMXDUTArraySeq	: UINT;
-	uiLoopIterDMXDUTArrayM		: UINT;
-	uiLoopIterDUTArray24V		: UINT;
-	uiLoopIterDUTArrayGND		: UINT;
-	uiLoopIterTestArrSeq		: UINT;
-	uiLoopIterTestArrM			: UINT;
-	uiLoopIterTestArr24V		: UINT;
-	uiLoopIterTestArrGND		: UINT;	
+
+	
 	iCompareStaticSM			: INT;
 	iCompareSeq					: ARRAY[0..ENUM_SeqSM.Twice] OF INT;
 	iParseFile					: INT;
-	iSetConfig					: INT;
+	iSetConfig					: (Trig_SetConfigSM,ApplyRecipeCfgtoHW,ZeroIndexArrays,Set24VIndices,SetGNDIndices,SetDMXIndices,SetDCIndices,SetMPIndices,SetMSIndices,ConfigDone);
 	iSetExpctdBufferSM			: INT;
 	iReindexExpctedBufferSM		: INT;
 	rt_RunStaticTest			: R_TRIG;
@@ -62,47 +55,52 @@ VAR
  	arruiDMXChDUT				: ARRAY[0..gc.uiDUTConfigCountSplit] OF UINT;
 	arrsDUTChType				: ARRAY[0..gc.uiDUTConfigCountSplit] OF STRING[3];
 	xFileImported				: BOOL;
-	arr_usiRecipeSettingTmp		: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF USINT;
+	arr_usiRecipeSettingTmpRd1	: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF USINT;
+	arr_usiRecipeSettingTmpRd2	: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF USINT;
 	arr_usiRecipeSetting		: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF USINT;
-
-
-
-
-
+	xRecipeSettingCompleteRd1	: BOOL;
+	xRecipeSettingCompleteRd2	: BOOL;
 
 	
-		
+	//Static
 	arrxRcvdBufferPNP24V		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
 	arrxRcvdBufferNPN24V		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
 	arrxRcvdBufferPNPGND		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
 	arrxRcvdBufferNPNGND		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
 	
-	arrxRcvdBufferPNPSeq		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
-	arrxRcvdBufferNPNSeq		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;	
-	arrxRcvdBufferPNPMotor		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
-	arrxRcvdBufferNPNMotor		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	//Sequenced
+	arrxRcvdBufferPNPDC			: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	arrxRcvdBufferNPNDC			: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;	
+	arrxRcvdBufferPNPDMX		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	arrxRcvdBufferNPNDMX		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
 	
-	arrxExpctdPNP				: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BOOL; //What is expected based on the recipe file
-	arrxExpctdNPN				: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BOOL; //What is expected based on the recipe file
-	arrxExpctdTmpPNP			: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BOOL; //What is expected based on the recipe file, reindexed from DUT (usually 0)
-	arrxExpctdTmpNPN			: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BOOL; //What is expected based on the recipe file, reindexed from DUT (usually 0)
-	arrxExpctdTmpPNP24V			: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL; //What is expected based on the recipe file, reindexed from DUT (usually 0)
-	arrxExpctdTmpNPN24V			: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL; //What is expected based on the recipe file, reindexed from DUT (usually 0)
-	arrxExpctdTmpPNPGND			: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL; //What is expected based on the recipe file, reindexed from DUT (usually 0)
-	arrxExpctdTmpNPNGND			: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL; //What is expected based on the recipe file, reindexed from DUT (usually 0)
+	//Sequenced Motor
+	arrxRcvdBufferPNPMP			: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	arrxRcvdBufferNPNMP			: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;	
+	arrxRcvdBufferPNPMS			: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	arrxRcvdBufferNPNMS			: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
 
-	arrxExpctdTmpPNPSeqDMX		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL; //What is expected based on the recipe file, reindexed from DUT (usually 0)
-	arrxExpctdTmpNPNSeqDMX		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL; //What is expected based on the recipe file, reindexed from DUT (usually 0)
-	arrxExpctdTmpPNPSeqDC		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL; //What is expected based on the recipe file, reindexed from DUT (usually 0)
-	arrxExpctdTmpNPNSeqDC		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL; //What is expected based on the recipe file, reindexed from DUT (usually 0)
-
-	arrxExpctdTmpPNPSeq			: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BOOL; //What is expected based on the recipe file, reindexed from DUT (usually 0)
-	arrxExpctdTmpNPNSeq			: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BOOL; //What is expected based on the recipe file, reindexed from DUT (usually 0)
-	arrxExpctdTmpPNPMotor		: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BOOL; //What is expected based on the recipe file, reindexed from DUT (usually 0)
-	arrxExpctdTmpNPNMotor		: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BOOL; //What is expected based on the recipe file, reindexed from DUT (usually 0)
+	//Static
+	arrxExpctBufferPNP24V		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	arrxExpctBufferNPN24V		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	arrxExpctBufferPNPGND		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	arrxExpctBufferNPNGND		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	
+	//Sequenced
+	arrxExpctBufferPNPDC		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	arrxExpctBufferNPNDC		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;	
+	arrxExpctBufferPNPDMX		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	arrxExpctBufferNPNDMX		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	
+	//Sequenced Motor
+	arrxExpctBufferPNPMP		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	arrxExpctBufferNPNMP		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;	
+	arrxExpctBufferPNPMS		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+	arrxExpctBufferNPNMS		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
 	
 	arrxExpctdMaskPNPSeq		: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BOOL; //Copy the contents of hardware buffer 
-	arrxExpctdMaskNPNSeq		: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BOOL; //Copy the contents of hardware buffer 
+	arrxExpctdMaskNPNSeq		: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BOOL; //Copy the contents of hardware buffer
+	
 	arr_diTestStaticPNP24V		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF DINT;
 	arr_diTestStaticNPN24V		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF DINT;
 	arr_diTestStaticPNPGND		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF DINT;
@@ -161,22 +159,18 @@ VAR
 	uiMaxRecipeIndex			: UINT;
 	cuiMinDUTIndex				: UINT	:= 0; // Constant
 	uiMaxRecipeIndexTemp		: UINT;
-	arruiMotorTestIndices		: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF UINT;
-	arruiMotorTestIndicesTmp	: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF UINT;
-	arruiSeqTestIndices			: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF UINT;
-	arruiSeqTestIndicesTmp		: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF UINT;
 	
-	arruiSeqTestIndicesDMX			: ARRAY[0..gc.uiMaxNrDMXTestCh] OF UINT;
-	arruiSeqTestIndicesDMXSW		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF UINT;
-	arruiSeqTestIndicesDMXTmp		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF UINT;
+	arruiStat24VTestIndices		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF UINT;
+	arruiStatGNDTestIndices		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF UINT;
+	arruiSeqTestIndicesDMX		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF UINT;
+	arruiSeqTestIndicesDC		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF UINT;
+	arruiSeqTestIndicesMP		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF UINT; //Motor Primary
+	arruiSeqTestIndicesMS		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF UINT; //Motor Secondary
 	
-	arruiSeqTestIndicesDC			: ARRAY[0..gc.uiMaxNrDMXTestCh] OF UINT;
-	arruiSeqTestIndicesDCTmp		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF UINT;	
+	uiLoopIter					: UINT;
+//	arruiSeqTestIndicesDMXSW	: ARRAY[0..gc.uiMaxNrDMXTestCh] OF UINT;
 	
-	arrui24VTestIndices			: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF UINT;
-	arrui24VTestIndicesTmp		: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF UINT;
-	arruiGNDTestIndices			: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF UINT;
-	arruiGNDTestIndicesTmp		: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF UINT;
+		
 	udiMemCpyResultPNP			: UDINT;
 	udiMemCpyResultDMX			: UDINT;	
 	r_tSetExpectedBuff			: R_TRIG;
@@ -255,8 +249,8 @@ FOR uiForLoopRecipe := 0 TO gc.uiDUTConfigCountSplit BY 1 DO
 END_FOR
 //Stash the values from temp (inside FOR loop) to other arrays
 arr_uiRecipeIndex	:= arr_uiRecipeIndexTmp;
-arruiDMXChDUT		:= arruiDMXChDUTTmp;
-arrsDUTChType		:= arrsDUTChTypeTmp;
+arruiDMXChDUT		:= arruiDMXChDUTTmp; //DUT = Device Under Test 
+arrsDUTChType		:= arrsDUTChTypeTmp; //DUT = Device Under Test
 
 //If the 'TextModeRead' re-enters 'Ready' state then advance this SM
 IF P_TextModeRead.step = 0 THEN
@@ -268,222 +262,132 @@ END_CASE
 
 CASE iSetConfig OF
 
-//Don't look at the P_TextRead; evaluate on the arrays you just imported
+//Don't look at the P_TextRead; evaluate on the arrays just imported
 
-0:
+Trig_SetConfigSM:
 IF r_tSetConfig.Q THEN
-	iSetConfig			:= 10;	
+	iSetConfig			:= ApplyRecipeCfgtoHW;	
 END_IF
 
-10://Read the string that is loaded from file reader; pass value to DMX Function Block, at the appropriate Config index
+ApplyRecipeCfgtoHW:
+//Read the string that is loaded from file reader; pass value to DMX Function Block, at the appropriate Config index
 //This is the setting to control the position of the 'config' relays on the tester
-//Ensure that the declared arrays are sufficiently long to handle the max conceivable value (512 x 2, in this case?)
+//Ensure that the declared arrays are sufficiently long to handle the max conceivable value (ie., with the addition of an offset = 256)
 FOR uiForLoopRecipe := 0 TO gc.uiDUTConfigCountSplit BY 1 DO
-	IF (arruiDMXChDUT[uiForLoopRecipe] <> 0) THEN
+	IF (arrsDUTChType[uiForLoopRecipe] = 'DMX') OR (arrsDUTChType[uiForLoopRecipe] = 'GND') THEN
 		//Set the config routing := NPN
-		arr_usiRecipeSettingTmp[(uiForLoopRecipe+gc.uiChannelSplitCount)]	:= 255;
-	ELSIF (arruiDMXChDUT[uiForLoopRecipe] = 0) THEN
+		arr_usiRecipeSettingTmpRd1[(uiForLoopRecipe+gc.uiChannelSplitCount)]	:= 255;
+		arr_usiRecipeSettingTmpRd2[(uiForLoopRecipe+gc.uiChannelSplitCount)]	:= 255;
+	ELSIF (arrsDUTChType[uiForLoopRecipe] = '24V') THEN
 		//Set the config routing := PNP
-		arr_usiRecipeSettingTmp[(uiForLoopRecipe+gc.uiChannelSplitCount)]	:= 0;
-	END_IF	
-END_FOR
-//Stash the values from temp (inside FOR loop) to other arrays
-arr_usiRecipeSetting	:= arr_usiRecipeSettingTmp;
-
-	iSetConfig			:= 20;	
-
-20://Iterate over the config listings to create indices for what must be tested static (power, ground), and what must be tested sequentially (channels)
-uiLoopIterDMXDUTArraySeq	:= 0;
-uiLoopIterTestArrSeq		:= 0;
-//Zero out the array that is copied to in the next state of the SM
-FOR uiForLoopZeroStorageArray	:= 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
-	arruiSeqTestIndicesTmp[uiForLoopZeroStorageArray]	:= 0;
-END_FOR
-//Stash the values from temp (inside FOR loop) to other arrays
-arruiSeqTestIndices		:= arruiSeqTestIndicesTmp;
-iSetConfig				:= 40;	
-
-40:
-//For any 'DMX'-type channels with an assigned channel # (from the recipe), then copy only those elements to another array
-//These are elements that are tested sequentially - once - so this includes Dry Contacts but not Motors
-REPEAT
-	IF ((arrsDUTChType[uiLoopIterDMXDUTArraySeq] = 'DMX') OR (arrsDUTChType[uiLoopIterDMXDUTArraySeq] = '24V')) AND (arruiDMXChDUT[uiLoopIterDMXDUTArraySeq] <> 0) THEN
-		MEMCPY(srcAddr:=ADR(arruiDMXChDUT[uiLoopIterDMXDUTArraySeq]),destAddr:=ADR(arruiSeqTestIndicesTmp[uiLoopIterDMXDUTArraySeq]),n:=SIZEOF(arruiDMXChDUT[uiLoopIterDMXDUTArraySeq])); //UINT = 4 bytes?
-//		uiLoopIterTestArrSeq		:= uiLoopIterTestArrSeq+1;
+		arr_usiRecipeSettingTmpRd1[(uiForLoopRecipe+gc.uiChannelSplitCount)]	:= 0;
+		arr_usiRecipeSettingTmpRd2[(uiForLoopRecipe+gc.uiChannelSplitCount)]	:= 0;
 	END_IF
-	uiLoopIterDMXDUTArraySeq	:= uiLoopIterDMXDUTArraySeq+1;
-UNTIL 
-(uiLoopIterDMXDUTArraySeq = gc.uiMaxNrOfDMXChannel)
-END_REPEAT
-//Stash the values from temp (inside FOR loop) to other arrays
-arruiSeqTestIndices		:= arruiSeqTestIndicesTmp;
-
-iSetConfig					:= 50;	
-
-50:
-//Use different iterators - set them to 0 prior to use
-uiLoopIterDMXDUTArrayM		:= 0;
-uiLoopIterTestArrM			:= 0;
-//Zero out the array that is copied to in the next state of the SM
-FOR uiForLoopZeroStorageArray	:= 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
-	arruiMotorTestIndicesTmp[uiForLoopZeroStorageArray]	:= 0;
-END_FOR
-//Stash the values from temp (inside FOR loop) to other arrays
-arruiMotorTestIndices	:= arruiMotorTestIndicesTmp;
-
-iSetConfig					:= 60;	
-
-60:
-//Motors - Type code "M" - must be tested both in the PNP & NPN inputs
-//This array easily provides the indexing for which channels the motors are on
-REPEAT
-	IF (arrsDUTChType[uiLoopIterDMXDUTArrayM] = 'M') AND (arruiDMXChDUT[uiLoopIterDMXDUTArrayM] <> 0)  THEN
-		MEMCPY(srcAddr:=ADR(arruiDMXChDUT[uiLoopIterDMXDUTArrayM]),destAddr:=ADR(arruiMotorTestIndicesTmp[uiLoopIterDMXDUTArrayM]),n:=SIZEOF(arruiDMXChDUT[uiLoopIterDMXDUTArrayM])); //UINT = 4 bytes?
-//		uiLoopIterTestArrM		:= uiLoopIterTestArrM+1;
+	
+	// Set config values for Round1/Round2 for Motor Primary & Motor Secondary
+	IF (arrsDUTChType[uiForLoopRecipe] = 'MP') THEN
+		arr_usiRecipeSettingTmpRd1[(uiForLoopRecipe+gc.uiChannelSplitCount)]	:= 255;
+		arr_usiRecipeSettingTmpRd2[(uiForLoopRecipe+gc.uiChannelSplitCount)]	:= 0;
+	ELSIF (arrsDUTChType[uiForLoopRecipe] = 'MS') THEN
+		arr_usiRecipeSettingTmpRd1[(uiForLoopRecipe+gc.uiChannelSplitCount)]	:= 0;
+		arr_usiRecipeSettingTmpRd2[(uiForLoopRecipe+gc.uiChannelSplitCount)]	:= 255;
 	END_IF
-	uiLoopIterDMXDUTArrayM	:= uiLoopIterDMXDUTArrayM+1;
-UNTIL 
-(uiLoopIterDMXDUTArrayM = gc.uiMaxNrOfDMXChannel)
-END_REPEAT
-//Stash the values from temp (inside FOR loop) to other arrays
-arruiMotorTestIndices	:= arruiMotorTestIndicesTmp;
-
-iSetConfig		:= 70;
-
-70:
-//Use different iterators - set them to 0 prior to use
-uiLoopIterDUTArray24V		:= 0;
-uiLoopIterTestArr24V		:= 0;
-//Zero out the array that is copied to in the next state of the SM
-FOR uiForLoopZeroStorageArray	:= 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
-	arrui24VTestIndicesTmp[uiForLoopZeroStorageArray]	:= 0;
 END_FOR
-//Stash the values from temp (inside FOR loop) to other arrays
-arrui24VTestIndices		:= arrui24VTestIndicesTmp;
+//Stash the values from temp (inside FOR loop) to other arrays (* Start with config for round#1 *)
+arr_usiRecipeSetting		:= arr_usiRecipeSettingTmpRd1;
+xRecipeSettingCompleteRd1	:= TRUE;
 
-iSetConfig				:= 80;
+	iSetConfig			:= ZeroIndexArrays;	
 
-80:
-//24V - Type code "24V" - is tested per static config
-//This array easily provides the indexing for which channels the 24V are on
-REPEAT
-	IF (arrsDUTChType[uiLoopIterDUTArray24V] = '24V') AND (arruiDMXChDUT[uiLoopIterDUTArray24V] = 0) THEN
-		MEMCPY(srcAddr:=ADR(arr_uiRecipeIndex[uiLoopIterDUTArray24V]),destAddr:=ADR(arrui24VTestIndicesTmp[uiLoopIterDUTArray24V]),n:=SIZEOF(arr_uiRecipeIndex[uiLoopIterDUTArray24V])); //UINT = 2 bytes?
-//		uiLoopIterTestArr24V	:= uiLoopIterTestArr24V +1;
-	END_IF
-	uiLoopIterDUTArray24V	:= uiLoopIterDUTArray24V+1;
-UNTIL 
-(uiLoopIterDUTArray24V = gc.uiDUTConfigCountSplit)
-END_REPEAT
-//Stash the values from temp (inside FOR loop) to other arrays
-arrui24VTestIndices	:= arrui24VTestIndicesTmp;
-
-iSetConfig		:= 90;
-
-90://Clear Iterators for GND channel indexing
-//Use different iterators - set them to 0 prior to use
-uiLoopIterDUTArrayGND		:= 0;
-uiLoopIterTestArrGND		:= 0;
-//Zero out the array that is copied to in the next state of the SM
-FOR uiForLoopZeroStorageArray	:= 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
-	arruiGNDTestIndicesTmp[uiForLoopZeroStorageArray]	:= 0;
+ZeroIndexArrays:
+//Zero Arrays of Indices
+FOR uiForLoopZeroStorageArray	:= 0 TO gc.uiDUTConfigCountSplit BY 1 DO
+	arruiStat24VTestIndices[uiForLoopZeroStorageArray]		:= 0;
+	arruiStatGNDTestIndices[uiForLoopZeroStorageArray]		:= 0;
+	arruiSeqTestIndicesDMX[uiForLoopZeroStorageArray]		:= 0;
+	arruiSeqTestIndicesDC[uiForLoopZeroStorageArray]		:= 0;
+	arruiSeqTestIndicesMP[uiForLoopZeroStorageArray]		:= 0;
+	arruiSeqTestIndicesMS[uiForLoopZeroStorageArray]		:= 0;
 END_FOR
-//Stash the values from temp (inside FOR loop) to other arrays
-arruiGNDTestIndices		:= arruiGNDTestIndicesTmp;
 
-iSetConfig				:= 100;
-
-100:
-//Ground - Type code "GND" - is tested per static config
-//This array easily provides the indexing for which channels the 24V are on
-REPEAT
-	IF (arrsDUTChType[uiLoopIterDUTArrayGND] = 'GND') AND (arruiDMXChDUT[uiLoopIterDUTArrayGND] = 0) THEN
-		MEMCPY(srcAddr:=ADR(arr_uiRecipeIndex[uiLoopIterDUTArrayGND]),destAddr:=ADR(arruiGNDTestIndicesTmp[uiLoopIterDUTArrayGND]),n:=SIZEOF(arr_uiRecipeIndex[uiLoopIterDUTArrayGND])); //UINT = 4 bytes?
-//		uiLoopIterTestArrGND	:= uiLoopIterTestArrGND+1;
-	END_IF
-	uiLoopIterDUTArrayGND	:= uiLoopIterDUTArrayGND+1;
-UNTIL 
-(uiLoopIterDUTArrayGND = gc.uiDUTConfigCountSplit)
-END_REPEAT
-//Stash the values from temp (inside FOR loop) to other arrays
-arruiGNDTestIndices	:= arruiGNDTestIndicesTmp;
-
-iSetConfig				:= 110;
-
-//Copy of state30
-110://Iterate over the config listings to create indices for what must be tested static (power, ground), and what must be tested sequentially (channels)
-uiLoopIterDMXDUTArraySeq		:= 0;
-uiLoopIterTestArrSeq			:= 0;
-//Zero out the array that is copied to in the next state of the SM
-FOR uiForLoopZeroStorageArray	:= 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
-	arruiSeqTestIndicesDMXTmp[uiForLoopZeroStorageArray]	:= 0;
-	arruiSeqTestIndicesDMXSW[uiForLoopZeroStorageArray]		:= 0;
-END_FOR
-//Stash the values from temp (inside FOR loop) to other arrays
-arruiSeqTestIndicesDMX			:= arruiSeqTestIndicesDMXTmp;
-iSetConfig						:= 120;	
-
-120://Effectively a copy of state40
-//For any 'DMX'-type channels with an assigned channel # (from the recipe), then copy only those elements to another array
-//These are elements that are tested sequentially - once - so this includes Dry Contacts but not Motors
-REPEAT
-	IF (arrsDUTChType[uiLoopIterDMXDUTArraySeq] = 'DMX') AND (arruiDMXChDUT[uiLoopIterDMXDUTArraySeq] <> 0) THEN
-		MEMCPY(srcAddr:=ADR(arruiDMXChDUT[uiLoopIterDMXDUTArraySeq]),destAddr:=ADR(arruiSeqTestIndicesDMXTmp[uiLoopIterDMXDUTArraySeq]),n:=SIZEOF(arr_uiRecipeIndex[uiLoopIterDUTArrayGND])); //UINT = 4 bytes?
-//		uiLoopIterTestArrSeq		:= uiLoopIterTestArrSeq+1;
-	END_IF
-	uiLoopIterDMXDUTArraySeq		:= uiLoopIterDMXDUTArraySeq+1;
-UNTIL 
-(uiLoopIterDMXDUTArraySeq = gc.uiMaxNrOfDMXChannel)
-END_REPEAT
-//Stash the values from temp (inside FOR loop) to other arrays
-arruiSeqTestIndicesDMX				:= arruiSeqTestIndicesDMXTmp;
-
-//Set the recipe addresses one lower for 'SW'-Software-because software indexes from 0, not 1
-FOR uiCounter8	:= 0 TO gc.uiMaxNrDMXTestCh BY 1 DO
-	IF arruiSeqTestIndicesDMX[uiCounter8] <> 0 THEN
-		arruiSeqTestIndicesDMXSW[uiCounter8]	:= arruiSeqTestIndicesDMX[uiCounter8] - 1;	
+//Ensure Loop Iter is set to 0
+uiLoopIter			:= 0;
+iSetConfig			:= Set24VIndices;	
+	
+Set24VIndices:
+FOR uiLoopIter	:= 0 TO gc.uiDUTConfigCountSplit BY 1 DO
+	IF (arrsDUTChType[uiLoopIter] = '24V') AND (arruiDMXChDUT[uiLoopIter] = 0)  THEN
+		MEMCPY(srcAddr:=ADR(arr_uiRecipeIndex[uiLoopIter]),destAddr:=ADR(arruiStat24VTestIndices[uiLoopIter]),n:=SIZEOF(arr_uiRecipeIndex[uiLoopIter])); //UINT = 4 bytes?
 	END_IF
 END_FOR
 
-iSetConfig							:= 130;	
+uiLoopIter			:= 0;
+iSetConfig			:= SetGNDIndices;
 
-//Copy of state30
-130://Iterate over the config listings to create indices for what must be tested static (power, ground), and what must be tested sequentially (channels)
-uiLoopIterDMXDUTArraySeq		:= 0;
-uiLoopIterTestArrSeq			:= 0;
-//Zero out the array that is copied to in the next state of the SM
-FOR uiForLoopZeroStorageArray	:= 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
-	arruiSeqTestIndicesDCTmp[uiForLoopZeroStorageArray]	:= 0;
-END_FOR
-//Stash the values from temp (inside FOR loop) to other arrays
-arruiSeqTestIndicesDC			:= arruiSeqTestIndicesDCTmp;
-iSetConfig						:= 140;	
-
-140:
-//For any 'DMX'-type channels with an assigned channel # (from the recipe), then copy only those elements to another array
-//These are elements that are tested sequentially - once - so this includes Dry Contacts but not Motors
-REPEAT
-	IF (arrsDUTChType[uiLoopIterDMXDUTArraySeq] = '24V') AND (arruiDMXChDUT[uiLoopIterDMXDUTArraySeq] <> 0) THEN
-		MEMCPY(srcAddr:=ADR(arruiDMXChDUT[uiLoopIterDMXDUTArraySeq]),destAddr:=ADR(arruiSeqTestIndicesDCTmp[uiLoopIterDMXDUTArraySeq]),n:=SIZEOF(arruiDMXChDUT[uiLoopIterDMXDUTArraySeq])); //UINT = 4 bytes?
-//		uiLoopIterTestArrSeq		:= uiLoopIterTestArrSeq+1;
+SetGNDIndices:
+FOR uiLoopIter	:= 0 TO gc.uiDUTConfigCountSplit BY 1 DO
+	IF (arrsDUTChType[uiLoopIter] = 'GND') AND (arruiDMXChDUT[uiLoopIter] = 0)  THEN
+		MEMCPY(srcAddr:=ADR(arr_uiRecipeIndex[uiLoopIter]),destAddr:=ADR(arruiStatGNDTestIndices[uiLoopIter]),n:=SIZEOF(arr_uiRecipeIndex[uiLoopIter])); //UINT = 4 bytes?
 	END_IF
-	uiLoopIterDMXDUTArraySeq		:= uiLoopIterDMXDUTArraySeq+1;
-UNTIL 
-(uiLoopIterDMXDUTArraySeq = gc.uiMaxNrOfDMXChannel)
-END_REPEAT
-//Stash the values from temp (inside FOR loop) to other arrays
-arruiSeqTestIndicesDC				:= arruiSeqTestIndicesDCTmp;
+END_FOR
 
-iSetConfig							:= 0;	
+uiLoopIter			:= 0;
+iSetConfig			:= SetDMXIndices;
+
+SetDMXIndices:
+FOR uiLoopIter	:= 0 TO gc.uiDUTConfigCountSplit BY 1 DO
+	IF (arrsDUTChType[uiLoopIter] = 'DMX') AND (arruiDMXChDUT[uiLoopIter] <> 0)  THEN
+		MEMCPY(srcAddr:=ADR(arr_uiRecipeIndex[uiLoopIter]),destAddr:=ADR(arruiSeqTestIndicesDMX[uiLoopIter]),n:=SIZEOF(arr_uiRecipeIndex[uiLoopIter])); //UINT = 4 bytes?
+	END_IF
+END_FOR
+
+uiLoopIter			:= 0;
+iSetConfig			:= SetDCIndices;
+
+SetDCIndices:
+FOR uiLoopIter	:= 0 TO gc.uiDUTConfigCountSplit BY 1 DO
+	IF (arrsDUTChType[uiLoopIter] = '24V') AND (arruiDMXChDUT[uiLoopIter] <> 0)  THEN
+		MEMCPY(srcAddr:=ADR(arr_uiRecipeIndex[uiLoopIter]),destAddr:=ADR(arruiSeqTestIndicesDC[uiLoopIter]),n:=SIZEOF(arr_uiRecipeIndex[uiLoopIter])); //UINT = 4 bytes?
+	END_IF
+END_FOR
+
+uiLoopIter			:= 0;
+iSetConfig			:= SetMPIndices;
+
+SetMPIndices:
+FOR uiLoopIter	:= 0 TO gc.uiDUTConfigCountSplit BY 1 DO
+	IF (arrsDUTChType[uiLoopIter] = 'MP') AND (arruiDMXChDUT[uiLoopIter] <> 0)  THEN
+		MEMCPY(srcAddr:=ADR(arr_uiRecipeIndex[uiLoopIter]),destAddr:=ADR(arruiSeqTestIndicesMP[uiLoopIter]),n:=SIZEOF(arr_uiRecipeIndex[uiLoopIter])); //UINT = 4 bytes?
+	END_IF
+END_FOR
+
+uiLoopIter			:= 0;
+iSetConfig			:= SetMSIndices;
+
+SetMSIndices:
+FOR uiLoopIter	:= 0 TO gc.uiDUTConfigCountSplit BY 1 DO
+	IF (arrsDUTChType[uiLoopIter] = 'MS') AND (arruiDMXChDUT[uiLoopIter] <> 0)  THEN
+		MEMCPY(srcAddr:=ADR(arr_uiRecipeIndex[uiLoopIter]),destAddr:=ADR(arruiSeqTestIndicesMS[uiLoopIter]),n:=SIZEOF(arr_uiRecipeIndex[uiLoopIter])); //UINT = 4 bytes?
+	END_IF
+END_FOR
+
+uiLoopIter			:= 0;
+iSetConfig			:= ConfigDone;
 
 END_CASE
 
 
-//Set the config of the 'routing' channels
-IF r_tSetConfig.Q THEN
-	g_ast.DMXHWOut	:= g_ast.DMXPhysOut;
-//	xConfigSet		:= TRUE;
+//Set the config of the 'routing' channels for the device - trigger
+IF xRecipeSettingCompleteRd1 THEN
+	g_ast.DMXHWOut				:= g_ast.DMXPhysOut;
+	xRecipeSettingCompleteRd1	:= FALSE;
 END_IF
+
+IF xRecipeSettingCompleteRd2 THEN
+	g_ast.DMXHWOut				:= g_ast.DMXPhysOut;
+	xRecipeSettingCompleteRd2	:= FALSE;
+END_IF
+
 
 
 // For manual setting of channels from the Visualization - NOTE! This stamps over any other values set for the lower 256 channels (DUT)
@@ -511,11 +415,22 @@ CASE iSetExpctdBufferSM OF
 	
 0://If there is a trigger to set the test config, create a new 'Expctd' buffer
 IF r_tSetExpectedBuff.Q THEN
-	r_tExpectedBufferSet.CLK	:= FALSE;
+//Why does it need to be reset low?
+//	r_tExpectedBufferSet.CLK	:= FALSE;
 	//Clear the existing buffers
 	FOR uiForLoopClearExpctd := 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
-		arrxExpctdPNP[uiForLoopClearExpctd]	:= 0;
-		arrxExpctdNPN[uiForLoopClearExpctd]	:= 0;
+		arrxExpctBufferPNP24V[uiForLoopClearExpctd]	:= 0;
+		arrxExpctBufferNPN24V[uiForLoopClearExpctd]	:= 0;
+		arrxExpctBufferPNPGND[uiForLoopClearExpctd]	:= 0;
+		arrxExpctBufferNPNGND[uiForLoopClearExpctd]	:= 0;
+		arrxExpctBufferPNPDC[uiForLoopClearExpctd]	:= 0;
+		arrxExpctBufferNPNDC[uiForLoopClearExpctd]	:= 0;
+		arrxExpctBufferPNPDMX[uiForLoopClearExpctd]	:= 0;
+		arrxExpctBufferNPNDMX[uiForLoopClearExpctd]	:= 0;
+		arrxExpctBufferPNPMP[uiForLoopClearExpctd]	:= 0;
+		arrxExpctBufferNPNMP[uiForLoopClearExpctd]	:= 0;
+		arrxExpctBufferPNPMS[uiForLoopClearExpctd]	:= 0;
+		arrxExpctBufferNPNMS[uiForLoopClearExpctd]	:= 0;
 	END_FOR
 	iSetExpctdBufferSM			:= 10;
 END_IF
@@ -791,6 +706,51 @@ END_IF
 END_CASE]]></ST>
       </Implementation>
     </Action>
+    <Method Name="METH" Id="{7f4ce2af-04c6-49a3-82d9-d76d3d072c2f}">
+      <Declaration><![CDATA[METHOD METH : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="METH_1" Id="{a5dc05e5-cddc-4f12-b1d3-4d90e01cfbbb}">
+      <Declaration><![CDATA[METHOD METH_1 : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="METH_2" Id="{4ede8091-4ac4-4889-a687-719bd1f34d60}">
+      <Declaration><![CDATA[METHOD METH_2 : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="METH_3" Id="{d3c52faa-5fab-433e-806d-7ac9e6628f1a}">
+      <Declaration><![CDATA[METHOD METH_3 : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="METH_4" Id="{c22c9153-ac85-4e47-9ee5-7e57cd7f1377}">
+      <Declaration><![CDATA[METHOD METH_4 : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Action Name="SeqTestMotor" Id="{8ebcdac7-001b-4114-a17b-b08d6ad9551b}">
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -1223,44 +1183,91 @@ END_CASE]]></ST>
       <LineId Id="11437" Count="0" />
       <LineId Id="11441" Count="0" />
       <LineId Id="11440" Count="0" />
-      <LineId Id="6811" Count="3" />
+      <LineId Id="6811" Count="1" />
+      <LineId Id="11827" Count="0" />
+      <LineId Id="6813" Count="1" />
       <LineId Id="11447" Count="0" />
       <LineId Id="11461" Count="0" />
       <LineId Id="11451" Count="1" />
+      <LineId Id="11772" Count="0" />
       <LineId Id="11466" Count="1" />
-      <LineId Id="11457" Count="1" />
+      <LineId Id="11457" Count="0" />
+      <LineId Id="11774" Count="0" />
+      <LineId Id="11458" Count="0" />
+      <LineId Id="11759" Count="0" />
+      <LineId Id="11771" Count="0" />
+      <LineId Id="11760" Count="0" />
+      <LineId Id="11764" Count="0" />
+      <LineId Id="11766" Count="0" />
+      <LineId Id="11763" Count="0" />
+      <LineId Id="11769" Count="1" />
+      <LineId Id="11762" Count="0" />
       <LineId Id="11442" Count="0" />
-      <LineId Id="11468" Count="3" />
-      <LineId Id="6828" Count="25" />
-      <LineId Id="8224" Count="0" />
-      <LineId Id="6855" Count="50" />
-      <LineId Id="8222" Count="0" />
-      <LineId Id="6906" Count="28" />
-      <LineId Id="8221" Count="0" />
-      <LineId Id="6936" Count="8" />
-      <LineId Id="8253" Count="0" />
-      <LineId Id="8252" Count="0" />
-      <LineId Id="8260" Count="5" />
-      <LineId Id="9867" Count="0" />
-      <LineId Id="8266" Count="3" />
-      <LineId Id="8284" Count="1" />
-      <LineId Id="8291" Count="12" />
-      <LineId Id="9477" Count="5" />
-      <LineId Id="9476" Count="0" />
-      <LineId Id="8304" Count="1" />
-      <LineId Id="8271" Count="0" />
-      <LineId Id="8273" Count="10" />
-      <LineId Id="8272" Count="0" />
-      <LineId Id="8256" Count="0" />
-      <LineId Id="8308" Count="14" />
-      <LineId Id="6945" Count="22" />
+      <LineId Id="11468" Count="0" />
+      <LineId Id="11782" Count="0" />
+      <LineId Id="11776" Count="0" />
+      <LineId Id="11470" Count="1" />
+      <LineId Id="11796" Count="0" />
+      <LineId Id="6828" Count="0" />
+      <LineId Id="11799" Count="0" />
+      <LineId Id="11802" Count="0" />
+      <LineId Id="11805" Count="0" />
+      <LineId Id="11814" Count="1" />
+      <LineId Id="11820" Count="0" />
+      <LineId Id="11817" Count="0" />
+      <LineId Id="11819" Count="0" />
+      <LineId Id="11804" Count="0" />
+      <LineId Id="11849" Count="0" />
+      <LineId Id="11848" Count="0" />
+      <LineId Id="11800" Count="0" />
+      <LineId Id="11822" Count="1" />
+      <LineId Id="11825" Count="0" />
+      <LineId Id="11856" Count="0" />
+      <LineId Id="11847" Count="0" />
+      <LineId Id="11852" Count="0" />
+      <LineId Id="11851" Count="0" />
+      <LineId Id="11860" Count="0" />
+      <LineId Id="11866" Count="0" />
+      <LineId Id="11854" Count="1" />
+      <LineId Id="11858" Count="0" />
+      <LineId Id="11857" Count="0" />
+      <LineId Id="11872" Count="6" />
+      <LineId Id="11871" Count="0" />
+      <LineId Id="11879" Count="0" />
+      <LineId Id="11869" Count="0" />
+      <LineId Id="11862" Count="3" />
+      <LineId Id="11859" Count="0" />
+      <LineId Id="11880" Count="2" />
+      <LineId Id="11835" Count="0" />
+      <LineId Id="11834" Count="0" />
+      <LineId Id="11884" Count="7" />
+      <LineId Id="11839" Count="0" />
+      <LineId Id="11837" Count="0" />
+      <LineId Id="11893" Count="6" />
+      <LineId Id="11892" Count="0" />
+      <LineId Id="11841" Count="0" />
+      <LineId Id="11840" Count="0" />
+      <LineId Id="11900" Count="6" />
+      <LineId Id="11838" Count="0" />
+      <LineId Id="6945" Count="5" />
+      <LineId Id="11784" Count="0" />
+      <LineId Id="11778" Count="0" />
+      <LineId Id="6953" Count="0" />
+      <LineId Id="11786" Count="4" />
+      <LineId Id="11785" Count="0" />
+      <LineId Id="6954" Count="13" />
       <LineId Id="9675" Count="0" />
       <LineId Id="10442" Count="1" />
       <LineId Id="10445" Count="0" />
       <LineId Id="6968" Count="0" />
       <LineId Id="6970" Count="1" />
       <LineId Id="8638" Count="0" />
-      <LineId Id="6972" Count="22" />
+      <LineId Id="6972" Count="5" />
+      <LineId Id="11707" Count="0" />
+      <LineId Id="6978" Count="3" />
+      <LineId Id="11739" Count="1" />
+      <LineId Id="11743" Count="7" />
+      <LineId Id="6982" Count="12" />
       <LineId Id="7518" Count="0" />
       <LineId Id="7520" Count="1" />
       <LineId Id="7519" Count="0" />
@@ -1359,6 +1366,21 @@ END_CASE]]></ST>
       <LineId Id="37" Count="2" />
       <LineId Id="19" Count="0" />
       <LineId Id="17" Count="0" />
+    </LineIds>
+    <LineIds Name="DMXTest.METH">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="DMXTest.METH_1">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="DMXTest.METH_2">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="DMXTest.METH_3">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="DMXTest.METH_4">
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="DMXTest.SeqTestMotor">
       <LineId Id="1" Count="0" />
