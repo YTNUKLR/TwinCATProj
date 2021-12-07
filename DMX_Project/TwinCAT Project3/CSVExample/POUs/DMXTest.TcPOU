@@ -10,7 +10,6 @@ VAR
 	uiCounter2					: UINT;
 	uiCounter3					: UINT;
 	uiCounter4					: UINT;
-	uiCounter5					: UINT;
 	uiCounter6					: UINT;
 	uiCounter7					: UINT;
 	uiCounter8					: UINT;
@@ -36,8 +35,7 @@ VAR
 	iCompareSeq					: ARRAY[0..ENUM_SeqSM.Twice] OF INT;
 	iParseFile					: INT;
 	iSetConfig					: (Trig_SetConfigSM,ApplyRecipeCfgtoHW,ZeroIndexArrays,Set24VIndices,SetGNDIndices,SetDMXIndices,SetDCIndices,SetMPIndices,SetMSIndices,ConfigDone);
-	iSetExpctdBufferSM			: INT;
-	iReindexExpctedBufferSM		: INT;
+	iSetExpctdStaticSM			: (ZeroExpectedBuffers,CreateExpectedBuffersStatic);
 	rt_RunStaticTest			: R_TRIG;
 	rt_RunSeqTestOnce			: R_TRIG;
 	rt_RunSeqTestOnceDC			: R_TRIG;
@@ -97,7 +95,7 @@ VAR
 	arrxExpctBufferNPNMP		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;	
 	arrxExpctBufferPNPMS		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
 	arrxExpctBufferNPNMS		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
-	
+		
 	arrxExpctdMaskPNPSeq		: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BOOL; //Copy the contents of hardware buffer 
 	arrxExpctdMaskNPNSeq		: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF BOOL; //Copy the contents of hardware buffer
 	
@@ -129,8 +127,8 @@ VAR
 	arrdiTestNPNSeqOnceCompleteProblemIndex		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF DINT;
 	
 	arrudiStaticCopyResultPNP24V	: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF UDINT;
-	arrudiStaticCopyResultNPN24V	: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF UDINT;
-	arrudiStaticCopyResultPNPGND	: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF UDINT;
+//	arrudiStaticCopyResultNPN24V	: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF UDINT;
+//	arrudiStaticCopyResultPNPGND	: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF UDINT;
 	arrudiStaticCopyResultNPNGND	: ARRAY[0..gc.uiMaxNrOfDMXChannel] OF UDINT;	
 
 	arr_diTestPNPMotorDir1		: ARRAY[0..gc.uiMaxNrDMXTestCh] OF DINT;
@@ -278,7 +276,7 @@ FOR uiForLoopRecipe := 0 TO gc.uiDUTConfigCountSplit BY 1 DO
 		//Set the config routing := NPN
 		arr_usiRecipeSettingTmpRd1[(uiForLoopRecipe+gc.uiChannelSplitCount)]	:= 255;
 		arr_usiRecipeSettingTmpRd2[(uiForLoopRecipe+gc.uiChannelSplitCount)]	:= 255;
-	ELSIF (arrsDUTChType[uiForLoopRecipe] = '24V') THEN
+	ELSIF (arrsDUTChType[uiForLoopRecipe] = '24V') THEN //Covers the case of static and switched 24V
 		//Set the config routing := PNP
 		arr_usiRecipeSettingTmpRd1[(uiForLoopRecipe+gc.uiChannelSplitCount)]	:= 0;
 		arr_usiRecipeSettingTmpRd2[(uiForLoopRecipe+gc.uiChannelSplitCount)]	:= 0;
@@ -411,13 +409,13 @@ END_IF
 END_CASE
 
 
-CASE iSetExpctdBufferSM OF
+CASE iSetExpctdStaticSM OF
 	
-0://If there is a trigger to set the test config, create a new 'Expctd' buffer
+ZeroExpectedBuffers://If there is a trigger to set the test config, create new 'Expected' buffers
 IF r_tSetExpectedBuff.Q THEN
-//Why does it need to be reset low?
+//Why does it need to be reset low?  Maybe to prevent it cycling...
 //	r_tExpectedBufferSet.CLK	:= FALSE;
-	//Clear the existing buffers
+//Clear the existing buffers
 	FOR uiForLoopClearExpctd := 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
 		arrxExpctBufferPNP24V[uiForLoopClearExpctd]	:= 0;
 		arrxExpctBufferNPN24V[uiForLoopClearExpctd]	:= 0;
@@ -432,58 +430,22 @@ IF r_tSetExpectedBuff.Q THEN
 		arrxExpctBufferPNPMS[uiForLoopClearExpctd]	:= 0;
 		arrxExpctBufferNPNMS[uiForLoopClearExpctd]	:= 0;
 	END_FOR
-	iSetExpctdBufferSM			:= 10;
+	iSetExpctdStaticSM			:= CreateExpectedBuffersStatic;
 END_IF
 
-10: // Set Expected Buffers per Recipe Files
+CreateExpectedBuffersStatic: // Set Expected Buffers per Recipe File Indices
 FOR uiLoopExpctdIndex := 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
-	IF (arr_usiRecipeSetting[uiLoopExpctdIndex] <= 127) THEN
-		arrxExpctdPNP[arr_uiRecipeIndex[uiLoopExpctdIndex]]		:= TRUE; 
-		arrxExpctdNPN[arr_uiRecipeIndex[uiLoopExpctdIndex]]		:= FALSE;
-	ELSIF (arr_usiRecipeSetting[uiLoopExpctdIndex] > 127) THEN
-		arrxExpctdPNP[arr_uiRecipeIndex[uiLoopExpctdIndex]]		:= FALSE;
-		arrxExpctdNPN[arr_uiRecipeIndex[uiLoopExpctdIndex]]		:= TRUE; 
+	IF (arruiStat24VTestIndices[uiLoopExpctdIndex] <> 0) THEN
+		arrxExpctBufferPNP24V[arruiStat24VTestIndices[uiLoopExpctdIndex]]		:= TRUE;
+		//NPN24V was already zero'd out
+	ELSIF (arruiStatGNDTestIndices[uiLoopExpctdIndex] <> 0) THEN
+		//PNPGND was already zero'd out		
+		arrxExpctBufferNPNGND[arruiStatGNDTestIndices[uiLoopExpctdIndex]]		:= TRUE; 
 	END_IF
-	//Zero out Expected, type-specific index buffers
-	arrxExpctdTmpPNP24V[uiLoopExpctdIndex] 					:= 0;
-	arrxExpctdTmpNPN24V[uiLoopExpctdIndex] 					:= 0;
-	arrxExpctdTmpPNPGND[uiLoopExpctdIndex] 					:= 0;
-	arrxExpctdTmpNPNGND[uiLoopExpctdIndex] 					:= 0;
 END_FOR
 
 r_tExpectedBufferSet.CLK	:= TRUE;
-iSetExpctdBufferSM			:= 0;
-
-END_CASE
-
-CASE iReindexExpctedBufferSM OF
-	
-0:
-IF r_tExpectedBufferSet.Q THEN
-	iReindexExpctedBufferSM	:= 10;
-END_IF
-
-10://Copy the contents of Expected Buffer to a different Buffer, starting at array address 0 - only the channels that have a hardware input index
-MEMCPY(srcAddr:=ADR(arrxExpctdPNP[gc.uiChannelSplitCount]),destAddr:=ADR(arrxExpctdTmpPNP[cuiMinDUTIndex]),n:=gc.uiChannelsUT);
-MEMCPY(srcAddr:=ADR(arrxExpctdNPN[gc.uiChannelSplitCount]),destAddr:=ADR(arrxExpctdTmpNPN[cuiMinDUTIndex]),n:=gc.uiChannelsUT);
-
-iReindexExpctedBufferSM	:= 20;
-
-20:
-//And create the comparison Expected Buffer for Static Test - 24V & GND indices
-FOR uiCounter5 := 0 TO gc.uiMaxNrDMXTestCh BY 1 DO
-	IF arrui24VTestIndices[uiCounter5] <> 0 THEN	
-		MEMCPY(srcAddr:=ADR(arrxExpctdTmpPNP[arrui24VTestIndices[uiCounter5]]),destAddr:=ADR(arrxExpctdTmpPNP24V[arrui24VTestIndices[uiCounter5]]),n:=SIZEOF(arrxExpctdTmpPNP[arrui24VTestIndices[uiCounter5]])); //bytes
-		MEMCPY(srcAddr:=ADR(arrxExpctdTmpNPN[arrui24VTestIndices[uiCounter5]]),destAddr:=ADR(arrxExpctdTmpNPN24V[arrui24VTestIndices[uiCounter5]]),n:=SIZEOF(arrxExpctdTmpNPN[arrui24VTestIndices[uiCounter5]])); //bytes
-	END_IF
-	
-	IF arruiGNDTestIndices[uiCounter5] <> 0 THEN	
-		MEMCPY(srcAddr:=ADR(arrxExpctdTmpPNP[arruiGNDTestIndices[uiCounter5]]),destAddr:=ADR(arrxExpctdTmpPNPGND[arruiGNDTestIndices[uiCounter5]]),n:=SIZEOF(arrxExpctdTmpPNP[arruiGNDTestIndices[uiCounter5]])); //bytes
-		MEMCPY(srcAddr:=ADR(arrxExpctdTmpNPN[arruiGNDTestIndices[uiCounter5]]),destAddr:=ADR(arrxExpctdTmpNPNGND[arruiGNDTestIndices[uiCounter5]]),n:=SIZEOF(arrxExpctdTmpNPN[arruiGNDTestIndices[uiCounter5]])); //bytes
-	END_IF	
-END_FOR
-
-iReindexExpctedBufferSM	:= 0;
+iSetExpctdStaticSM			:= 0;
 
 END_CASE
 
@@ -566,23 +528,13 @@ END_IF
 60:
 FOR uiCounter4 := 0 TO gc.uiMaxNrDMXTestCh BY 1 DO
 
-//IF there is an index for a '24V' element, then copy that element's value to a new pair of arrays, for 'Received'
-
-	IF arrui24VTestIndices[uiCounter4] <> 0 THEN
-
-		arrudiStaticCopyResultPNP24V[arrui24VTestIndices[uiCounter4]]	:= MEMCPY(srcAddr:=ADR(g_ast.arrInputPNP[arrui24VTestIndices[uiCounter4]]),destAddr:=ADR(arrxRcvdBufferPNP24V[arrui24VTestIndices[uiCounter4]]),n:=SIZEOF(g_ast.arrInputPNP[arrui24VTestIndices[uiCounter4]])); //bytes
-		arrudiStaticCopyResultNPN24V[arrui24VTestIndices[uiCounter4]]	:= MEMCPY(srcAddr:=ADR(g_ast.arrInputNPN[arrui24VTestIndices[uiCounter4]]),destAddr:=ADR(arrxRcvdBufferNPN24V[arrui24VTestIndices[uiCounter4]]),n:=SIZEOF(g_ast.arrInputNPN[arrui24VTestIndices[uiCounter4]])); //bytes)
-
-	END_IF
+//IF there is an expected index for a '24V' element, then copy that element's value to a new pair of arrays, for 'Received'
+		arrudiStaticCopyResultPNP24V[arruiStat24VTestIndices[uiCounter4]]	:= MEMCPY(srcAddr:=ADR(g_ast.arrInputPNP[arruiStat24VTestIndices[uiCounter4]]),destAddr:=ADR(arrxRcvdBufferPNP24V[arruiStat24VTestIndices[uiCounter4]]),n:=SIZEOF(g_ast.arrInputPNP[arruiStat24VTestIndices[uiCounter4]])); //bytes
+		arrudiStaticCopyResultNPN24V[arruiStat24VTestIndices[uiCounter4]]	:= MEMCPY(srcAddr:=ADR(g_ast.arrInputNPN[arruiStat24VTestIndices[uiCounter4]]),destAddr:=ADR(arrxRcvdBufferNPN24V[arruiStat24VTestIndices[uiCounter4]]),n:=SIZEOF(g_ast.arrInputNPN[arruiStat24VTestIndices[uiCounter4]])); //bytes)
 
 //IF there is an index for a 'GND' element, then copy that element's value to a new pair of arrays, for 'Received'
-
-	IF arruiGNDTestIndices[uiCounter4] <> 0 THEN
-
-		arrudiStaticCopyResultPNPGND[arruiGNDTestIndices[uiCounter4]]	:= MEMCPY(srcAddr:=ADR(g_ast.arrInputPNP[arruiGNDTestIndices[uiCounter4]]),destAddr:=ADR(arrxRcvdBufferPNPGND[arruiGNDTestIndices[uiCounter4]]),n:=SIZEOF(g_ast.arrInputPNP[arruiGNDTestIndices[uiCounter4]])); //bytes
-		arrudiStaticCopyResultNPNGND[arruiGNDTestIndices[uiCounter4]]	:= MEMCPY(srcAddr:=ADR(g_ast.arrInputNPN[arruiGNDTestIndices[uiCounter4]]),destAddr:=ADR(arrxRcvdBufferNPNGND[arruiGNDTestIndices[uiCounter4]]),n:=SIZEOF(g_ast.arrInputNPN[arruiGNDTestIndices[uiCounter4]])); //bytes)
-	
-	END_IF
+		arrudiStaticCopyResultPNPGND[arruiStatGNDTestIndices[uiCounter4]]	:= MEMCPY(srcAddr:=ADR(g_ast.arrInputPNP[arruiStatGNDTestIndices[uiCounter4]]),destAddr:=ADR(arrxRcvdBufferPNPGND[arruiStatGNDTestIndices[uiCounter4]]),n:=SIZEOF(g_ast.arrInputPNP[arruiStatGNDTestIndices[uiCounter4]])); //bytes
+		arrudiStaticCopyResultNPNGND[arruiStatGNDTestIndices[uiCounter4]]	:= MEMCPY(srcAddr:=ADR(g_ast.arrInputNPN[arruiStatGNDTestIndices[uiCounter4]]),destAddr:=ADR(arrxRcvdBufferNPNGND[arruiStatGNDTestIndices[uiCounter4]]),n:=SIZEOF(g_ast.arrInputNPN[arruiStatGNDTestIndices[uiCounter4]])); //bytes)
 	
 END_FOR
 
@@ -600,7 +552,7 @@ IF tonReadWait.Q THEN
 END_IF
 
 90:
-//Run Comparos
+//Run Comparisons
 //Individual Channels comparison
 FOR uiCounter6	:= 0 TO gc.uiMaxNrDMXTestCh BY 1 DO 
 	arr_diTestStaticPNP24V[uiCounter6]		:= MEMCMP(pBuf1:=ADR(arrxExpctdTmpPNP24V[uiCounter6]),pBuf2:=ADR(arrxRcvdBufferPNP24V[uiCounter6]),n:=SIZEOF(arrxExpctdTmpPNP24V[uiCounter6]));
@@ -610,10 +562,10 @@ FOR uiCounter6	:= 0 TO gc.uiMaxNrDMXTestCh BY 1 DO
 END_FOR
 
 //Complete Buffer
-diTestStaticPNP24V		:= MEMCMP(pBuf1:=ADR(arrxExpctdTmpPNP24V[cuiMinDUTIndex]),pBuf2:=ADR(arrxRcvdBufferPNP24V[cuiMinDUTIndex]),n:=gc.uiChannelsUT);
-diTestStaticNPN24V		:= MEMCMP(pBuf1:=ADR(arrxExpctdTmpNPN24V[cuiMinDUTIndex]),pBuf2:=ADR(arrxRcvdBufferNPN24V[cuiMinDUTIndex]),n:=gc.uiChannelsUT);
-diTestStaticPNPGND		:= MEMCMP(pBuf1:=ADR(arrxExpctdTmpPNPGND[cuiMinDUTIndex]),pBuf2:=ADR(arrxRcvdBufferPNPGND[cuiMinDUTIndex]),n:=gc.uiChannelsUT);
-diTestStaticNPNGND		:= MEMCMP(pBuf1:=ADR(arrxExpctdTmpNPNGND[cuiMinDUTIndex]),pBuf2:=ADR(arrxRcvdBufferNPNGND[cuiMinDUTIndex]),n:=gc.uiChannelsUT);
+diTestStaticPNP24V		:= MEMCMP(pBuf1:=ADR(arrxExpctBufferPNP24V[cuiMinDUTIndex]),pBuf2:=ADR(arrxRcvdBufferPNP24V[cuiMinDUTIndex]),n:=gc.uiChannelsUT);
+diTestStaticNPN24V		:= MEMCMP(pBuf1:=ADR(arrxExpctBufferNPN24V[cuiMinDUTIndex]),pBuf2:=ADR(arrxRcvdBufferNPN24V[cuiMinDUTIndex]),n:=gc.uiChannelsUT);
+diTestStaticPNPGND		:= MEMCMP(pBuf1:=ADR(arrxExpctBufferPNPGND[cuiMinDUTIndex]),pBuf2:=ADR(arrxRcvdBufferPNPGND[cuiMinDUTIndex]),n:=gc.uiChannelsUT);
+diTestStaticNPNGND		:= MEMCMP(pBuf1:=ADR(arrxExpctBufferNPNGND[cuiMinDUTIndex]),pBuf2:=ADR(arrxRcvdBufferNPNGND[cuiMinDUTIndex]),n:=gc.uiChannelsUT);
 
 iCompareStaticSM				:= 105;
 
@@ -1267,26 +1219,10 @@ END_CASE]]></ST>
       <LineId Id="6978" Count="3" />
       <LineId Id="11739" Count="1" />
       <LineId Id="11743" Count="7" />
-      <LineId Id="6982" Count="12" />
-      <LineId Id="7518" Count="0" />
-      <LineId Id="7520" Count="1" />
-      <LineId Id="7519" Count="0" />
-      <LineId Id="7522" Count="0" />
-      <LineId Id="6995" Count="18" />
-      <LineId Id="7479" Count="2" />
-      <LineId Id="7489" Count="0" />
-      <LineId Id="7494" Count="0" />
-      <LineId Id="7496" Count="0" />
-      <LineId Id="7498" Count="0" />
-      <LineId Id="7500" Count="0" />
-      <LineId Id="7491" Count="0" />
-      <LineId Id="7504" Count="0" />
-      <LineId Id="7506" Count="0" />
-      <LineId Id="7508" Count="0" />
-      <LineId Id="7510" Count="0" />
-      <LineId Id="7492" Count="0" />
-      <LineId Id="7653" Count="1" />
-      <LineId Id="7014" Count="20" />
+      <LineId Id="6982" Count="7" />
+      <LineId Id="12112" Count="0" />
+      <LineId Id="6991" Count="10" />
+      <LineId Id="7017" Count="17" />
       <LineId Id="7037" Count="1" />
       <LineId Id="7041" Count="3" />
       <LineId Id="7784" Count="0" />
@@ -1305,17 +1241,11 @@ END_CASE]]></ST>
       <LineId Id="7088" Count="7" />
       <LineId Id="7097" Count="0" />
       <LineId Id="8088" Count="1" />
-      <LineId Id="7513" Count="0" />
-      <LineId Id="8075" Count="3" />
-      <LineId Id="8084" Count="0" />
-      <LineId Id="8071" Count="0" />
-      <LineId Id="8085" Count="2" />
-      <LineId Id="7514" Count="0" />
-      <LineId Id="7338" Count="0" />
+      <LineId Id="8077" Count="1" />
+      <LineId Id="8085" Count="1" />
       <LineId Id="7325" Count="0" />
       <LineId Id="7327" Count="0" />
-      <LineId Id="7123" Count="0" />
-      <LineId Id="7515" Count="1" />
+      <LineId Id="7516" Count="0" />
       <LineId Id="7124" Count="16" />
       <LineId Id="11015" Count="0" />
       <LineId Id="8070" Count="0" />
