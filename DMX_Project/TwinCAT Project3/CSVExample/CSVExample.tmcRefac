@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Refactors>
+  <Renames>
+    <RenamedType>
+      <Type guid="7f4ce2af-04c6-49a3-82d9-d76d3d072c2f">METH</Type>
+      <From>METH</From>
+      <To>SequentialTest</To>
+    </RenamedType>
+  </Renames>
+</Refactors>

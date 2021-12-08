@@ -33,6 +33,7 @@ VAR
 	
 	iCompareStaticSM			: INT;
 	iCompareSeq					: ARRAY[0..ENUM_SeqSM.Twice] OF INT;
+	iSeqSMOnce					: (WaitForTrig,ZeroBuffers);
 	iParseFile					: INT;
 	iSetConfig					: (Trig_SetConfigSM,ApplyRecipeCfgtoHW,ZeroIndexArrays,Set24VIndices,SetGNDIndices,SetDMXIndices,SetDCIndices,SetMPIndices,SetMSIndices,ConfigDone);
 	iSetExpctdStaticSM			: (ZeroExpectedBuffers,CreateExpectedBuffersStatic);
@@ -658,15 +659,6 @@ END_IF
 END_CASE]]></ST>
       </Implementation>
     </Action>
-    <Method Name="METH" Id="{7f4ce2af-04c6-49a3-82d9-d76d3d072c2f}">
-      <Declaration><![CDATA[METHOD METH : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="METH_1" Id="{a5dc05e5-cddc-4f12-b1d3-4d90e01cfbbb}">
       <Declaration><![CDATA[METHOD METH_1 : BOOL
 VAR_INPUT
@@ -731,8 +723,8 @@ IF (uiLoopRcvIndex=0) THEN
 //by default, Counter = 0 at the first initialization; it is reset at the end of this State Machine
 //Clear Storage Buffers pre-test to ensure no old data interferes with current test
 		FOR uiCounter4 := 0 TO gc.uiMaxNrDMXTestCh BY 1 DO
-			arrxExpctdTmpPNPSeqDMX[uiCounter4]		:= 0;		//should be all 0s ; PNP<>DMX
-			arrxExpctdTmpNPNSeqDMX[uiCounter4]		:= 0;
+			arrxExpctBufferPNPDMX[uiCounter4]		:= 0;		//should be all 0s ; PNP<>DMX
+			arrxExpctBufferNPNDMX[uiCounter4]		:= 0;
 //			arrxExpctdTmpPNPSeqDC[uiCounter4]		:= 0;		
 //			arrxExpctdTmpNPNSeqDC[uiCounter4]		:= 0;
 			arrxRcvdBufferPNPSeq[uiCounter4]		:= 0;		//should be all 0s too ; PNP<>DMX	
@@ -1105,6 +1097,30 @@ END_IF
 END_CASE]]></ST>
       </Implementation>
     </Action>
+    <Method Name="SequentialTest" Id="{7f4ce2af-04c6-49a3-82d9-d76d3d072c2f}">
+      <Declaration><![CDATA[METHOD SequentialTest]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Run Once - DMX Channels only for now
+
+rt_RunSeqTestOnce();
+rt_ResetTestSeq();
+
+CASE iSeqSMOnce OF
+
+WaitForTrig:
+IF rt_RunSeqTestOnce.Q THEN
+	xDMXSeqTestInProgressOnce				:= TRUE;
+	uiLoopRcvIndex							:= cuiMinDUTIndex; 
+	iSeqSMOnce								:= 10;
+END_IF
+
+ZeroBuffers:
+
+
+	
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="DMXTest">
       <LineId Id="6761" Count="0" />
       <LineId Id="7189" Count="0" />
@@ -1297,9 +1313,6 @@ END_CASE]]></ST>
       <LineId Id="19" Count="0" />
       <LineId Id="17" Count="0" />
     </LineIds>
-    <LineIds Name="DMXTest.METH">
-      <LineId Id="5" Count="0" />
-    </LineIds>
     <LineIds Name="DMXTest.METH_1">
       <LineId Id="5" Count="0" />
     </LineIds>
@@ -1432,6 +1445,17 @@ END_CASE]]></ST>
       <LineId Id="358" Count="34" />
       <LineId Id="404" Count="28" />
       <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="DMXTest.SequentialTest">
+      <LineId Id="12" Count="4" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="22" Count="5" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="17" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>
