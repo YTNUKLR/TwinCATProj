@@ -2952,4 +2952,724 @@
 			</Device>
 		</Io>
 	</Project>
+	<Mappings>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000403}" Id="#x02030010"/>
+		<OwnerA Name="TIPC^CSVExample^CSVExample Instance">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 2 (EL6851)">
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[0]" VarB="DMX Channel 1-64^Channel 1"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[100]" VarB="DMX Channel 65-128^Channel 101"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[101]" VarB="DMX Channel 65-128^Channel 102"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[102]" VarB="DMX Channel 65-128^Channel 103"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[103]" VarB="DMX Channel 65-128^Channel 104"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[104]" VarB="DMX Channel 65-128^Channel 105"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[105]" VarB="DMX Channel 65-128^Channel 106"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[106]" VarB="DMX Channel 65-128^Channel 107"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[107]" VarB="DMX Channel 65-128^Channel 108"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[108]" VarB="DMX Channel 65-128^Channel 109"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[109]" VarB="DMX Channel 65-128^Channel 110"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[10]" VarB="DMX Channel 1-64^Channel 11"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[110]" VarB="DMX Channel 65-128^Channel 111"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[111]" VarB="DMX Channel 65-128^Channel 112"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[112]" VarB="DMX Channel 65-128^Channel 113"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[113]" VarB="DMX Channel 65-128^Channel 114"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[114]" VarB="DMX Channel 65-128^Channel 115"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[115]" VarB="DMX Channel 65-128^Channel 116"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[116]" VarB="DMX Channel 65-128^Channel 117"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[117]" VarB="DMX Channel 65-128^Channel 118"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[118]" VarB="DMX Channel 65-128^Channel 119"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[119]" VarB="DMX Channel 65-128^Channel 120"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[11]" VarB="DMX Channel 1-64^Channel 12"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[120]" VarB="DMX Channel 65-128^Channel 121"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[121]" VarB="DMX Channel 65-128^Channel 122"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[122]" VarB="DMX Channel 65-128^Channel 123"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[123]" VarB="DMX Channel 65-128^Channel 124"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[124]" VarB="DMX Channel 65-128^Channel 125"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[125]" VarB="DMX Channel 65-128^Channel 126"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[126]" VarB="DMX Channel 65-128^Channel 127"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[127]" VarB="DMX Channel 65-128^Channel 128"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[128]" VarB="DMX Channel 129-192^Channel 129"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[129]" VarB="DMX Channel 129-192^Channel 130"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[12]" VarB="DMX Channel 1-64^Channel 13"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[130]" VarB="DMX Channel 129-192^Channel 131"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[131]" VarB="DMX Channel 129-192^Channel 132"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[132]" VarB="DMX Channel 129-192^Channel 133"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[133]" VarB="DMX Channel 129-192^Channel 134"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[134]" VarB="DMX Channel 129-192^Channel 135"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[135]" VarB="DMX Channel 129-192^Channel 136"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[136]" VarB="DMX Channel 129-192^Channel 137"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[137]" VarB="DMX Channel 129-192^Channel 138"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[138]" VarB="DMX Channel 129-192^Channel 139"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[139]" VarB="DMX Channel 129-192^Channel 140"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[13]" VarB="DMX Channel 1-64^Channel 14"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[140]" VarB="DMX Channel 129-192^Channel 141"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[141]" VarB="DMX Channel 129-192^Channel 142"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[142]" VarB="DMX Channel 129-192^Channel 143"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[143]" VarB="DMX Channel 129-192^Channel 144"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[144]" VarB="DMX Channel 129-192^Channel 145"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[145]" VarB="DMX Channel 129-192^Channel 146"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[146]" VarB="DMX Channel 129-192^Channel 147"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[147]" VarB="DMX Channel 129-192^Channel 148"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[148]" VarB="DMX Channel 129-192^Channel 149"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[149]" VarB="DMX Channel 129-192^Channel 150"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[14]" VarB="DMX Channel 1-64^Channel 15"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[150]" VarB="DMX Channel 129-192^Channel 151"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[151]" VarB="DMX Channel 129-192^Channel 152"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[152]" VarB="DMX Channel 129-192^Channel 153"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[153]" VarB="DMX Channel 129-192^Channel 154"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[154]" VarB="DMX Channel 129-192^Channel 155"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[155]" VarB="DMX Channel 129-192^Channel 156"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[156]" VarB="DMX Channel 129-192^Channel 157"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[157]" VarB="DMX Channel 129-192^Channel 158"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[158]" VarB="DMX Channel 129-192^Channel 159"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[159]" VarB="DMX Channel 129-192^Channel 160"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[15]" VarB="DMX Channel 1-64^Channel 16"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[160]" VarB="DMX Channel 129-192^Channel 161"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[161]" VarB="DMX Channel 129-192^Channel 162"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[162]" VarB="DMX Channel 129-192^Channel 163"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[163]" VarB="DMX Channel 129-192^Channel 164"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[164]" VarB="DMX Channel 129-192^Channel 165"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[165]" VarB="DMX Channel 129-192^Channel 166"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[166]" VarB="DMX Channel 129-192^Channel 167"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[167]" VarB="DMX Channel 129-192^Channel 168"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[168]" VarB="DMX Channel 129-192^Channel 169"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[169]" VarB="DMX Channel 129-192^Channel 170"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[16]" VarB="DMX Channel 1-64^Channel 17"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[170]" VarB="DMX Channel 129-192^Channel 171"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[171]" VarB="DMX Channel 129-192^Channel 172"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[172]" VarB="DMX Channel 129-192^Channel 173"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[173]" VarB="DMX Channel 129-192^Channel 174"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[174]" VarB="DMX Channel 129-192^Channel 175"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[175]" VarB="DMX Channel 129-192^Channel 176"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[176]" VarB="DMX Channel 129-192^Channel 177"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[177]" VarB="DMX Channel 129-192^Channel 178"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[178]" VarB="DMX Channel 129-192^Channel 179"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[179]" VarB="DMX Channel 129-192^Channel 180"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[17]" VarB="DMX Channel 1-64^Channel 18"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[180]" VarB="DMX Channel 129-192^Channel 181"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[181]" VarB="DMX Channel 129-192^Channel 182"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[182]" VarB="DMX Channel 129-192^Channel 183"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[183]" VarB="DMX Channel 129-192^Channel 184"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[184]" VarB="DMX Channel 129-192^Channel 185"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[185]" VarB="DMX Channel 129-192^Channel 186"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[186]" VarB="DMX Channel 129-192^Channel 187"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[187]" VarB="DMX Channel 129-192^Channel 188"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[188]" VarB="DMX Channel 129-192^Channel 189"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[189]" VarB="DMX Channel 129-192^Channel 190"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[18]" VarB="DMX Channel 1-64^Channel 19"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[190]" VarB="DMX Channel 129-192^Channel 191"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[191]" VarB="DMX Channel 129-192^Channel 192"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[192]" VarB="DMX Channel 193-256^Channel 193"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[193]" VarB="DMX Channel 193-256^Channel 194"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[194]" VarB="DMX Channel 193-256^Channel 195"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[195]" VarB="DMX Channel 193-256^Channel 196"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[196]" VarB="DMX Channel 193-256^Channel 197"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[197]" VarB="DMX Channel 193-256^Channel 198"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[198]" VarB="DMX Channel 193-256^Channel 199"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[199]" VarB="DMX Channel 193-256^Channel 200"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[19]" VarB="DMX Channel 1-64^Channel 20"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[1]" VarB="DMX Channel 1-64^Channel 2"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[200]" VarB="DMX Channel 193-256^Channel 201"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[201]" VarB="DMX Channel 193-256^Channel 202"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[202]" VarB="DMX Channel 193-256^Channel 203"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[203]" VarB="DMX Channel 193-256^Channel 204"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[204]" VarB="DMX Channel 193-256^Channel 205"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[205]" VarB="DMX Channel 193-256^Channel 206"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[206]" VarB="DMX Channel 193-256^Channel 207"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[207]" VarB="DMX Channel 193-256^Channel 208"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[208]" VarB="DMX Channel 193-256^Channel 209"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[209]" VarB="DMX Channel 193-256^Channel 210"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[20]" VarB="DMX Channel 1-64^Channel 21"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[210]" VarB="DMX Channel 193-256^Channel 211"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[211]" VarB="DMX Channel 193-256^Channel 212"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[212]" VarB="DMX Channel 193-256^Channel 213"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[213]" VarB="DMX Channel 193-256^Channel 214"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[214]" VarB="DMX Channel 193-256^Channel 215"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[215]" VarB="DMX Channel 193-256^Channel 216"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[216]" VarB="DMX Channel 193-256^Channel 217"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[217]" VarB="DMX Channel 193-256^Channel 218"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[218]" VarB="DMX Channel 193-256^Channel 219"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[219]" VarB="DMX Channel 193-256^Channel 220"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[21]" VarB="DMX Channel 1-64^Channel 22"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[220]" VarB="DMX Channel 193-256^Channel 221"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[221]" VarB="DMX Channel 193-256^Channel 222"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[222]" VarB="DMX Channel 193-256^Channel 223"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[223]" VarB="DMX Channel 193-256^Channel 224"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[224]" VarB="DMX Channel 193-256^Channel 225"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[225]" VarB="DMX Channel 193-256^Channel 226"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[226]" VarB="DMX Channel 193-256^Channel 227"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[227]" VarB="DMX Channel 193-256^Channel 228"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[228]" VarB="DMX Channel 193-256^Channel 229"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[229]" VarB="DMX Channel 193-256^Channel 230"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[22]" VarB="DMX Channel 1-64^Channel 23"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[230]" VarB="DMX Channel 193-256^Channel 231"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[231]" VarB="DMX Channel 193-256^Channel 232"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[232]" VarB="DMX Channel 193-256^Channel 233"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[233]" VarB="DMX Channel 193-256^Channel 234"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[234]" VarB="DMX Channel 193-256^Channel 235"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[235]" VarB="DMX Channel 193-256^Channel 236"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[236]" VarB="DMX Channel 193-256^Channel 237"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[237]" VarB="DMX Channel 193-256^Channel 238"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[238]" VarB="DMX Channel 193-256^Channel 239"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[239]" VarB="DMX Channel 193-256^Channel 240"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[23]" VarB="DMX Channel 1-64^Channel 24"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[240]" VarB="DMX Channel 193-256^Channel 241"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[241]" VarB="DMX Channel 193-256^Channel 242"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[242]" VarB="DMX Channel 193-256^Channel 243"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[243]" VarB="DMX Channel 193-256^Channel 244"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[244]" VarB="DMX Channel 193-256^Channel 245"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[245]" VarB="DMX Channel 193-256^Channel 246"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[246]" VarB="DMX Channel 193-256^Channel 247"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[247]" VarB="DMX Channel 193-256^Channel 248"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[248]" VarB="DMX Channel 193-256^Channel 249"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[249]" VarB="DMX Channel 193-256^Channel 250"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[24]" VarB="DMX Channel 1-64^Channel 25"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[250]" VarB="DMX Channel 193-256^Channel 251"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[251]" VarB="DMX Channel 193-256^Channel 252"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[252]" VarB="DMX Channel 193-256^Channel 253"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[253]" VarB="DMX Channel 193-256^Channel 254"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[254]" VarB="DMX Channel 193-256^Channel 255"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[255]" VarB="DMX Channel 193-256^Channel 256"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[256]" VarB="DMX Channel 257-320^Channel 257"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[257]" VarB="DMX Channel 257-320^Channel 258"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[258]" VarB="DMX Channel 257-320^Channel 259"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[259]" VarB="DMX Channel 257-320^Channel 260"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[25]" VarB="DMX Channel 1-64^Channel 26"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[260]" VarB="DMX Channel 257-320^Channel 261"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[261]" VarB="DMX Channel 257-320^Channel 262"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[262]" VarB="DMX Channel 257-320^Channel 263"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[263]" VarB="DMX Channel 257-320^Channel 264"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[264]" VarB="DMX Channel 257-320^Channel 265"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[265]" VarB="DMX Channel 257-320^Channel 266"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[266]" VarB="DMX Channel 257-320^Channel 267"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[267]" VarB="DMX Channel 257-320^Channel 268"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[268]" VarB="DMX Channel 257-320^Channel 269"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[269]" VarB="DMX Channel 257-320^Channel 270"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[26]" VarB="DMX Channel 1-64^Channel 27"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[270]" VarB="DMX Channel 257-320^Channel 271"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[271]" VarB="DMX Channel 257-320^Channel 272"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[272]" VarB="DMX Channel 257-320^Channel 273"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[273]" VarB="DMX Channel 257-320^Channel 274"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[274]" VarB="DMX Channel 257-320^Channel 275"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[275]" VarB="DMX Channel 257-320^Channel 276"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[276]" VarB="DMX Channel 257-320^Channel 277"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[277]" VarB="DMX Channel 257-320^Channel 278"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[278]" VarB="DMX Channel 257-320^Channel 279"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[279]" VarB="DMX Channel 257-320^Channel 280"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[27]" VarB="DMX Channel 1-64^Channel 28"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[280]" VarB="DMX Channel 257-320^Channel 281"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[281]" VarB="DMX Channel 257-320^Channel 282"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[282]" VarB="DMX Channel 257-320^Channel 283"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[283]" VarB="DMX Channel 257-320^Channel 284"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[284]" VarB="DMX Channel 257-320^Channel 285"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[285]" VarB="DMX Channel 257-320^Channel 286"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[286]" VarB="DMX Channel 257-320^Channel 287"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[287]" VarB="DMX Channel 257-320^Channel 288"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[288]" VarB="DMX Channel 257-320^Channel 289"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[289]" VarB="DMX Channel 257-320^Channel 290"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[28]" VarB="DMX Channel 1-64^Channel 29"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[290]" VarB="DMX Channel 257-320^Channel 291"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[291]" VarB="DMX Channel 257-320^Channel 292"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[292]" VarB="DMX Channel 257-320^Channel 293"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[293]" VarB="DMX Channel 257-320^Channel 294"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[294]" VarB="DMX Channel 257-320^Channel 295"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[295]" VarB="DMX Channel 257-320^Channel 296"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[296]" VarB="DMX Channel 257-320^Channel 297"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[297]" VarB="DMX Channel 257-320^Channel 298"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[298]" VarB="DMX Channel 257-320^Channel 299"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[299]" VarB="DMX Channel 257-320^Channel 300"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[29]" VarB="DMX Channel 1-64^Channel 30"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[2]" VarB="DMX Channel 1-64^Channel 3"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[300]" VarB="DMX Channel 257-320^Channel 301"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[301]" VarB="DMX Channel 257-320^Channel 302"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[302]" VarB="DMX Channel 257-320^Channel 303"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[303]" VarB="DMX Channel 257-320^Channel 304"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[304]" VarB="DMX Channel 257-320^Channel 305"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[305]" VarB="DMX Channel 257-320^Channel 306"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[306]" VarB="DMX Channel 257-320^Channel 307"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[307]" VarB="DMX Channel 257-320^Channel 308"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[308]" VarB="DMX Channel 257-320^Channel 309"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[309]" VarB="DMX Channel 257-320^Channel 310"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[30]" VarB="DMX Channel 1-64^Channel 31"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[310]" VarB="DMX Channel 257-320^Channel 311"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[311]" VarB="DMX Channel 257-320^Channel 312"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[312]" VarB="DMX Channel 257-320^Channel 313"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[313]" VarB="DMX Channel 257-320^Channel 314"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[314]" VarB="DMX Channel 257-320^Channel 315"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[315]" VarB="DMX Channel 257-320^Channel 316"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[316]" VarB="DMX Channel 257-320^Channel 317"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[317]" VarB="DMX Channel 257-320^Channel 318"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[318]" VarB="DMX Channel 257-320^Channel 319"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[319]" VarB="DMX Channel 257-320^Channel 320"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[31]" VarB="DMX Channel 1-64^Channel 32"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[320]" VarB="DMX Channel 321-384^Channel 321"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[321]" VarB="DMX Channel 321-384^Channel 322"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[322]" VarB="DMX Channel 321-384^Channel 323"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[323]" VarB="DMX Channel 321-384^Channel 324"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[324]" VarB="DMX Channel 321-384^Channel 325"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[325]" VarB="DMX Channel 321-384^Channel 326"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[326]" VarB="DMX Channel 321-384^Channel 327"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[327]" VarB="DMX Channel 321-384^Channel 328"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[328]" VarB="DMX Channel 321-384^Channel 329"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[329]" VarB="DMX Channel 321-384^Channel 330"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[32]" VarB="DMX Channel 1-64^Channel 33"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[330]" VarB="DMX Channel 321-384^Channel 331"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[331]" VarB="DMX Channel 321-384^Channel 332"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[332]" VarB="DMX Channel 321-384^Channel 333"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[333]" VarB="DMX Channel 321-384^Channel 334"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[334]" VarB="DMX Channel 321-384^Channel 335"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[335]" VarB="DMX Channel 321-384^Channel 336"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[336]" VarB="DMX Channel 321-384^Channel 337"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[337]" VarB="DMX Channel 321-384^Channel 338"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[338]" VarB="DMX Channel 321-384^Channel 339"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[339]" VarB="DMX Channel 321-384^Channel 340"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[33]" VarB="DMX Channel 1-64^Channel 34"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[340]" VarB="DMX Channel 321-384^Channel 341"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[341]" VarB="DMX Channel 321-384^Channel 342"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[342]" VarB="DMX Channel 321-384^Channel 343"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[343]" VarB="DMX Channel 321-384^Channel 344"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[344]" VarB="DMX Channel 321-384^Channel 345"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[345]" VarB="DMX Channel 321-384^Channel 346"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[346]" VarB="DMX Channel 321-384^Channel 347"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[347]" VarB="DMX Channel 321-384^Channel 348"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[348]" VarB="DMX Channel 321-384^Channel 349"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[349]" VarB="DMX Channel 321-384^Channel 350"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[34]" VarB="DMX Channel 1-64^Channel 35"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[350]" VarB="DMX Channel 321-384^Channel 351"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[351]" VarB="DMX Channel 321-384^Channel 352"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[352]" VarB="DMX Channel 321-384^Channel 353"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[353]" VarB="DMX Channel 321-384^Channel 354"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[354]" VarB="DMX Channel 321-384^Channel 355"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[355]" VarB="DMX Channel 321-384^Channel 356"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[356]" VarB="DMX Channel 321-384^Channel 357"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[357]" VarB="DMX Channel 321-384^Channel 358"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[358]" VarB="DMX Channel 321-384^Channel 359"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[359]" VarB="DMX Channel 321-384^Channel 360"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[35]" VarB="DMX Channel 1-64^Channel 36"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[360]" VarB="DMX Channel 321-384^Channel 361"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[361]" VarB="DMX Channel 321-384^Channel 362"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[362]" VarB="DMX Channel 321-384^Channel 363"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[363]" VarB="DMX Channel 321-384^Channel 364"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[364]" VarB="DMX Channel 321-384^Channel 365"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[365]" VarB="DMX Channel 321-384^Channel 366"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[366]" VarB="DMX Channel 321-384^Channel 367"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[367]" VarB="DMX Channel 321-384^Channel 368"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[368]" VarB="DMX Channel 321-384^Channel 369"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[369]" VarB="DMX Channel 321-384^Channel 370"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[36]" VarB="DMX Channel 1-64^Channel 37"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[370]" VarB="DMX Channel 321-384^Channel 371"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[371]" VarB="DMX Channel 321-384^Channel 372"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[372]" VarB="DMX Channel 321-384^Channel 373"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[373]" VarB="DMX Channel 321-384^Channel 374"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[374]" VarB="DMX Channel 321-384^Channel 375"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[375]" VarB="DMX Channel 321-384^Channel 376"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[376]" VarB="DMX Channel 321-384^Channel 377"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[377]" VarB="DMX Channel 321-384^Channel 378"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[378]" VarB="DMX Channel 321-384^Channel 379"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[379]" VarB="DMX Channel 321-384^Channel 380"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[37]" VarB="DMX Channel 1-64^Channel 38"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[380]" VarB="DMX Channel 321-384^Channel 381"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[381]" VarB="DMX Channel 321-384^Channel 382"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[382]" VarB="DMX Channel 321-384^Channel 383"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[383]" VarB="DMX Channel 321-384^Channel 384"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[384]" VarB="DMX Channel 385-448^Channel 385"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[385]" VarB="DMX Channel 385-448^Channel 386"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[386]" VarB="DMX Channel 385-448^Channel 387"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[387]" VarB="DMX Channel 385-448^Channel 388"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[388]" VarB="DMX Channel 385-448^Channel 389"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[389]" VarB="DMX Channel 385-448^Channel 390"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[38]" VarB="DMX Channel 1-64^Channel 39"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[390]" VarB="DMX Channel 385-448^Channel 391"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[391]" VarB="DMX Channel 385-448^Channel 392"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[392]" VarB="DMX Channel 385-448^Channel 393"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[393]" VarB="DMX Channel 385-448^Channel 394"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[394]" VarB="DMX Channel 385-448^Channel 395"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[395]" VarB="DMX Channel 385-448^Channel 396"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[396]" VarB="DMX Channel 385-448^Channel 397"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[397]" VarB="DMX Channel 385-448^Channel 398"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[398]" VarB="DMX Channel 385-448^Channel 399"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[399]" VarB="DMX Channel 385-448^Channel 400"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[39]" VarB="DMX Channel 1-64^Channel 40"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[3]" VarB="DMX Channel 1-64^Channel 4"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[400]" VarB="DMX Channel 385-448^Channel 401"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[401]" VarB="DMX Channel 385-448^Channel 402"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[402]" VarB="DMX Channel 385-448^Channel 403"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[403]" VarB="DMX Channel 385-448^Channel 404"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[404]" VarB="DMX Channel 385-448^Channel 405"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[405]" VarB="DMX Channel 385-448^Channel 406"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[406]" VarB="DMX Channel 385-448^Channel 407"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[407]" VarB="DMX Channel 385-448^Channel 408"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[408]" VarB="DMX Channel 385-448^Channel 409"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[409]" VarB="DMX Channel 385-448^Channel 410"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[40]" VarB="DMX Channel 1-64^Channel 41"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[410]" VarB="DMX Channel 385-448^Channel 411"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[411]" VarB="DMX Channel 385-448^Channel 412"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[412]" VarB="DMX Channel 385-448^Channel 413"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[413]" VarB="DMX Channel 385-448^Channel 414"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[414]" VarB="DMX Channel 385-448^Channel 415"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[415]" VarB="DMX Channel 385-448^Channel 416"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[416]" VarB="DMX Channel 385-448^Channel 417"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[417]" VarB="DMX Channel 385-448^Channel 418"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[418]" VarB="DMX Channel 385-448^Channel 419"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[419]" VarB="DMX Channel 385-448^Channel 420"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[41]" VarB="DMX Channel 1-64^Channel 42"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[420]" VarB="DMX Channel 385-448^Channel 421"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[421]" VarB="DMX Channel 385-448^Channel 422"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[422]" VarB="DMX Channel 385-448^Channel 423"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[423]" VarB="DMX Channel 385-448^Channel 424"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[424]" VarB="DMX Channel 385-448^Channel 425"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[425]" VarB="DMX Channel 385-448^Channel 426"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[426]" VarB="DMX Channel 385-448^Channel 427"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[427]" VarB="DMX Channel 385-448^Channel 428"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[428]" VarB="DMX Channel 385-448^Channel 429"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[429]" VarB="DMX Channel 385-448^Channel 430"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[42]" VarB="DMX Channel 1-64^Channel 43"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[430]" VarB="DMX Channel 385-448^Channel 431"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[431]" VarB="DMX Channel 385-448^Channel 432"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[432]" VarB="DMX Channel 385-448^Channel 433"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[433]" VarB="DMX Channel 385-448^Channel 434"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[434]" VarB="DMX Channel 385-448^Channel 435"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[435]" VarB="DMX Channel 385-448^Channel 436"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[436]" VarB="DMX Channel 385-448^Channel 437"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[437]" VarB="DMX Channel 385-448^Channel 438"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[438]" VarB="DMX Channel 385-448^Channel 439"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[439]" VarB="DMX Channel 385-448^Channel 440"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[43]" VarB="DMX Channel 1-64^Channel 44"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[440]" VarB="DMX Channel 385-448^Channel 441"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[441]" VarB="DMX Channel 385-448^Channel 442"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[442]" VarB="DMX Channel 385-448^Channel 443"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[443]" VarB="DMX Channel 385-448^Channel 444"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[444]" VarB="DMX Channel 385-448^Channel 445"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[445]" VarB="DMX Channel 385-448^Channel 446"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[446]" VarB="DMX Channel 385-448^Channel 447"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[447]" VarB="DMX Channel 385-448^Channel 448"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[448]" VarB="DMX Channel 449-512^Channel 449"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[449]" VarB="DMX Channel 449-512^Channel 450"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[44]" VarB="DMX Channel 1-64^Channel 45"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[450]" VarB="DMX Channel 449-512^Channel 451"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[451]" VarB="DMX Channel 449-512^Channel 452"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[452]" VarB="DMX Channel 449-512^Channel 453"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[453]" VarB="DMX Channel 449-512^Channel 454"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[454]" VarB="DMX Channel 449-512^Channel 455"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[455]" VarB="DMX Channel 449-512^Channel 456"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[456]" VarB="DMX Channel 449-512^Channel 457"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[457]" VarB="DMX Channel 449-512^Channel 458"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[458]" VarB="DMX Channel 449-512^Channel 459"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[459]" VarB="DMX Channel 449-512^Channel 460"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[45]" VarB="DMX Channel 1-64^Channel 46"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[460]" VarB="DMX Channel 449-512^Channel 461"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[461]" VarB="DMX Channel 449-512^Channel 462"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[462]" VarB="DMX Channel 449-512^Channel 463"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[463]" VarB="DMX Channel 449-512^Channel 464"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[464]" VarB="DMX Channel 449-512^Channel 465"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[465]" VarB="DMX Channel 449-512^Channel 466"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[466]" VarB="DMX Channel 449-512^Channel 467"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[467]" VarB="DMX Channel 449-512^Channel 468"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[468]" VarB="DMX Channel 449-512^Channel 469"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[469]" VarB="DMX Channel 449-512^Channel 470"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[46]" VarB="DMX Channel 1-64^Channel 47"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[470]" VarB="DMX Channel 449-512^Channel 471"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[471]" VarB="DMX Channel 449-512^Channel 472"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[472]" VarB="DMX Channel 449-512^Channel 473"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[473]" VarB="DMX Channel 449-512^Channel 474"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[474]" VarB="DMX Channel 449-512^Channel 475"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[475]" VarB="DMX Channel 449-512^Channel 476"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[476]" VarB="DMX Channel 449-512^Channel 477"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[477]" VarB="DMX Channel 449-512^Channel 478"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[478]" VarB="DMX Channel 449-512^Channel 479"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[479]" VarB="DMX Channel 449-512^Channel 480"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[47]" VarB="DMX Channel 1-64^Channel 48"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[480]" VarB="DMX Channel 449-512^Channel 481"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[481]" VarB="DMX Channel 449-512^Channel 482"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[482]" VarB="DMX Channel 449-512^Channel 483"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[483]" VarB="DMX Channel 449-512^Channel 484"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[484]" VarB="DMX Channel 449-512^Channel 485"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[485]" VarB="DMX Channel 449-512^Channel 486"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[486]" VarB="DMX Channel 449-512^Channel 487"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[487]" VarB="DMX Channel 449-512^Channel 488"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[488]" VarB="DMX Channel 449-512^Channel 489"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[489]" VarB="DMX Channel 449-512^Channel 490"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[48]" VarB="DMX Channel 1-64^Channel 49"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[490]" VarB="DMX Channel 449-512^Channel 491"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[491]" VarB="DMX Channel 449-512^Channel 492"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[492]" VarB="DMX Channel 449-512^Channel 493"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[493]" VarB="DMX Channel 449-512^Channel 494"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[494]" VarB="DMX Channel 449-512^Channel 495"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[495]" VarB="DMX Channel 449-512^Channel 496"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[496]" VarB="DMX Channel 449-512^Channel 497"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[497]" VarB="DMX Channel 449-512^Channel 498"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[498]" VarB="DMX Channel 449-512^Channel 499"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[499]" VarB="DMX Channel 449-512^Channel 500"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[49]" VarB="DMX Channel 1-64^Channel 50"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[4]" VarB="DMX Channel 1-64^Channel 5"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[500]" VarB="DMX Channel 449-512^Channel 501"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[501]" VarB="DMX Channel 449-512^Channel 502"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[502]" VarB="DMX Channel 449-512^Channel 503"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[503]" VarB="DMX Channel 449-512^Channel 504"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[504]" VarB="DMX Channel 449-512^Channel 505"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[505]" VarB="DMX Channel 449-512^Channel 506"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[506]" VarB="DMX Channel 449-512^Channel 507"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[507]" VarB="DMX Channel 449-512^Channel 508"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[508]" VarB="DMX Channel 449-512^Channel 509"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[509]" VarB="DMX Channel 449-512^Channel 510"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[50]" VarB="DMX Channel 1-64^Channel 51"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[510]" VarB="DMX Channel 449-512^Channel 511"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[511]" VarB="DMX Channel 449-512^Channel 512"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[51]" VarB="DMX Channel 1-64^Channel 52"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[52]" VarB="DMX Channel 1-64^Channel 53"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[53]" VarB="DMX Channel 1-64^Channel 54"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[54]" VarB="DMX Channel 1-64^Channel 55"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[55]" VarB="DMX Channel 1-64^Channel 56"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[56]" VarB="DMX Channel 1-64^Channel 57"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[57]" VarB="DMX Channel 1-64^Channel 58"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[58]" VarB="DMX Channel 1-64^Channel 59"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[59]" VarB="DMX Channel 1-64^Channel 60"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[5]" VarB="DMX Channel 1-64^Channel 6"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[60]" VarB="DMX Channel 1-64^Channel 61"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[61]" VarB="DMX Channel 1-64^Channel 62"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[62]" VarB="DMX Channel 1-64^Channel 63"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[63]" VarB="DMX Channel 1-64^Channel 64"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[64]" VarB="DMX Channel 65-128^Channel 65"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[65]" VarB="DMX Channel 65-128^Channel 66"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[66]" VarB="DMX Channel 65-128^Channel 67"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[67]" VarB="DMX Channel 65-128^Channel 68"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[68]" VarB="DMX Channel 65-128^Channel 69"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[69]" VarB="DMX Channel 65-128^Channel 70"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[6]" VarB="DMX Channel 1-64^Channel 7"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[70]" VarB="DMX Channel 65-128^Channel 71"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[71]" VarB="DMX Channel 65-128^Channel 72"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[72]" VarB="DMX Channel 65-128^Channel 73"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[73]" VarB="DMX Channel 65-128^Channel 74"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[74]" VarB="DMX Channel 65-128^Channel 75"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[75]" VarB="DMX Channel 65-128^Channel 76"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[76]" VarB="DMX Channel 65-128^Channel 77"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[77]" VarB="DMX Channel 65-128^Channel 78"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[78]" VarB="DMX Channel 65-128^Channel 79"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[79]" VarB="DMX Channel 65-128^Channel 80"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[7]" VarB="DMX Channel 1-64^Channel 8"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[80]" VarB="DMX Channel 65-128^Channel 81"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[81]" VarB="DMX Channel 65-128^Channel 82"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[82]" VarB="DMX Channel 65-128^Channel 83"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[83]" VarB="DMX Channel 65-128^Channel 84"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[84]" VarB="DMX Channel 65-128^Channel 85"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[85]" VarB="DMX Channel 65-128^Channel 86"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[86]" VarB="DMX Channel 65-128^Channel 87"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[87]" VarB="DMX Channel 65-128^Channel 88"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[88]" VarB="DMX Channel 65-128^Channel 89"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[89]" VarB="DMX Channel 65-128^Channel 90"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[8]" VarB="DMX Channel 1-64^Channel 9"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[90]" VarB="DMX Channel 65-128^Channel 91"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[91]" VarB="DMX Channel 65-128^Channel 92"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[92]" VarB="DMX Channel 65-128^Channel 93"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[93]" VarB="DMX Channel 65-128^Channel 94"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[94]" VarB="DMX Channel 65-128^Channel 95"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[95]" VarB="DMX Channel 65-128^Channel 96"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[96]" VarB="DMX Channel 65-128^Channel 97"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[97]" VarB="DMX Channel 65-128^Channel 98"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[98]" VarB="DMX Channel 65-128^Channel 99"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[99]" VarB="DMX Channel 65-128^Channel 100"/>
+				<Link VarA="PlcTask Outputs^g_ast.DMXHWOut[9]" VarB="DMX Channel 1-64^Channel 10"/>
+				<Link VarA="PlcTask Outputs^gc.wChannelLength" VarB="DMX Control^Channel length"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 29 (EL1008)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[24]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[25]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[26]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[27]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[28]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[29]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[30]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[31]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 3 (EL1008)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[0]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[1]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[2]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[3]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[4]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[5]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[6]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[7]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 30 (EL1008)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[32]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[33]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[34]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[35]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[36]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[37]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[38]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[39]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 31 (EL1008)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[40]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[41]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[42]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[43]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[44]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[45]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[46]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[47]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 32 (EL1008)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[48]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[49]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[50]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[51]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[52]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[53]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[54]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[55]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 33 (EL1008)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[56]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[57]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[58]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[59]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[60]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[61]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[62]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[63]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 34 (EL1008)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[64]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[65]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[66]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[67]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[68]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[69]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[70]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[71]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 35 (EL1008)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[72]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[73]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[74]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[75]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[76]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[77]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[78]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[79]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 36 (EL1088)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[0]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[1]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[2]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[3]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[4]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[5]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[6]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[7]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 37 (EL1088)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[10]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[11]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[12]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[13]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[14]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[15]" VarB="Channel 8^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[8]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[9]" VarB="Channel 2^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 38 (EL1088)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[16]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[17]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[18]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[19]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[20]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[21]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[22]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[23]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 39 (EL1088)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[24]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[25]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[26]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[27]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[28]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[29]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[30]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[31]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 4 (EL1008)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[10]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[11]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[12]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[13]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[14]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[15]" VarB="Channel 8^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[8]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[9]" VarB="Channel 2^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 40 (EL1088)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[32]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[33]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[34]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[35]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[36]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[37]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[38]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[39]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 42 (EL1088)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[40]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[41]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[42]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[43]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[44]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[45]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[46]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[47]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 43 (EL1088)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[48]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[49]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[50]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[51]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[52]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[53]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[54]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[55]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 44 (EL1088)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[56]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[57]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[58]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[59]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[60]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[61]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[62]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[63]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 45 (EL1088)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[64]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[65]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[66]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[67]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[68]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[69]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[70]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[71]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 46 (EL1088)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[72]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[73]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[74]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[75]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[76]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[77]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[78]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputNPN[79]" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1100)^Term 5 (EL1008)">
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[16]" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[17]" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[18]" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[19]" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[20]" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[21]" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[22]" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^g_ast.arrInputPNP[23]" VarB="Channel 8^Input"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmProject>
