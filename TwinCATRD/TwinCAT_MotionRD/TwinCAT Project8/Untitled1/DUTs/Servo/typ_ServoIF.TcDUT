@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.17">
+  <DUT Name="typ_ServoIF" Id="{4e896f72-eab9-4af6-a38d-d2304ece6b53}">
+    <Declaration><![CDATA[TYPE typ_ServoIF :
+STRUCT
+	Axis_Ref								: AXIS_REF;
+	Axis									: AxisFn;
+	Motion									: MotionFn;
+	StatParam								: StatParamFn;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

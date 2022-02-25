@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Single xml:space="preserve" Type="{11f2245b-f54d-41e7-8df5-0dc5948f8965}" Method="IArchivable">
+  <Single Name="MetaObject" Type="{81297157-7ec9-45ce-845e-84cab2b88ade}" Method="IArchivable">
+    <Single Name="Guid" Type="System.Guid">3e4349e6-a99a-4aa8-b94a-96e30307ccae</Single>
+    <Single Name="ParentGuid" Type="System.Guid">29d92b51-142d-457e-b3d8-97b1a4921932</Single>
+    <Single Name="Name" Type="string">GVL</Single>
+    <Dictionary Type="{2c41fa04-1834-41c1-816e-303c7aa2c05b}" Name="Properties">
+      <Entry>
+        <Key>
+          <Single Type="System.Guid">829a18f2-c514-4f6e-9634-1df173429203</Single>
+        </Key>
+        <Value>
+          <Single Type="{829a18f2-c514-4f6e-9634-1df173429203}" Method="IArchivable">
+            <Dictionary Type="{fa2ee218-a39b-4b6d-b249-49dbddbd168a}" Name="ParentObjects">
+              <Entry>
+                <Key>
+                  <Single Type="System.Guid">d9b2b2cc-ea99-4c3b-aa42-1e5c49e65b84</Single>
+                </Key>
+                <Value>
+                  <Single Type="System.Guid">4f45a475-b4b5-44b1-8023-454c922a5b0a</Single>
+                </Value>
+              </Entry>
+            </Dictionary>
+          </Single>
+        </Value>
+      </Entry>
+    </Dictionary>
+    <Single Name="TypeGuid" Type="System.Guid">ffbfa93a-b94d-45fc-a329-229860183b1d</Single>
+    <Array Name="EmbeddedTypeGuids" Type="System.Guid">
+      <Single Type="System.Guid">a9ed5b7e-75c5-4651-af16-d2c27e98cb94</Single>
+    </Array>
+    <Single Name="Timestamp" Type="long">634902417994218750</Single>
+  </Single>
+  <Single Name="Object" Type="{ffbfa93a-b94d-45fc-a329-229860183b1d}" Method="IArchivable">
+    <Single Name="Interface" Type="{a9ed5b7e-75c5-4651-af16-d2c27e98cb94}" Method="IArchivable">
+      <Single Name="TextDocument" Type="{f3878285-8e4f-490b-bb1b-9acbb7eb04db}" Method="IArchivable">
+        <Array Name="TextLines" Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}">
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">0</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">VAR_GLOBAL</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">20</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	RxBufferEL			: ComBuffer;	(* Receive data buffer; used with all receive function blocks *)</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">15</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	TxBufferEL			: ComBuffer;	(* Transmit data buffer; used with all receive function blocks *)</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">9</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string"></Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">10</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	RxBufferKL			: ComBuffer;	(* Receive data buffer; used with all receive function blocks *)</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">11</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	TxBufferKL			: ComBuffer;	(* Transmit data buffer; used with all receive function blocks *)</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">13</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">END_VAR</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">14</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string"></Single>
+          </Single>
+        </Array>
+      </Single>
+    </Single>
+    <Null Name="NetVarProperties" />
+    <Single Name="ParameterList" Type="bool">False</Single>
+    <Single Name="AddAttributeSubsequent" Type="bool">False</Single>
+  </Single>
+</Single>

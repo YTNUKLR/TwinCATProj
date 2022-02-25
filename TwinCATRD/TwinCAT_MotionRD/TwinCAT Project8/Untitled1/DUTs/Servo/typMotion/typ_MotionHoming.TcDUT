@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.17">
+  <DUT Name="typ_MotionHoming" Id="{2b05828a-303b-4515-b241-5f15c7436456}">
+    <Declaration><![CDATA[TYPE typ_MotionHoming :
+STRUCT
+	MC_Home						: MC_Home;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

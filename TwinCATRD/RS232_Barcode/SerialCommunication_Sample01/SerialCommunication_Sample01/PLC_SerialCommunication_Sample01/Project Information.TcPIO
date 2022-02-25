@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Single xml:space="preserve" Type="{11f2245b-f54d-41e7-8df5-0dc5948f8965}" Method="IArchivable">
+  <Single Name="MetaObject" Type="{81297157-7ec9-45ce-845e-84cab2b88ade}" Method="IArchivable">
+    <Single Name="Guid" Type="System.Guid">11c0fc3a-9bcf-4dd8-ac38-efb93363e521</Single>
+    <Single Name="ParentGuid" Type="System.Guid">00000000-0000-0000-0000-000000000000</Single>
+    <Single Name="Name" Type="string">Project information</Single>
+    <Dictionary Type="{2c41fa04-1834-41c1-816e-303c7aa2c05b}" Name="Properties" />
+    <Single Name="TypeGuid" Type="System.Guid">085afe48-c5d8-4ea5-ab0d-b35701fa6009</Single>
+    <Null Name="EmbeddedTypeGuids" />
+    <Single Name="Timestamp" Type="long">634901594925937500</Single>
+  </Single>
+  <Single Name="Object" Type="{344f4c8c-7d43-449b-997d-412fedb54c86}" Method="IArchivable">
+    <Dictionary Type="System.Collections.Hashtable" Name="Properties">
+      <Entry>
+        <Key>
+          <Single Type="string">Description</Single>
+        </Key>
+        <Value>
+          <Single Type="string"></Single>
+        </Value>
+      </Entry>
+      <Entry>
+        <Key>
+          <Single Type="string">Title</Single>
+        </Key>
+        <Value>
+          <Single Type="string"></Single>
+        </Value>
+      </Entry>
+      <Entry>
+        <Key>
+          <Single Type="string">Author</Single>
+        </Key>
+        <Value>
+          <Single Type="string"></Single>
+        </Value>
+      </Entry>
+      <Entry>
+        <Key>
+          <Single Type="string">Version string</Single>
+        </Key>
+        <Value>
+          <Single Type="string"></Single>
+        </Value>
+      </Entry>
+    </Dictionary>
+    <Dictionary Type="System.Collections.Hashtable" Name="Licenses" />
+  </Single>
+</Single>

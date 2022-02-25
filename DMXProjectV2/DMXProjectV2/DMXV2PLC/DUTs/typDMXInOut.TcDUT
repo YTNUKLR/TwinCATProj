@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="typDMXInOut" Id="{7718941d-222e-49bb-8002-9331df8d2035}">
+    <Declaration><![CDATA[TYPE typDMXInOut :
+STRUCT
+	fOffset				: REAL; // 0-100% mapped to 8-bit (by Map Function)
+	fLevel				: REAL; // 0-100% mapped to 8-bit (by Map Function)
+	usiBitDepth			: USINT; // 1-8
+	xCmdOn				: BOOL;
+	xCmdOff				: BOOL;
+	fOutputIncrement	: REAL;
+	fFnGenerValTempSin	: LREAL;
+	fFnGenerValRtn		: LREAL;
+	uiMaxChannelVal		: UINT;
+	uiMinChannelVal		: UINT;
+	byMaxChanVal		: BYTE;
+	byMinChanVal		: BYTE;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

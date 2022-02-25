@@ -1,0 +1,12 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{BACAAE27-5D5D-4513-97FF-0FED82FEF961}") = "TwinCAT Connectivity1", "TwinCAT Connectivity1\TwinCAT Connectivity1.tcconnproj", "{C61ECDEC-5009-4574-9D06-07D4F0775BCB}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="arr_rt" Id="{ba8b0df8-9a88-4654-9700-9a82eb3c1dda}">
+    <Declaration><![CDATA[TYPE ARR_RT	 :
+STRUCT
+	arrRcvdR_T	: ARRAY[0..gc.uiMaxNrDMXTestCh] OF R_TRIG;
+	arrExpctdBool : ARRAY[0..gc.uiMaxNrDMXTestCh] OF BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

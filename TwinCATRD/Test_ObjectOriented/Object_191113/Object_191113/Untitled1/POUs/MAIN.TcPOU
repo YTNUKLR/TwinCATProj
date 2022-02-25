@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.0">
+  <POU Name="MAIN" Id="{d11fd0e5-43eb-4828-b3a1-b1e591b8d394}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Method1" Id="{5f08a63b-fa42-4178-a706-0334f7cddc22}">
+      <Declaration><![CDATA[METHOD Method1 : BOOL
+VAR_INPUT
+    nIn1  : INT;
+    bIn2  : BOOL;
+END_VAR
+VAR_OUTPUT
+    fOut1 : REAL;
+    sOut2 : STRING;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="MAIN">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MAIN.Method1">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

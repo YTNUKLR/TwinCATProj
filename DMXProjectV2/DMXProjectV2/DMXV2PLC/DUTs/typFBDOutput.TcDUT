@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="typFBDOutput" Id="{023ad5d8-88d1-4e7c-98e3-5c02a4206b6d}">
+    <Declaration><![CDATA[TYPE typFBDOutput :
+STRUCT
+	xGate	: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

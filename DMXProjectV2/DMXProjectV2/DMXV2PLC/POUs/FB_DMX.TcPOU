@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_DMX" Id="{744506b4-194c-4781-804b-b1062805e2e8}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DMX
+VAR_INPUT
+	I	: typDMXInput;
+END_VAR
+
+//VAR_IN_OUT
+//	I	: typDMXInOut;
+//END_VAR
+
+VAR_OUTPUT
+	Q	AT %Q* : typDMXOutput;
+END_VAR
+
+VAR
+//	uiOpStatus			: UINT;
+	iWaveSelectSM		: INT;
+	uiTimeCycleSM		: UINT;
+	uiDelayShiftSM		: UINT;
+	uiTimeShiftSM		: UINT;
+	uiDeviceSM			: UINT;
+	uiModeCtrlSM		: UINT;
+
+	uiPulseCount		: UINT;
+	fPhaseShift			: REAL;
+	fDelayShift			: REAL;
+	tTimeShift			: TIME;
+	tPhaseShift			: TIME;
+	tDelayShift			: TIME;
+
+	fLevelShift			: REAL;
+	fOffsetShift		: REAL;	
+	tOnPulse			: TON;
+	tOnShift			: TON;
+	
+	tonFnWindow			: TON;
+	tonSqDutyCyc		: TON;
+	fDutyCycle			: REAL;
+	
+	fFnGenerValTempSin	: LREAL;
+	fFnGenerValAdj		: REAL; //Adjusted channel value: rounded, clamped, scaled per the input parameters for the channel
+	
+	rt_FnRisEdge		: R_TRIG;
+	
+	cfLoFnVal			: REAL	:= 0; // min function value from function generator
+	cfHiFnVal			: REAL	:= 2; // max function value from function generator
+	
+	fFnWindowET			: REAL;
+	tPeriod				: TIME;
+	tonRunning			: TON;
+	tonRunningSH		: TON;
+	iClockSM			: INT;
+	iFnSampleHoldSM		: INT;
+	
+	//not currently used:	
+	tonFnSomethingElse	: TON;
+	
+	fPeriod				: REAL;
+	tFnWindowET			: TIME;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Compute Regular Trigger/Pulse train:
+CASE uiTimeCycleSM OF
+	
+0: //Execute timer
+tOnPulse.IN		:= TRUE;
+uiTimeCycleSM	:= 10;
+
+10:  //Wait for timer completion ; reset timer
+IF tOnPulse.Q THEN
+	tOnPulse.IN		:= FALSE;
+	uiTimeCycleSM	:= 0;
+END_IF
+
+END_CASE
+
+//calculate time shift
+tPhaseShift	:= REAL_TO_TIME(fPhaseShift);
+
+tDelayShift	:= REAL_TO_TIME(fDelayShift);
+
+tTimeShift	:= tPhaseShift + tDelayShift;
+
+//Phase Shift Function
+fPhaseShift	:= (I.fPhase/100)(*percentage*)*fPeriod;
+
+//Delay Shift also uses this SM (State Machine) in order to apply fDelayShift on the appropriate step
+CASE uiDelayShiftSM OF
+	
+0:
+IF tOnPulse.Q THEN
+	uiPulseCount	:= uiPulseCount + 1;
+	uiDelayShiftSM	:= 10;
+END_IF
+
+10: // State to apply the Delay Time Shift
+
+//Reset the Pulse Counter if it is equivalent to the delay divisor ; and shift state to apply the delay on that "step"
+IF uiPulseCount = I.usiDelayDiv THEN
+	uiPulseCount	:= 0;
+	//Delay Shift Function
+	IF I.fFrequency <> 0 THEN
+		fDelayShift	:= (I.fDelay/100)(*percentage*)*fPeriod;
+	END_IF
+ELSIF (I.usiDelayDiv = 0) THEN
+	uiPulseCount	:= 0;
+ELSE (* uiPulseCount <> I.usiDelayDiv THEN *)  
+	fDelayShift		:= 0; (* Delay Shift always = 0 when it is on a step that is not equal to I.usiDelayDiv *)
+	uiDelayShiftSM	:= 0; (* return to increment pulse counter *)
+END_IF
+
+END_CASE
+
+//This SM sees rising edge from pulse; applies time shift (even if time shift = 0)
+CASE uiTimeShiftSM OF 
+	
+0: // If there is a rising edge from the Pulse clock, implement tonShift, a delay
+IF tOnPulse.IN THEN
+	tOnShift.IN	:= TRUE;
+	uiTimeShiftSM	:= 10;
+END_IF
+
+10:
+IF tOnShift.Q THEN
+	tOnShift.IN		:= FALSE;
+	uiTimeShiftSM	:= 0;
+END_IF
+
+END_CASE
+
+
+//level shift code:
+//offset adjusts 'bottom' rail, level adjusts 'top' rail;
+//bit depth specifies the 'fine-ness' of the value range for the output
+//Sets the I - basically modifies the user input 'I'
+
+IF I.ENValRange = ENUM_I_ValRange.EN_8Bit THEN //accept the user input params
+	I.uiMaxChannelVal	:= 255;
+ELSIF I.ENValRange = ENUM_I_ValRange.EN_16Bit THEN //accept the user input params
+	I.uiMaxChannelVal	:= 65535;
+END_IF
+
+//perhaps have a 'preset' condition like this, for Boolean:
+//Sets the I - basically modifies the user input 'I'
+IF (I.ENWaveform = ENUM_I_Waveform.EN_GateCtrl) OR (I.ENWaveform = ENUM_I_Waveform.EN_GateConfig) OR (I.usiBitDepth = 1) THEN
+	I.fLevel		:= Map(fArg:=100(*%*),fInMin:=0,fInMax:=100,fOutMin:=I.uiMinChannelVal,fOutMax:=I.uiMaxChannelVal);
+	I.usiBitDepth	:= 1;
+	I.fOffset		:= Map(fArg:=0(*%*),fInMin:=0,fInMax:=100,fOutMin:=I.uiMinChannelVal,fOutMax:=I.uiMaxChannelVal);
+ELSE (* not Boolean/Gate operation *)
+	I.fLevel		:= Map(I.fLevel,0,100,0,I.uiMaxChannelVal); // scale % to 255
+	I.usiBitDepth	:= I.usiBitDepth; 
+	I.fOffset		:= Map(I.fOffset,0,100,0,I.uiMaxChannelVal); // scale % to 255
+END_IF
+
+//Return a mapped value, clamped to a 'nearest value' governed by the bit depth
+//Check I.fFnGenerValRtn range; if it's from the sin function, use input range [0,2]; else use [0,100]
+
+Q.byStatValue		:= REAL_TO_BYTE(Q.fFnGeneratorVal);
+I.byMinChanVal		:= UINT_TO_BYTE(I.uiMinChannelVal);
+I.byMaxChanVal		:= UINT_TO_BYTE(I.uiMaxChannelVal);
+
+tFnWindowET			:= tonRunning.ET;
+fFnWindowET			:= TIME_TO_REAL(tFnWindowET);
+
+CASE iWaveSelectSM OF
+
+// Wave Select State Machine needs to output a "function" value.  This can be continuously generated.  In all cases, let's say for example's sake we are using something like "f(x) = sin(x)".  
+// The values of the function output should be scaled from (0,2) of (-1,1).  The scaled value should be input to the function below that maps and re-scales this function output, 
+// to fit the range of user parameters (level, offset, bit depth) specified.  Perhaps this for all function outputs - 
+
+0: // Default to zero state for this SM, then go to the relevant function generator (enumerator) state
+IF rt_FnRisEdge.Q THEN
+	tonFnWindow.IN	:= TRUE;
+	iWaveSelectSM	:= I.ENWaveform;
+END_IF
+
+ENUM_I_Waveform.EN_Square:
+IF I.fFrequency = 0 THEN
+	I.fFnGenerValRtn	:= I.fLevel; // Set it to the permissible max of the range
+ELSE (* I.fFrequency <> 0 *)
+	tonSqDutyCyc.IN		:= TRUE;
+	I.fFnGenerValRtn	:= 255*BOOL_TO_LREAL(tonSqDutyCyc.IN);
+	iWaveSelectSM		:= 15;
+END_IF
+
+15:
+IF tonSqDutyCyc.Q THEN
+	tonSqDutyCyc.IN		:= FALSE;
+	iWaveSelectSM		:= ENUM_I_Waveform.EN_Square;
+END_IF
+
+//Basically the same as 'Square' but no 'duty cycle'
+ENUM_I_Waveform.EN_GateConfig (* Note 8-bit Only *):
+
+// Relay NC condition = PNP; Relay 'NO' condition = NPN
+// Otherwise, DMX Function Block should function normally
+IF (I.usiInputConfig <= (0.5*I.uiMaxChannelVal)) THEN
+	I.fFnGenerValRtn		:= I.fOffset;
+ELSIF (I.usiInputConfig > (0.5*I.uiMaxChannelVal)) THEN
+	I.fFnGenerValRtn		:= I.fLevel;
+END_IF
+
+Q.fFnGeneratorVal		:= I.fFnGenerValRtn; // Set it to the permissible max of the range
+
+ENUM_I_Waveform.EN_GateCtrl:
+IF I.xCmdOn THEN
+	I.xCmdOn			:= FALSE;
+	I.fFnGenerValRtn	:= I.fLevel;
+END_IF
+
+IF I.xCmdOff THEN
+	I.xCmdOff			:= FALSE;
+	I.fFnGenerValRtn	:= I.fOffset;
+END_IF
+
+Q.fFnGeneratorVal		:= I.fFnGenerValRtn; // Set it to the permissible max of the range
+
+ENUM_I_Waveform.EN_Sin:
+IF I.ENWaveform = ENUM_I_Waveform.EN_Sin THEN
+	Q.fFnGeneratorVal		:= MapClamp(I.fFnGenerValRtn,cfLoFnVal,cfHiFnVal,I.fOffset,I.fLevel,I.usiBitDepth);
+ELSE
+	Q.fFnGeneratorVal		:= MapClamp(I.fFnGenerValRtn,I.fOffset,I.fLevel,I.fOffset,I.fLevel,I.usiBitDepth);
+END_IF
+
+tFnWindowET			:= tonRunning.ET;
+fFnWindowET			:= TIME_TO_REAL(tFnWindowET);
+
+I.fFnGenerValTempSin	:= (2*gc.fPi*I.fFrequency*fFnWindowET);
+
+//y(t)=sin(2*pi*f*t)
+(*
+CASE iFnSampleHoldSM OF
+	
+0:
+tonRunningSH.IN		:= TRUE;
+iFnSampleHoldSM		:= 10;
+
+10:
+IF tonRunningSH.Q THEN
+	tonRunningSH.IN		:= FALSE;
+	tFnWindowET			:= tonRunning.ET;
+	fFnWindowET			:= TIME_TO_REAL(tFnWindowET);
+	iFnSampleHoldSM	:= 0;
+END_IF
+
+END_CASE
+*)
+
+ENUM_I_Waveform.EN_Triangle:
+Q.fFnGeneratorVal	:= 2; //set function value high initially, advance SM
+
+iWaveSelectSM		:= ENUM_I_Waveform.EN_SubTriFall;
+
+ENUM_I_Waveform.EN_SubTriFall:
+
+//use 2 as the function value (that is the range of the function)
+IF fPeriod <> 0 THEN
+	Q.fFnGeneratorVal	:= Q.fFnGeneratorVal - ((2 / (fPeriod*0.5))*fFnWindowET);
+END_IF
+
+IF Q.fFnGeneratorVal = 0 THEN
+	iWaveSelectSM		:= ENUM_I_Waveform.EN_SubTriRise;
+END_IF
+
+//use 2 as the function value (that is the range of the function)
+ENUM_I_Waveform.EN_SubTriRise:
+IF fPeriod <> 0 THEN
+	Q.fFnGeneratorVal	:= Q.fFnGeneratorVal + ((2 / (fPeriod*0.5))*fFnWindowET);
+END_IF
+
+IF Q.fFnGeneratorVal = 2 THEN
+	iWaveSelectSM		:= ENUM_I_Waveform.EN_Triangle;
+END_IF
+	
+END_CASE
+	
+//ENUM_I_Waveform.EN_Ramp:
+//function output range from (0,255) - level/offset/depth transformation (for scaling) happens separately
+
+//ENUM_I_Waveform.EN_Rand:
+//function output range from (0,255) - level/offset/depth transformation (for scaling) happens separately
+
+//ENUM_I_Waveform.EN_Saw:
+//function output range from (0,255) - level/offset/depth transformation (for scaling) happens separately
+
+(*
+CASE uiModeCtrlSM OF
+	
+//ENUM_I_OpMode.EN_Cycle:
+
+ENUM_I_OpMode.EN_Cycle:
+
+
+ENUM_I_OpMode.EN_LatchOn:
+
+ENUM_I_OpMode.EN_OneShot:
+
+
+END_CASE*)
+
+//crufty - may be useful in future cleaning up of this FB, or not
+(*
+ELSIF Q.xGate (* or Function Output *) THEN
+	Q.byStatValue		:= REAL_TO_BYTE(Q.fFnGeneratorVal);
+ELSE (*<> Q.xGate*) (* "Offset" equivalent to the 'recipe'-adjusted 'zero' *)
+	Q.byStatValue		:= REAL_TO_BYTE(I.fOffset);	
+END_IF
+*)
+
+
+CASE iClockSM OF
+	
+0: // Start clock
+tonRunning.IN	:= TRUE;
+iClockSM	:= 10;
+
+10:
+IF tonRunning.Q THEN
+	tonRunning.IN	:= FALSE;
+	iClockSM		:= 0;
+END_IF
+
+END_CASE
+
+IF I.fFrequency <> 0 THEN
+	fPeriod		:= f_to_Period(I.fFrequency);
+END_IF
+
+tPeriod			:= REAL_TO_TIME(1000*fPeriod);
+
+//Function Calls / Parameterization
+rt_FnRisEdge(CLK	:= tOnShift.IN);
+tOnPulse();
+tOnPulse.PT		:= tPeriod;
+tOnShift(PT	:= tTimeShift / 2);
+
+//tonFnSomethingElse(PT	:= (REAL_TO_TIME(f_to_Period(I.fFrequency)) - tOnPulse.PT - tOnShift.PT (*- T#1MS*))); // Used for cycle mode; cycle should reset before the next 'pulse' occurs
+tonFnWindow(PT	:= tPeriod); // Only dependent on period
+
+IF I.fFrequency <> 0 THEN
+	fDutyCycle	:= ((I.fDutyCycle/100) * TIME_TO_REAL(tonFnWindow.PT)); // % of the time window that the value is to be held high	
+END_IF
+tonSqDutyCyc();
+tonSqDutyCyc.PT	:= REAL_TO_TIME(fDutyCycle);
+tonRunning(PT	:= T#24H);
+tonRunningSH(PT	:= T#1MS); // Preset time for how quickly to sample the ET value from 'tonRunning' - how quickly does SIN "Sample & Hold" function refresh?]]></ST>
+    </Implementation>
+    <LineIds Name="FB_DMX">
+      <LineId Id="164" Count="0" />
+      <LineId Id="1475" Count="10" />
+      <LineId Id="186" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="919" Count="0" />
+      <LineId Id="509" Count="0" />
+      <LineId Id="511" Count="1" />
+      <LineId Id="510" Count="0" />
+      <LineId Id="255" Count="1" />
+      <LineId Id="315" Count="0" />
+      <LineId Id="268" Count="1" />
+      <LineId Id="299" Count="0" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="231" Count="0" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="235" Count="0" />
+      <LineId Id="246" Count="0" />
+      <LineId Id="249" Count="0" />
+      <LineId Id="301" Count="0" />
+      <LineId Id="237" Count="0" />
+      <LineId Id="316" Count="1" />
+      <LineId Id="279" Count="0" />
+      <LineId Id="281" Count="2" />
+      <LineId Id="308" Count="2" />
+      <LineId Id="307" Count="0" />
+      <LineId Id="515" Count="0" />
+      <LineId Id="514" Count="0" />
+      <LineId Id="284" Count="0" />
+      <LineId Id="318" Count="0" />
+      <LineId Id="320" Count="0" />
+      <LineId Id="302" Count="0" />
+      <LineId Id="248" Count="0" />
+      <LineId Id="234" Count="0" />
+      <LineId Id="399" Count="0" />
+      <LineId Id="326" Count="0" />
+      <LineId Id="290" Count="0" />
+      <LineId Id="327" Count="0" />
+      <LineId Id="329" Count="0" />
+      <LineId Id="332" Count="0" />
+      <LineId Id="338" Count="0" />
+      <LineId Id="334" Count="2" />
+      <LineId Id="331" Count="0" />
+      <LineId Id="337" Count="0" />
+      <LineId Id="339" Count="0" />
+      <LineId Id="398" Count="0" />
+      <LineId Id="340" Count="0" />
+      <LineId Id="328" Count="0" />
+      <LineId Id="415" Count="0" />
+      <LineId Id="2521" Count="1" />
+      <LineId Id="2524" Count="2" />
+      <LineId Id="2696" Count="0" />
+      <LineId Id="2527" Count="7" />
+      <LineId Id="2695" Count="0" />
+      <LineId Id="2535" Count="11" />
+      <LineId Id="2556" Count="1" />
+      <LineId Id="2756" Count="0" />
+      <LineId Id="2758" Count="0" />
+      <LineId Id="2565" Count="2" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="677" Count="3" />
+      <LineId Id="524" Count="0" />
+      <LineId Id="526" Count="0" />
+      <LineId Id="595" Count="0" />
+      <LineId Id="753" Count="0" />
+      <LineId Id="755" Count="1" />
+      <LineId Id="759" Count="0" />
+      <LineId Id="757" Count="0" />
+      <LineId Id="1860" Count="0" />
+      <LineId Id="1946" Count="0" />
+      <LineId Id="1870" Count="0" />
+      <LineId Id="1872" Count="0" />
+      <LineId Id="1948" Count="0" />
+      <LineId Id="1873" Count="0" />
+      <LineId Id="1862" Count="0" />
+      <LineId Id="771" Count="0" />
+      <LineId Id="770" Count="0" />
+      <LineId Id="773" Count="1" />
+      <LineId Id="777" Count="0" />
+      <LineId Id="775" Count="0" />
+      <LineId Id="2398" Count="0" />
+      <LineId Id="2384" Count="0" />
+      <LineId Id="2383" Count="0" />
+      <LineId Id="2460" Count="0" />
+      <LineId Id="2462" Count="2" />
+      <LineId Id="2958" Count="0" />
+      <LineId Id="2466" Count="0" />
+      <LineId Id="2822" Count="0" />
+      <LineId Id="2461" Count="0" />
+      <LineId Id="2887" Count="2" />
+      <LineId Id="2627" Count="9" />
+      <LineId Id="2891" Count="1" />
+      <LineId Id="901" Count="0" />
+      <LineId Id="900" Count="0" />
+      <LineId Id="2515" Count="4" />
+      <LineId Id="2558" Count="3" />
+      <LineId Id="2514" Count="0" />
+      <LineId Id="2513" Count="0" />
+      <LineId Id="1094" Count="0" />
+      <LineId Id="1659" Count="0" />
+      <LineId Id="1581" Count="14" />
+      <LineId Id="1660" Count="0" />
+      <LineId Id="1056" Count="0" />
+      <LineId Id="902" Count="0" />
+      <LineId Id="1057" Count="0" />
+      <LineId Id="1064" Count="1" />
+      <LineId Id="1067" Count="0" />
+      <LineId Id="1066" Count="0" />
+      <LineId Id="1088" Count="0" />
+      <LineId Id="1081" Count="0" />
+      <LineId Id="1063" Count="0" />
+      <LineId Id="1101" Count="0" />
+      <LineId Id="1083" Count="0" />
+      <LineId Id="1069" Count="0" />
+      <LineId Id="1068" Count="0" />
+      <LineId Id="1070" Count="1" />
+      <LineId Id="1089" Count="1" />
+      <LineId Id="1058" Count="0" />
+      <LineId Id="1085" Count="0" />
+      <LineId Id="1092" Count="0" />
+      <LineId Id="1087" Count="0" />
+      <LineId Id="1078" Count="2" />
+      <LineId Id="1077" Count="0" />
+      <LineId Id="760" Count="0" />
+      <LineId Id="735" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="535" Count="1" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="534" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="532" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="638" Count="0" />
+      <LineId Id="542" Count="0" />
+      <LineId Id="544" Count="0" />
+      <LineId Id="549" Count="0" />
+      <LineId Id="551" Count="0" />
+      <LineId Id="550" Count="0" />
+      <LineId Id="920" Count="0" />
+      <LineId Id="553" Count="0" />
+      <LineId Id="552" Count="0" />
+      <LineId Id="922" Count="1" />
+      <LineId Id="921" Count="0" />
+      <LineId Id="548" Count="0" />
+      <LineId Id="545" Count="0" />
+      <LineId Id="2382" Count="0" />
+      <LineId Id="2371" Count="1" />
+      <LineId Id="2375" Count="4" />
+      <LineId Id="2374" Count="0" />
+      <LineId Id="2370" Count="0" />
+      <LineId Id="986" Count="2" />
+      <LineId Id="990" Count="0" />
+      <LineId Id="993" Count="1" />
+      <LineId Id="996" Count="0" />
+      <LineId Id="998" Count="0" />
+      <LineId Id="1001" Count="0" />
+      <LineId Id="999" Count="1" />
+      <LineId Id="991" Count="0" />
+      <LineId Id="997" Count="0" />
+      <LineId Id="989" Count="0" />
+      <LineId Id="1489" Count="0" />
+      <LineId Id="1491" Count="1" />
+      <LineId Id="1490" Count="0" />
+      <LineId Id="1254" Count="0" />
+      <LineId Id="1498" Count="0" />
+      <LineId Id="1392" Count="0" />
+      <LineId Id="1488" Count="0" />
+      <LineId Id="729" Count="0" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="1486" Count="0" />
+      <LineId Id="324" Count="0" />
+      <LineId Id="736" Count="0" />
+      <LineId Id="785" Count="0" />
+      <LineId Id="594" Count="0" />
+      <LineId Id="1851" Count="0" />
+      <LineId Id="1857" Count="0" />
+      <LineId Id="1854" Count="0" />
+      <LineId Id="1856" Count="0" />
+      <LineId Id="769" Count="0" />
+      <LineId Id="1791" Count="0" />
+      <LineId Id="979" Count="0" />
+      <LineId Id="1237" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

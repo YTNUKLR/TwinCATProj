@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="typDMXOutput" Id="{b5532f2b-075e-4f4f-8c62-43bc1be2ce13}">
+    <Declaration><![CDATA[TYPE typDMXOutput :
+STRUCT
+	byStatValue			: BYTE;
+	fFnGeneratorVal		: REAL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == ''">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{06e8e57a-99e8-4aef-b5f4-b628a65bac60}</ProjectGuid>
+    <Name>PLC_SerialCommunication_Sample01</Name>
+    <TypeSystem>{13ed80b2-15b6-4054-8ea7-b8e0c0f76c80}</TypeSystem>
+    <Implicit_Task_Info>{8a7169d5-423a-47c4-b119-a72eeee5b315}</Implicit_Task_Info>
+    <Implicit_Jitter_Distribution>{bc2828cc-6bf8-4cf6-8454-04b6055389de}</Implicit_Jitter_Distribution>
+    <Implicit_KindOfTask>{4018aeb2-b571-4dff-8c43-8d324ef4c03b}</Implicit_KindOfTask>
+    <Application>{29d92b51-142d-457e-b3d8-97b1a4921932}</Application>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' " />
+  <ItemGroup>
+    <Folder Include="GVLs" />
+    <Folder Include="POUs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GVLs\GVL.TcGVL">
+      <ObjectGuid>{3e4349e6-a99a-4aa8-b94a-96e30307ccae}</ObjectGuid>
+    </Compile>
+    <Compile Include="Library Manager.TcLMO">
+      <ObjectGuid>{126f2c46-aff4-4b38-a20e-8451be2294e8}</ObjectGuid>
+    </Compile>
+    <Compile Include="PlcTask_Fast.TcTTO">
+      <SubType>Code</SubType>
+      <ObjectGuid>{0c6fd7fa-97da-4733-abcf-b8642d7fda18}</ObjectGuid>
+    </Compile>
+    <Compile Include="PlcTask_Standard.TcTTO">
+      <SubType>Code</SubType>
+      <ObjectGuid>{a2abed77-3bc4-4966-9dac-c1eb2c24d9ca}</ObjectGuid>
+    </Compile>
+    <Compile Include="POUs\Background.TcPOU">
+      <ObjectGuid>{a474ab24-92b2-4faa-ab36-f1eb12602ab9}</ObjectGuid>
+    </Compile>
+    <Compile Include="POUs\FB_SerialCom.TcPOU">
+      <SubType>Code</SubType>
+      <ObjectGuid>{181e7c70-138b-446a-a6f5-34e588388885}</ObjectGuid>
+    </Compile>
+    <Compile Include="POUs\MAIN.TcPOU">
+      <ObjectGuid>{aef089b1-c7c5-479f-8336-a7bf9b8b2785}</ObjectGuid>
+    </Compile>
+    <Compile Include="Project Information.TcPIO">
+      <ObjectGuid>{1e93e3b6-5f2b-46fc-90cc-e6d5f663cf06}</ObjectGuid>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PLC_SerialCommunication_Sample01.tmc">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ProjectExtensions />
+</Project>

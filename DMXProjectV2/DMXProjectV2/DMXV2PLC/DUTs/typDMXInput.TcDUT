@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="typDMXInput" Id="{ba7c5d9a-0f82-4cbf-9082-966504ae10c9}">
+    <Declaration><![CDATA[TYPE typDMXInput :
+STRUCT
+	ENWaveform		: ENUM_I_Waveform;
+	ENValRange		: ENUM_I_ValRange;
+	fDutyCycle		: REAL; // just for Square Wave;
+	fFrequency		: REAL;  // Frequency of cycling, expressed in Hz
+	fOffset			: REAL; // 0-100% mapped to 8-bit (by Map Function)
+	fLevel			: REAL; // 0-100% mapped to 8-bit (by Map Function)
+	usiBitDepth		: USINT; // 1-8
+	fPhase			: REAL; // 0-100% mapped to 8-bit (by Map Function)
+	fDelay			: REAL; // 0-100% mapped to 8-bit (by Map Function)
+	usiDelayDiv		: USINT; // to Delay the step of the Delay Divisor; for example, '2' would delay every second pulse by the amount spec'd by fDelay
+	usiInputConfig	: USINT; // BYTE Value specified in USINT [0-255]
+	xCmdOn				: BOOL;
+	xCmdOff				: BOOL;
+	fOutputIncrement	: REAL;
+	fFnGenerValTempSin	: LREAL;
+	fFnGenerValRtn		: LREAL;
+	uiMaxChannelVal		: UINT;
+	uiMinChannelVal		: UINT;
+	byMaxChanVal		: BYTE;
+	byMinChanVal		: BYTE;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

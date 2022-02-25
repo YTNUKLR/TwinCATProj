@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=3.0.90.27 SP09?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="Library" Language="IEC" Description="Pro Pack Functions">PPSFun</Object>
+  </Objects>
+</Package>

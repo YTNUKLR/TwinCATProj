@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="SclByteDMX" Id="{2d2893c9-a97d-46ac-9240-1f212077316c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION SclByteDMX : BYTE
+VAR_INPUT
+	byUnscaled	: BYTE;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF byUnscaled = 0 THEN
+	SclByteDMX	:= 0;
+ELSE
+	SclByteDMX	:= 255;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="SclByteDMX">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="10" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

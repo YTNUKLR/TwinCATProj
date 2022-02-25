@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=3.0.90.27 SP09?>
+<Library xmlns="http://br-automation.co.at/AS/Library">
+  <Files>
+    <File Description="Exported data types">PPS_Cyl.typ</File>
+    <File Description="Exported constants">PPS_Cyl.var</File>
+    <File Description="Exported functions and function blocks">PPS_Cyl.fun</File>
+    <File Description="Controls a pneumatic cylinder with or without end of travel sensors">FB_CylCntrl2.st</File>
+    <File Description="Controls a pneumatic cylinder">FB_CylCntrl3.st</File>
+    <File Description="Monitors Cylinder Fault for Single SV Cylinder">FC_CylFM_1xSV_Basic.st</File>
+    <File Description="Monitors Cylinder Fault for Single SV Cylinder">FC_CylFM_1xSV_Basic3.st</File>
+    <File Description="Monitors Cylinder Fault for Single SV Cylinder with Sensors">FC_CylFM_1xSV_Sensored.st</File>
+    <File Description="Monitors Cylinder Fault for Single SV Cylinder with Sensors">FC_CylFM_1xSV_Sensored3.st</File>
+    <File Description="Monitors Cylinder Fault for Double SV Cylinder">FC_CylFM_2xSV_Basic_NoBrake.st</File>
+    <File Description="Monitors Cylinder Fault for Double SV Cylinder">FC_CylFM_2xSV_Basic_NoBrake3.st</File>
+    <File Description="Monitors Cylinder Faults for Double SV Cylinder, no Sensors, with Brake">FC_CylFM_2xSV_Basic_wBrake.st</File>
+    <File Description="Monitors Cylinder Faults for Double SV Cylinder, no Sensors, with Brake">FC_CylFM_2xSV_Basic_wBrake3.st</File>
+    <File Description="Monitors Cylinder Fault for Double SV Cylinder with Sensor and no Brake">FC_CylFM_2xSV_Sensored_NoBrake.st</File>
+    <File Description="Monitors Cylinder Fault for Double SV Cylinder with Sensor and no Brake">FC_CylFM_2xSV_Sensored_NoBrake3.st</File>
+    <File Description="Monitors Cylinder Fault for Double SV Cylinder with Sensors and Brake">FC_CylFM_2xSV_Sensored_wBrake.st</File>
+    <File Description="Monitors Cylinder Fault for Double SV Cylinder with Sensors and Brake">FC_CylFM_2xSV_Sensored_wBrake3.st</File>
+    <File Description="Controls the outputs for a Single SV Basic Cylinder">FC_CylQ_1xSV.st</File>
+    <File Description="Controls the outputs for a Single SV Basic Cylinder">FC_CylQ_1xSV3.st</File>
+    <File Description="Controls the outputs for a Single SV Basic Cylinder">FC_CylQ_2xSV_NoBrake.st</File>
+    <File Description="Controls the outputs for a Single SV Basic Cylinder">FC_CylQ_2xSV_NoBrake3.st</File>
+    <File Description="Controls the outputs for a Double SV Cylinder with Brake">FC_CylQ_2xSV_wBrake.st</File>
+    <File Description="Controls the outputs for a Double SV Cylinder with Brake">FC_CylQ_2xSV_wBrake3.st</File>
+  </Files>
+</Library>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <Task Name="PlcTask" Id="{f3b5b6ae-dbcf-4e58-ad28-95c6627386f7}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>10000</CycleTime>
+    <Priority>20</Priority>
+    <PouCall>
+      <Name>InterfaceLink</Name>
+    </PouCall>
+    <PouCall>
+      <Name>P_TextModeRead</Name>
+    </PouCall>
+    <PouCall>
+      <Name>DMXShop</Name>
+    </PouCall>
+    <TaskFBGuid>{da925c43-cd36-45e0-bdde-b30018b02ce1}</TaskFBGuid>
+    <Fb_init>{1e6e9de1-b3c7-4464-9ea8-18380495e3a6}</Fb_init>
+    <Fb_exit>{3bfd0660-9ab1-47e2-8872-2cf105c377f8}</Fb_exit>
+    <CycleUpdate>{b4dcac75-d178-4e49-8cb1-e54c4c3bcffc}</CycleUpdate>
+    <PostCycleUpdate>{e32da4a4-0119-463f-8d0d-fcce0b66e277}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_InputDebounce" Id="{a5a2ec82-c70f-4302-80ec-2dc51ff0b611}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_InputDebounce
+VAR_INPUT
+	I	: typFBDInput;
+END_VAR
+
+VAR_IN_OUT
+	IQ	: typFBDInOut;
+END_VAR
+
+VAR_OUTPUT
+	Q	: typFBDOutput;
+END_VAR
+
+VAR
+	tonOnDelay		: TON;
+	tofOffDelay		: TOF;
+	uiDebounceSM	: UINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[tonOnDelay(PT	:= I.tOnDelay);
+tofOffDelay(PT	:= I.tOffDelay);
+
+CASE uiDebounceSM OF
+	
+0: // If there is a trig, then set a timer for the On Delay
+IF IQ.xTrig THEN
+	tonOnDelay.IN	:= TRUE;
+	tofOffDelay.IN	:= TRUE;
+	uiDebounceSM	:= 10;
+END_IF
+
+10: // If timer is completed, set the timer false, set the Gate (output) high, falling edge to TOF input
+IF tonOnDelay.Q THEN
+	tonOnDelay.IN	:= FALSE;
+	Q.xGate			:= TRUE;
+	tofOffDelay.IN	:= FALSE;
+	uiDebounceSM	:= 20;	
+END_IF
+
+20: // Falling edge on TOF drops Gate
+IF NOT tofOffDelay.Q AND NOT IQ.xTrig THEN
+	Q.xGate			:= FALSE;
+	uiDebounceSM	:= 30;
+ELSIF NOT tofOffDelay.Q AND IQ.xTrig THEN
+//Jump state; no other actions (do not set gate false)
+	uiDebounceSM	:= 40;
+END_IF
+
+30: //Ensure the trig has gone low
+IF NOT IQ.xTrig THEN
+	uiDebounceSM	:= 0;
+END_IF
+
+40: // State for "if trig held past OffDelay time"; if trig has gone low, set gate low
+IF NOT IQ.xTrig THEN
+	Q.xGate			:= FALSE;
+	uiDebounceSM	:= 0;
+END_IF
+	
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="FB_InputDebounce">
+      <LineId Id="9" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="50" Count="2" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="57" Count="1" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="80" Count="2" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="44" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

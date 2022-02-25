@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FBOscillator" Id="{ed8238c6-74da-4734-b807-ea1870f7ed7e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FBOscillator
+VAR_INPUT
+	tPeriodRise	: TIME;
+	tPeriodFall	: TIME;
+END_VAR
+VAR_OUTPUT
+	byValue	 AT %Q*	: BYTE;
+END_VAR
+VAR
+	tonRise	: TON;
+	tonFall : TON;
+	MAXVALUE	: UDINT := 255;
+	iCycle  : INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[tonRise(PT	:= tPeriodRise);
+tonFall(PT	:= tPeriodFall);
+
+CASE iCycle OF
+	
+0:
+tonRise.IN	:= TRUE;
+iCycle		:= 10;
+
+10:
+IF tonRise.Q THEN
+	tonRise.IN	:= FALSE;
+	tonFall.IN	:= TRUE;
+	iCycle		:= 20;
+END_IF
+
+20:
+IF tonFall.Q THEN
+	tonFall.IN	:= FALSE;
+	iCycle		:= 0;
+END_IF
+
+END_CASE
+
+IF tonRise.IN THEN
+	byValue	:= UDINT_TO_BYTE(MAXVALUE);
+ELSE
+	byValue	:= 3;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="FBOscillator">
+      <LineId Id="22" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="60" Count="1" />
+      <LineId Id="66" Count="3" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="109" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Single xml:space="preserve" Type="{11f2245b-f54d-41e7-8df5-0dc5948f8965}" Method="IArchivable">
+  <Single Name="MetaObject" Type="{81297157-7ec9-45ce-845e-84cab2b88ade}" Method="IArchivable">
+    <Single Name="Guid" Type="System.Guid">181e7c70-138b-446a-a6f5-34e588388885</Single>
+    <Single Name="ParentGuid" Type="System.Guid">29d92b51-142d-457e-b3d8-97b1a4921932</Single>
+    <Single Name="Name" Type="string">FB_SerialCom</Single>
+    <Dictionary Type="{2c41fa04-1834-41c1-816e-303c7aa2c05b}" Name="Properties">
+      <Entry>
+        <Key>
+          <Single Type="System.Guid">829a18f2-c514-4f6e-9634-1df173429203</Single>
+        </Key>
+        <Value>
+          <Single Type="{829a18f2-c514-4f6e-9634-1df173429203}" Method="IArchivable">
+            <Dictionary Type="{fa2ee218-a39b-4b6d-b249-49dbddbd168a}" Name="ParentObjects">
+              <Entry>
+                <Key>
+                  <Single Type="System.Guid">d9b2b2cc-ea99-4c3b-aa42-1e5c49e65b84</Single>
+                </Key>
+                <Value>
+                  <Single Type="System.Guid">6e23958a-283f-46a5-a535-7759fb2f161c</Single>
+                </Value>
+              </Entry>
+            </Dictionary>
+          </Single>
+        </Value>
+      </Entry>
+    </Dictionary>
+    <Single Name="TypeGuid" Type="System.Guid">6f9dac99-8de1-4efc-8465-68ac443b7d08</Single>
+    <Array Name="EmbeddedTypeGuids" Type="System.Guid">
+      <Single Type="System.Guid">a9ed5b7e-75c5-4651-af16-d2c27e98cb94</Single>
+      <Single Type="System.Guid">3b83b776-fb25-43b8-99f2-3c507c9143fc</Single>
+    </Array>
+    <Single Name="Timestamp" Type="long">634903040407187500</Single>
+  </Single>
+  <Single Name="Object" Type="{6f9dac99-8de1-4efc-8465-68ac443b7d08}" Method="IArchivable">
+    <Single Name="Implementation" Type="{3b83b776-fb25-43b8-99f2-3c507c9143fc}" Method="IArchivable">
+      <Single Name="TextDocument" Type="{f3878285-8e4f-490b-bb1b-9acbb7eb04db}" Method="IArchivable">
+        <Array Name="TextLines" Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}">
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">11</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">// Call the send block every second to repeat the transmission.</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">12</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">// Also call the block as long as it is busy to finish a transmission.</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">14</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">Timer(IN:=TRUE);</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">59</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">IF Timer.Q OR fbSend.Busy THEN</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">15</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	Timer(IN:=FALSE); (* reset timer *)</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">16</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	fbSend(	SendString:= '$02Hello World ! $03',</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">17</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">			TXbuffer:= TxBuffer,</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">18</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">			Busy=&gt; bSendBusy,</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">21</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">			Error=&gt; eSendErrorID);</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">22</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">END_IF</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">23</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string"></Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">25</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">//	Receive string data:</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">28</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">//	The block receives any data strings beginning with a STX ($02) and ending with an ETX ($03) character.	</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">29</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">fbReceive(</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">30</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	Prefix:= '$02',</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">31</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	Suffix:= '$03',</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">32</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	Timeout:= T#1s,</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">33</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	ReceivedString:= sReceivedString,</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">34</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	RXbuffer:= RxBuffer,</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">35</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	StringReceived=&gt; bStringReceived,</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">36</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	Busy=&gt; bReceiveBusy,</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">37</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	Error=&gt; eReceiveErrorID,</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">38</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	RxTimeout=&gt; bReceiveTimeout );</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">39</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">IF bStringReceived THEN</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">40</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	nReceiveCounter := nReceiveCounter + 1;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">41</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	sLastReceivedString := sReceivedString;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">42</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">END_IF</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">9</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string"></Single>
+          </Single>
+        </Array>
+      </Single>
+    </Single>
+    <Single Name="Interface" Type="{a9ed5b7e-75c5-4651-af16-d2c27e98cb94}" Method="IArchivable">
+      <Single Name="TextDocument" Type="{f3878285-8e4f-490b-bb1b-9acbb7eb04db}" Method="IArchivable">
+        <Array Name="TextLines" Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}">
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">2</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">FUNCTION_BLOCK FB_SerialCom</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">57</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">VAR_IN_OUT</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">58</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	TxBuffer	: ComBuffer;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">3</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	RxBuffer	: ComBuffer;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">6</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">END_VAR</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">43</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">VAR</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">44</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	Timer		: TON := (PT:=T#1S);</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">45</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	fbSend		: SendString;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">46</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	bSendBusy	: BOOL;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">47</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	eSendErrorID: ComError_t;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">48</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string"></Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">49</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	fbReceive		: ReceiveString;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">50</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	sReceivedString	: STRING;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">51</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	sLastReceivedString: STRING;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">52</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	bStringReceived	: BOOL;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">53</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	bReceiveBusy	: BOOL;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">54</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	bReceiveError	: BOOL;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">55</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	eReceiveErrorID	: ComError_t;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">56</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	bReceiveTimeout	: BOOL;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">7</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">	nReceiveCounter	: UDINT;</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">8</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string">END_VAR</Single>
+          </Single>
+          <Single Type="{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}" Method="IArchivable">
+            <Single Name="Id" Type="long">1</Single>
+            <Null Name="Tag" />
+            <Single Name="Text" Type="string"></Single>
+          </Single>
+        </Array>
+      </Single>
+    </Single>
+    <Single Name="UniqueIdGenerator" Type="string">60</Single>
+    <Single Name="POULevel" Type="{8e575c5b-1d37-49c6-941b-5c0ec7874787}">Standard</Single>
+    <List Name="ChildObjectGuids" Type="System.Collections.ArrayList" />
+    <Single Name="AddAttributeSubsequent" Type="bool">False</Single>
+  </Single>
+</Single>

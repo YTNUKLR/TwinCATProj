@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="DMXShop" Id="{2535bdc5-5962-4048-ad12-681f0c09d75e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM DMXShop
+VAR
+	afbDMXRGBW	: ARRAY[0..3] OF FBOscillator;
+	iforloop	: INT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//afbDMXRGBW[gc.RED].I.ENWaveform			:= ENUM_I_Waveform.EN_Triangle; //"50% duty cycle"
+//afbDMXRGBW[gc.RED].I.fDutyCycle			:= 50; // %
+//afbDMXRGBW[gc.RED].I.fLevel				:= 100; //%
+//afbDMXRGBW[gc.RED].I.fOffset			:= 0; // %
+//afbDMXRGBW[gc.RED].I.usiBitDepth		:= 8; // 0-8, or 0-16, depending
+//afbDMXRGBW[gc.RED].I.fPhase				:= 0; // %
+//afbDMXRGBW[gc.RED].I.fDelay				:= 0; // %
+//afbDMXRGBW[gc.RED].I.usiDelayDiv		:= 0; // which step to have delay applied
+//afbDMXRGBW[gc.RED].I.fFrequency			:= 50;
+
+//afbDMXRGBW[gc.GREEN].I.ENWaveform		:= ENUM_I_Waveform.EN_Triangle; //"50% duty cycle"
+//afbDMXRGBW[gc.GREEN].I.fDutyCycle		:= 50; // %
+//afbDMXRGBW[gc.GREEN].I.fLevel			:= 100; //%
+//afbDMXRGBW[gc.GREEN].I.fOffset			:= 0; // %
+//afbDMXRGBW[gc.GREEN].I.usiBitDepth		:= 8; // 0-8, or 0-16, depending
+//afbDMXRGBW[gc.GREEN].I.fPhase			:= 0; // %
+//afbDMXRGBW[gc.GREEN].I.fDelay			:= 0; // %
+//afbDMXRGBW[gc.GREEN].I.usiDelayDiv		:= 0; // which step to have delay applied
+//afbDMXRGBW[gc.GREEN].I.fFrequency		:= 50; 
+
+//afbDMXRGBW[gc.BLUE].I.ENWaveform		:= ENUM_I_Waveform.EN_Triangle; //"50% duty cycle"
+//afbDMXRGBW[gc.BLUE].I.fDutyCycle		:= 50; // %
+//afbDMXRGBW[gc.BLUE].I.fLevel			:= 100; //%
+//afbDMXRGBW[gc.BLUE].I.fOffset			:= 0; // %
+//afbDMXRGBW[gc.BLUE].I.usiBitDepth		:= 8; // 0-8, or 0-16, depending
+//afbDMXRGBW[gc.BLUE].I.fPhase			:= 0; // %
+//afbDMXRGBW[gc.BLUE].I.fDelay			:= 0; // %
+//afbDMXRGBW[gc.BLUE].I.usiDelayDiv		:= 0; // which step to have delay applied
+//afbDMXRGBW[gc.BLUE].I.fFrequency		:= 50;
+
+//afbDMXRGBW[gc.WHITE].I.ENWaveform		:= ENUM_I_Waveform.EN_Triangle; //"50% duty cycle"
+//afbDMXRGBW[gc.WHITE].I.fDutyCycle		:= 50; // %
+//afbDMXRGBW[gc.WHITE].I.fLevel			:= 100; //%
+//afbDMXRGBW[gc.WHITE].I.fOffset			:= 0; // %
+//afbDMXRGBW[gc.WHITE].I.usiBitDepth		:= 8; // 0-8, or 0-16, depending
+//afbDMXRGBW[gc.WHITE].I.fPhase			:= 0; // %
+//afbDMXRGBW[gc.WHITE].I.fDelay			:= 0; // %
+//afbDMXRGBW[gc.WHITE].I.usiDelayDiv		:= 0; // which step to have delay applied
+//afbDMXRGBW[gc.WHITE].I.fFrequency		:= 50; 
+
+afbDMXRGBW[gc.RED].tPeriodRise		:= T#80S;
+afbDMXRGBW[gc.GREEN].tPeriodRise	:= T#130S;
+afbDMXRGBW[gc.BLUE].tPeriodRise		:= T#210S;
+afbDMXRGBW[gc.WHITE].tPeriodRise	:= T#10S;
+
+afbDMXRGBW[gc.RED].tPeriodFall		:= T#13S;
+afbDMXRGBW[gc.GREEN].tPeriodFall	:= T#13S;
+afbDMXRGBW[gc.BLUE].tPeriodFall		:= T#11S;
+afbDMXRGBW[gc.WHITE].tPeriodFall	:= T#340S;
+
+FOR iforloop := 0 TO gc.WHITE BY 1 DO
+	afbDMXRGBW[iforloop]();
+END_FOR]]></ST>
+    </Implementation>
+    <LineIds Name="DMXShop">
+      <LineId Id="5" Count="0" />
+      <LineId Id="28" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="30" Count="3" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="35" Count="8" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="44" Count="8" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="53" Count="8" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="73" Count="2" />
+      <LineId Id="80" Count="4" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="91" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

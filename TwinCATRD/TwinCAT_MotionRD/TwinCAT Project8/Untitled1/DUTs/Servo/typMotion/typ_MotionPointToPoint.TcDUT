@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.17">
+  <DUT Name="typ_MotionPointToPoint" Id="{38267a83-7e59-47e8-8d08-2c259bfa70b7}">
+    <Declaration><![CDATA[TYPE typ_MotionPointToPoint :
+STRUCT
+	MC_Halt						: MC_Halt;
+	MC_MoveAbsolute				: MC_MoveAbsolute;
+	MC_MoveAdditive				: MC_MoveAdditive;
+	MC_MoveContinuousAbsolute	: MC_MoveContinuousAbsolute;
+	MC_MoveContinuousRelative	: MC_MoveContinuousRelative;
+	MC_MoveModulo				: MC_MoveModulo;
+	MC_MoveRelative				: MC_MoveRelative;
+	MC_MoveVelocity				: MC_MoveVelocity;
+	MC_Stop						: MC_Stop;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

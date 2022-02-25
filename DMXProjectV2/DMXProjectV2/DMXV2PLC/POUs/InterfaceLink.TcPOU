@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="InterfaceLink" Id="{e5515fc8-d968-4a6f-8e7a-8841024cd466}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM InterfaceLink
+VAR
+	iResult					: INT;
+	iLoopFBAnalogIn			: INT;
+	iLoopFBSensor			: INT;
+	iLoopFBValveSensor		: INT;
+	iLoopFBDigCtrl			: INT;
+	iLoopFBValveCtrl		: INT;
+	uiLoopDMXCtrlI			: UINT;
+	uiLoopDMXCtrlII			: UINT;
+	uiLoopDebouncePNPI		: UINT;
+	uiLoopDebounceNPNI		: UINT;
+	uiForLoopDMXI10			: UINT;
+	uiForLoopDMXI11			: UINT;
+	uiForLoopDMXI12			: UINT;
+	uiForLoopDebouncePNP	: UINT;
+	uiForLoopDebounceNPN	: UINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Call all the I/O Function Blocks continuously; link to array-structs with every call;
+(*
+FOR iLoopFBAnalogIn := 0 TO gc.usiMaxNrOfAnalogIn BY 1 DO
+	gFB.arrFB_AnalogInput[iLoopFBAnalogIn](I:=gast_AnalogInput[iLoopFBAnalogIn].I, IQ:=gast_AnalogInput[iLoopFBAnalogIn].IQ, Q=>gast_AnalogInput[iLoopFBAnalogIn].Q);
+END_FOR
+
+FOR iLoopFBSensor := 0 TO gc.usiMaxNrOfSensor BY 1 DO
+	gFB.arrFB_Sensor[iLoopFBSensor](I:=gast_SensorInput[iLoopFBSensor].I, IQ:=gast_SensorInput[iLoopFBSensor].IQ, Q=>gast_SensorInput[iLoopFBSensor].Q);
+END_FOR
+
+FOR iLoopFBValveSensor := 0 TO (2*gc.usiMaxNrOfValveCtrl) BY 1 DO
+	gFB.arrFB_Sensor[iLoopFBValveSensor](I:=gast_ValveSensorInput[iLoopFBValveSensor].I, IQ:=gast_ValveSensorInput[iLoopFBValveSensor].IQ, Q=>gast_ValveSensorInput[iLoopFBValveSensor].Q);
+END_FOR
+
+FOR iLoopFBDigCtrl := 0 TO gc.usiMaxNrOfSensor BY 1 DO
+	gFB.arrFB_DigCtrl[iLoopFBDigCtrl](I:=gast_DigCtrlOutput[iLoopFBDigCtrl].I, IQ:=gast_DigCtrlOutput[iLoopFBDigCtrl].IQ, Q=>gast_DigCtrlOutput[iLoopFBDigCtrl].Q);
+END_FOR
+
+FOR iLoopFBValveCtrl := 0 TO gc.usiMaxNrOfValveCtrl BY 1 DO
+	gFB.arrFB_ValveCtrl[iLoopFBValveCtrl](I:=gast_ValveCtrlOutput[iLoopFBValveCtrl].I, IQ:=gast_ValveCtrlOutput[iLoopFBValveCtrl].IQ, Q=>gast_ValveCtrlOutput[iLoopFBValveCtrl].Q);
+END_FOR
+*)
+FOR uiLoopDMXCtrlI := 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
+	gFB.arrFB_DMX[uiLoopDMXCtrlI]();
+END_FOR
+
+//Expose an array of bytes that can be ultimately 'multi-linked' to hardware
+FOR uiLoopDMXCtrlII := 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
+	g_ast.DMXPhysOut[uiLoopDMXCtrlII]	:= gFB.arrFB_DMX[uiLoopDMXCtrlII].Q.byStatValue;
+END_FOR
+
+//Debounce PNP
+FOR uiLoopDebouncePNPI	:= 0 TO gc.uiMaxNrDMXTestCh BY 1 DO
+	gFB.arrFB_DebouncePNP[uiLoopDebouncePNPI](I:=g_ast.arrFBIntPNP[uiLoopDebouncePNPI].I, IQ:=g_ast.arrFBIntPNP[uiLoopDebouncePNPI].IQ, Q=>g_ast.arrFBIntPNP[uiLoopDebouncePNPI].Q);
+END_FOR
+
+//Debounce NPN
+FOR uiLoopDebounceNPNI	:= 0 TO gc.uiMaxNrDMXTestCh BY 1 DO
+	gFB.arrFB_DebounceNPN[uiLoopDebounceNPNI](I:=g_ast.arrFBIntNPN[uiLoopDebounceNPNI].I, IQ:=g_ast.arrFBIntNPN[uiLoopDebounceNPNI].IQ, Q=>g_ast.arrFBIntNPN[uiLoopDebounceNPNI].Q);
+END_FOR
+
+//Link all the user-specified params to the respective Function Blocks
+//RED
+
+(*
+RGB PARAMETERS - Hence, the Groups of 4 incremented in this way;
+
+FOR iForLoopDMXI1:= 0 TO gc.uiMaxNrOfDMXChannel BY 4 DO
+	g_ast.DMX[iForLoopDMXI1].I.ENWaveform		:= ENUM_I_Waveform.EN_Sin; //"50% duty cycle"
+	g_ast.DMX[iForLoopDMXI1].I.fDutyCycle		:= 50; // %
+	g_ast.DMX[iForLoopDMXI1].I.fLevel			:= iSlider5; //%
+	g_ast.DMX[iForLoopDMXI1].I.fOffset			:= 0; // %
+	g_ast.DMX[iForLoopDMXI1].I.usiBitDepth		:= 8; // 0-8, or 0-16, depending
+	g_ast.DMX[iForLoopDMXI1].I.fPhase			:= 0; // %
+	g_ast.DMX[iForLoopDMXI1].I.fDelay			:= 0; // %
+	g_ast.DMX[iForLoopDMXI1].I.usiDelayDiv		:= 0; // which step to have delay applied
+END_FOR
+
+//GREEN
+FOR iForLoopDMXI2:= 1 TO gc.uiMaxNrOfDMXChannel BY 4 DO
+	g_ast.DMX[iForLoopDMXI2].I.ENWaveform		:= ENUM_I_Waveform.EN_Sin; //"50% duty cycle"
+	g_ast.DMX[iForLoopDMXI2].I.fDutyCycle		:= 50; // %
+	g_ast.DMX[iForLoopDMXI2].I.fLevel			:= iSlider6; //%
+	g_ast.DMX[iForLoopDMXI2].I.fOffset			:= 0; // %
+	g_ast.DMX[iForLoopDMXI2].I.usiBitDepth		:= 8; // 0-8, or 0-16, depending
+	g_ast.DMX[iForLoopDMXI2].I.fPhase			:= 0; // %
+	g_ast.DMX[iForLoopDMXI2].I.fDelay			:= 0; // %
+	g_ast.DMX[iForLoopDMXI2].I.usiDelayDiv		:= 0; // which step to have delay applied
+END_FOR
+
+//BLUE
+FOR iForLoopDMXI3:= 2 TO gc.uiMaxNrOfDMXChannel BY 4 DO
+	g_ast.DMX[iForLoopDMXI3].I.ENWaveform		:= ENUM_I_Waveform.EN_Sin; //"50% duty cycle"
+	g_ast.DMX[iForLoopDMXI3].I.fDutyCycle		:= 50; // %
+	g_ast.DMX[iForLoopDMXI3].I.fLevel			:= iSlider7; //%
+	g_ast.DMX[iForLoopDMXI3].I.fOffset			:= 0; // %
+	g_ast.DMX[iForLoopDMXI3].I.usiBitDepth		:= 8; // 0-8, or 0-16, depending
+	g_ast.DMX[iForLoopDMXI3].I.fPhase			:= 0; // %
+	g_ast.DMX[iForLoopDMXI3].I.fDelay			:= 0; // %
+	g_ast.DMX[iForLoopDMXI3].I.usiDelayDiv		:= 0; // which step to have delay applied
+END_FOR
+
+//WHITE
+FOR iForLoopDMXI4:= 3 TO gc.uiMaxNrOfDMXChannel BY 4 DO
+	g_ast.DMX[iForLoopDMXI4].I.ENWaveform		:= ENUM_I_Waveform.EN_Sin; //"50% duty cycle"
+	g_ast.DMX[iForLoopDMXI4].I.fDutyCycle		:= 50; // %
+	g_ast.DMX[iForLoopDMXI4].I.fLevel			:= iSlider8; //%
+	g_ast.DMX[iForLoopDMXI4].I.fOffset			:= 0; // %
+	g_ast.DMX[iForLoopDMXI4].I.usiBitDepth		:= 8; // 0-8, or 0-16, depending
+	g_ast.DMX[iForLoopDMXI4].I.fPhase			:= 0; // %
+	g_ast.DMX[iForLoopDMXI4].I.fDelay			:= 0; // %
+	g_ast.DMX[iForLoopDMXI4].I.usiDelayDiv		:= 0; // which step to have delay applied
+END_FOR
+
+
+FOR iForLoopDMXI5	:= 0 TO gc.uiMaxNrOfDMXChannel BY 4 DO 
+	g_ast.DMX[iForLoopDMXI5].I.fFrequency		:= iSlider1; //Hz
+END_FOR
+
+FOR iForLoopDMXI6	:= 0 TO gc.uiMaxNrOfDMXChannel BY 4 DO 
+	g_ast.DMX[iForLoopDMXI6].I.fFrequency		:= iSlider2; //Hz
+END_FOR
+
+FOR iForLoopDMXI7	:= 0 TO gc.uiMaxNrOfDMXChannel BY 4 DO 
+	g_ast.DMX[iForLoopDMXI7].I.fFrequency		:= iSlider3; //Hz
+END_FOR
+
+FOR iForLoopDMXI8	:= 0 TO gc.uiMaxNrOfDMXChannel BY 4 DO 
+	g_ast.DMX[iForLoopDMXI8].I.fFrequency		:= iSlider4; //Hz
+END_FOR
+*)
+
+FOR uiForLoopDMXI10:= 0 TO gc.uiDUTConfigCountSplit BY 1 DO
+	gFB.arrFB_DMX[uiForLoopDMXI10].I.fFrequency		:= 0;
+	gFB.arrFB_DMX[uiForLoopDMXI10].I.ENWaveform		:= ENUM_I_Waveform.EN_GateCtrl;
+	gFB.arrFB_DMX[uiForLoopDMXI10].I.ENValRange		:= ENUM_I_ValRange.EN_8Bit;
+	gFB.arrFB_DMX[uiForLoopDMXI10].I.fDutyCycle		:= 100; // %
+	gFB.arrFB_DMX[uiForLoopDMXI10].I.fLevel			:= 100; //%
+	gFB.arrFB_DMX[uiForLoopDMXI10].I.fOffset		:= 0; // %
+	gFB.arrFB_DMX[uiForLoopDMXI10].I.usiBitDepth	:= 8; // 0-8, or 0-16, depending
+	gFB.arrFB_DMX[uiForLoopDMXI10].I.fPhase			:= 0; // %
+	gFB.arrFB_DMX[uiForLoopDMXI10].I.fDelay			:= 0; // %
+	gFB.arrFB_DMX[uiForLoopDMXI10].I.usiDelayDiv	:= 0; // which step to have delay applied
+//	g_ast.DMX[uiForLoopDMXI10].I.fFrequency		:= 0;
+//	g_ast.DMX[uiForLoopDMXI10].I.ENWaveform		:= ENUM_I_Waveform.EN_GateCtrl;
+//	g_ast.DMX[uiForLoopDMXI10].I.ENValRange		:= ENUM_I_ValRange.EN_8Bit;
+//	g_ast.DMX[uiForLoopDMXI10].I.fDutyCycle		:= 100; // %
+//	g_ast.DMX[uiForLoopDMXI10].I.fLevel			:= 100; //%
+//	g_ast.DMX[uiForLoopDMXI10].I.fOffset		:= 0; // %
+//	g_ast.DMX[uiForLoopDMXI10].I.usiBitDepth	:= 8; // 0-8, or 0-16, depending
+//	g_ast.DMX[uiForLoopDMXI10].I.fPhase			:= 0; // %
+//	g_ast.DMX[uiForLoopDMXI10].I.fDelay			:= 0; // %
+//	g_ast.DMX[uiForLoopDMXI10].I.usiDelayDiv	:= 0; // which step to have delay applied
+//Channels for Configuration of testing on other DMX Channels;
+END_FOR
+
+FOR uiForLoopDMXI11:= gc.uiChannelSplitCount TO gc.uiMaxNrOfDMXChannel BY 1 DO
+	gFB.arrFB_DMX[uiForLoopDMXI11].I.fFrequency		:= 0;
+	gFB.arrFB_DMX[uiForLoopDMXI11].I.ENWaveform		:= ENUM_I_Waveform.EN_GateConfig;
+	gFB.arrFB_DMX[uiForLoopDMXI11].I.ENValRange		:= ENUM_I_ValRange.EN_8Bit;
+	gFB.arrFB_DMX[uiForLoopDMXI11].I.fDutyCycle		:= 100; // %
+	gFB.arrFB_DMX[uiForLoopDMXI11].I.fLevel			:= 100; //%
+	gFB.arrFB_DMX[uiForLoopDMXI11].I.fOffset		:= 0; // %
+	gFB.arrFB_DMX[uiForLoopDMXI11].I.usiBitDepth	:= 8; // 0-8, or 0-16, depending
+	gFB.arrFB_DMX[uiForLoopDMXI11].I.fPhase			:= 0; // %
+	gFB.arrFB_DMX[uiForLoopDMXI11].I.fDelay			:= 0; // %
+	gFB.arrFB_DMX[uiForLoopDMXI11].I.usiDelayDiv	:= 0; // which step to have delay applied
+//	g_ast.DMX[uiForLoopDMXI10].I.fFrequency		:= 0;
+//	g_ast.DMX[uiForLoopDMXI10].I.ENWaveform		:= ENUM_I_Waveform.EN_GateConfig;
+//	g_ast.DMX[uiForLoopDMXI10].I.ENValRange		:= ENUM_I_ValRange.EN_8Bit;
+//	g_ast.DMX[uiForLoopDMXI10].I.fDutyCycle		:= 100; // %
+//	g_ast.DMX[uiForLoopDMXI10].I.fLevel			:= 100; //%
+//	g_ast.DMX[uiForLoopDMXI10].I.fOffset		:= 0; // %
+//	g_ast.DMX[uiForLoopDMXI10].I.usiBitDepth	:= 8; // 0-8, or 0-16, depending
+//	g_ast.DMX[uiForLoopDMXI10].I.fPhase			:= 0; // %
+//	g_ast.DMX[uiForLoopDMXI10].I.fDelay			:= 0; // %
+//	g_ast.DMX[uiForLoopDMXI10].I.usiDelayDiv	:= 0; // which step to have delay applied
+//Channels for Configuration of testing on other DMX Channels;
+END_FOR
+
+//Input Debounce Params PNP
+FOR uiForLoopDebouncePNP	:= 0 TO gc.uiMaxNrDMXTestCh BY 1 DO
+	g_ast.arrFBIntPNP[uiForLoopDebouncePNP].I.tOnDelay	:= T#0S;
+	g_ast.arrFBIntPNP[uiForLoopDebouncePNP].I.tOffDelay	:= T#10MS;
+END_FOR
+
+//Input Debounce Params NPN
+FOR uiForLoopDebounceNPN	:= 0 TO gc.uiMaxNrDMXTestCh BY 1 DO
+	g_ast.arrFBIntNPN[uiForLoopDebounceNPN].I.tOnDelay	:= T#0S;
+	g_ast.arrFBIntNPN[uiForLoopDebounceNPN].I.tOffDelay	:= T#3MS;
+END_FOR
+
+//Read the CSV Parameters into the DMX FBs - via the "mediating" Config arrays
+FOR uiForLoopDMXI12:= 0 TO gc.uiMaxNrOfDMXChannel BY 1 DO
+	gFB.arrFB_DMX[uiForLoopDMXI12].I.usiInputConfig	:= 	DMXTest.arr_usiRecipeSetting[uiForLoopDMXI12];
+END_FOR]]></ST>
+    </Implementation>
+    <LineIds Name="InterfaceLink">
+      <LineId Id="65" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="47" Count="17" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="88" Count="1" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="102" Count="3" />
+      <LineId Id="141" Count="0" />
+      <LineId Id="130" Count="0" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="132" Count="1" />
+      <LineId Id="142" Count="0" />
+      <LineId Id="136" Count="2" />
+      <LineId Id="135" Count="0" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="159" Count="134" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.17">
+  <POU Name="MAIN" Id="{326ec9f8-804c-4728-ab87-9b4e7fbd17cf}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	xSwitch			: BOOL;
+	xLamp	AT %Q*	: BOOL;
+	
+	astServoIF		: ARRAY[0..gc.usiMaxNrOfAxes] OF typ_ServoIF;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[xLamp	:= xSwitch;]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

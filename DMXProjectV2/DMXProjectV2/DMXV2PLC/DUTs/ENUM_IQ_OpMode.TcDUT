@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ENUM_IQ_OpMode" Id="{6058162d-6fe6-4b82-b737-c60e65c529a2}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE ENUM_IQ_OpMode :
+(
+	EN_Cycle		:= 0,
+	EN_LatchOn		:= 1,
+	EN_OneShot		:= 2
+);
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

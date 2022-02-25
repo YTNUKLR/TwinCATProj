@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.17">
+  <DUT Name="typ_MotionPhasing" Id="{22352df5-192e-459b-9b5c-2f6907cb8760}">
+    <Declaration><![CDATA[TYPE typ_MotionPhasing :
+STRUCT
+	MC_HaltPhasing				: MC_HaltPhasing;
+	MC_PhasingAbsolute			: MC_PhasingAbsolute;
+	MC_PhasingRelative			: MC_PhasingRelative;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.17">
+  <DUT Name="MotionFn" Id="{a0ea39f5-338e-4681-81d0-3170bbdd26ed}">
+    <Declaration><![CDATA[TYPE MotionFn :
+STRUCT
+	Gearing						: typ_MotionGearing;
+	Homing						: typ_MotionHoming;
+	ManualMotion				: typ_MotionManualMotion;
+	Phasing						: typ_MotionPhasing;
+	PointToPoint				: typ_MotionPointToPoint;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

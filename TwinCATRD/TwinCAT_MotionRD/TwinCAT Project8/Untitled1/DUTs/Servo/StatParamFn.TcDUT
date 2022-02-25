@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.17">
+  <DUT Name="StatParamFn" Id="{169caf9a-545d-4c35-8960-8c8a87a9c76c}">
+    <Declaration><![CDATA[TYPE StatParamFn :
+STRUCT
+	MC_ReadActualPosition				: MC_ReadActualPosition;
+	MC_ReadActualVelocity				: MC_ReadActualVelocity;
+	MC_ReadAxisComponents				: MC_ReadAxisComponents;
+	MC_ReadAxisError					: MC_ReadAxisError;
+	MC_ReadBoolParameter				: MC_ReadBoolParameter;
+	MC_ReadParameter					: MC_ReadParameter;
+	MC_ReadParameterSet					: MC_ReadParameterSet;
+	MC_ReadStatus						: MC_ReadStatus;
+	MC_WriteBoolParameter				: MC_WriteBoolParameter;
+	MC_WriteBoolParameterPersistent		: MC_WriteBoolParameterPersistent;
+	MC_WriteParameter					: MC_WriteParameter;
+	MC_WriteParameterPersistent			: MC_WriteParameterPersistent;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ENUM_I_ValRange" Id="{e1e89fef-6c9e-4120-b791-d2f8cb0afbf9}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE ENUM_I_ValRange :
+(
+	EN_8Bit		:= 0,
+	EN_16Bit	:= 1
+);
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

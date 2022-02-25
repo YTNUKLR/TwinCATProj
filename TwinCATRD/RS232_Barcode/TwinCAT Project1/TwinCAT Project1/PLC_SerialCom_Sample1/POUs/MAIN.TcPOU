@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.0">
+  <POU Name="MAIN" Id="{aef089b1-c7c5-479f-8336-a7bf9b8b2785}" SpecialFunc="None">
+    <Declaration><![CDATA[(*
+SerialCom_InfoSys_Sample1 (v2.0)
+This sample sends and receives a string via serial communication.
+Three hardware interfaces are used: Pc COM port, EL terminal, KL terminal
+*)
+PROGRAM MAIN
+VAR
+	fbPcCom		: FB_SerialCom;
+	fbEL6001	: FB_SerialCom;
+	fbKL6001	: FB_SerialCom;
+	
+	(* exchange buffers with background communication with the PC COM port device *)
+	RxBufferPcCom	: ComBuffer;	(* Receive data buffer; used with all receive function blocks *)
+	TxBufferPcCom	: ComBuffer;	(* Transmit data buffer; used with all receive function blocks *)
+	
+	wOutputTemp0		: STRING(2);
+	wOutputTemp1		: STRING(2);
+	wOutputTemp2		: STRING(2);
+	wOutputTemp3		: STRING(2);
+	wOutputTemp4		: STRING(2);
+	wOutputTemp5		: STRING(2);
+	wOutputTemp6		: STRING(2);
+	wOutputTemp7		: STRING(2);
+	wOutputTemp8		: STRING(2);
+	wOutputTemp9		: STRING(2);
+	wOutputTemp10		: STRING(2);
+	wOutputTemp11		: STRING(2);
+	wOutputTemp12		: STRING(2);
+	wOutputTemp13		: STRING(2);
+	wOutputTemp14		: STRING(2);
+	wOutputTemp15		: STRING(2);
+	wOutputTemp16		: STRING(2);
+	wOutputTemp17		: STRING(2);
+	wOutputTemp18		: STRING(2);
+	wOutputTemp19		: STRING(2);
+	wOutputTemp20		: STRING(2);
+	wOutputTemp21		: STRING(2);
+	
+	wOutputTemp22		: STRING(3);
+	wOutputTemp23		: STRING(4);
+	wOutputTemp24		: STRING(5);
+	wOutputTemp25		: STRING(6);
+	wOutputTemp26		: STRING(7);
+	wOutputTemp27		: STRING(8);
+	wOutputTemp28		: STRING(9);
+	wOutputTemp29		: STRING(10);
+	wOutputTemp30		: STRING(11);
+	wOutputTemp31		: STRING(12);
+	wOutputTemp32		: STRING(13);
+	wOutputTemp33		: STRING(14);
+	wOutputTemp34		: STRING(15);
+	wOutputTemp35		: STRING(16);
+	wOutputTemp36		: STRING(17);
+	wOutputTemp37		: STRING(18);
+	wOutputTemp38		: STRING(19);
+	wOutputTemp39		: STRING(20);
+	wOutputTemp40		: STRING(21);
+	wOutputTemp41		: STRING(22);
+	wOutputTemp42		: STRING(23);
+	wOutputTemp43		: STRING(24);
+
+//	wOutputTemp			: ARRAY [0..21] OF STRING(2);	
+	wOutputTemp			: STRING(255);
+	iIndexChr			: INT;
+	
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+(* background communication with the PC COM port device *)
+BackgroundPcCOM(RxBufferPcCom:=RxBufferPcCom, TxBufferPcCom:=TxBufferPcCom);
+
+
+(* Send and receive commands *)
+fbPcCom(TxBuffer:=TxBufferPcCom, RxBuffer:=RxBufferPcCom);
+
+fbEL6001(TxBuffer:=TxBufferEL, RxBuffer:=RxBufferEL);
+
+fbKL6001(TxBuffer:=TxBufferKL, RxBuffer:=RxBufferKL);
+
+wOutputTemp0		:= CHR(BackgroundEL.stIn_EL6001.D[0]);
+wOutputTemp1		:= CHR(BackgroundEL.stIn_EL6001.D[1]);
+wOutputTemp2		:= CHR(BackgroundEL.stIn_EL6001.D[2]);
+wOutputTemp3		:= CHR(BackgroundEL.stIn_EL6001.D[3]);
+wOutputTemp4		:= CHR(BackgroundEL.stIn_EL6001.D[4]);
+wOutputTemp5		:= CHR(BackgroundEL.stIn_EL6001.D[5]);
+wOutputTemp6		:= CHR(BackgroundEL.stIn_EL6001.D[6]);
+wOutputTemp7		:= CHR(BackgroundEL.stIn_EL6001.D[7]);
+wOutputTemp8		:= CHR(BackgroundEL.stIn_EL6001.D[8]);
+wOutputTemp9		:= CHR(BackgroundEL.stIn_EL6001.D[9]);
+wOutputTemp10		:= CHR(BackgroundEL.stIn_EL6001.D[10]);
+wOutputTemp11		:= CHR(BackgroundEL.stIn_EL6001.D[11]);
+wOutputTemp12		:= CHR(BackgroundEL.stIn_EL6001.D[12]);
+wOutputTemp13		:= CHR(BackgroundEL.stIn_EL6001.D[13]);
+wOutputTemp14		:= CHR(BackgroundEL.stIn_EL6001.D[14]);
+wOutputTemp15		:= CHR(BackgroundEL.stIn_EL6001.D[15]);
+wOutputTemp16		:= CHR(BackgroundEL.stIn_EL6001.D[16]);
+wOutputTemp17		:= CHR(BackgroundEL.stIn_EL6001.D[17]);
+wOutputTemp18		:= CHR(BackgroundEL.stIn_EL6001.D[18]);
+wOutputTemp19		:= CHR(BackgroundEL.stIn_EL6001.D[19]);
+wOutputTemp20		:= CHR(BackgroundEL.stIn_EL6001.D[20]);
+wOutputTemp21		:= CHR(BackgroundEL.stIn_EL6001.D[21]);
+
+(*
+FOR iIndexChr := 1 TO 21 BY 1 DO
+	wOutputTemp[iIndexChr]		:= CHR(BackgroundEL.stIn_EL6001.D[iIndexChr]);
+END_FOR
+*)
+wOutputTemp22		:= CONCAT(wOutputTemp0,wOutputTemp1);
+wOutputTemp23		:= CONCAT(wOutputTemp22,wOutputTemp2);
+wOutputTemp24		:= CONCAT(wOutputTemp23,wOutputTemp3);
+wOutputTemp25		:= CONCAT(wOutputTemp24,wOutputTemp4);
+wOutputTemp26		:= CONCAT(wOutputTemp25,wOutputTemp5);
+wOutputTemp27		:= CONCAT(wOutputTemp26,wOutputTemp6);
+wOutputTemp28		:= CONCAT(wOutputTemp27,wOutputTemp7);
+wOutputTemp29		:= CONCAT(wOutputTemp28,wOutputTemp8);
+wOutputTemp30		:= CONCAT(wOutputTemp29,wOutputTemp9);
+wOutputTemp31		:= CONCAT(wOutputTemp30,wOutputTemp10);
+wOutputTemp32		:= CONCAT(wOutputTemp31,wOutputTemp11);
+(*
+wOutputTemp33		:= CONCAT(wOutputTemp32,wOutputTemp12);
+wOutputTemp34		:= CONCAT(wOutputTemp33,wOutputTemp13);
+wOutputTemp35		:= CONCAT(wOutputTemp34,wOutputTemp14);
+wOutputTemp36		:= CONCAT(wOutputTemp35,wOutputTemp15);
+wOutputTemp37		:= CONCAT(wOutputTemp36,wOutputTemp16);
+wOutputTemp38		:= CONCAT(wOutputTemp37,wOutputTemp17);
+wOutputTemp39		:= CONCAT(wOutputTemp38,wOutputTemp18);
+wOutputTemp40		:= CONCAT(wOutputTemp39,wOutputTemp19);
+wOutputTemp41		:= CONCAT(wOutputTemp40,wOutputTemp20);
+*)
+
+wOutputTemp			:= wOutputTemp32;
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="3" Count="10" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="91" Count="20" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="119" Count="1" />
+      <LineId Id="123" Count="0" />
+      <LineId Id="125" Count="0" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="229" Count="6" />
+      <LineId Id="237" Count="0" />
+      <LineId Id="254" Count="0" />
+      <LineId Id="243" Count="1" />
+      <LineId Id="242" Count="0" />
+      <LineId Id="246" Count="1" />
+      <LineId Id="245" Count="0" />
+      <LineId Id="249" Count="1" />
+      <LineId Id="248" Count="0" />
+      <LineId Id="252" Count="0" />
+      <LineId Id="226" Count="0" />
+      <LineId Id="225" Count="0" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="138" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

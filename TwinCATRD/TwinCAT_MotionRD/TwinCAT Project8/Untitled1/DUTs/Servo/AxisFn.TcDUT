@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.17">
+  <DUT Name="AxisFn" Id="{2daf280a-653d-4079-8b06-cc9aee314ec8}">
+    <Declaration><![CDATA[TYPE AxisFn :
+STRUCT
+	MC_Power		: MC_Power;
+	MC_Reset		: MC_Reset;
+	MC_SetPosition	: MC_SetPosition;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

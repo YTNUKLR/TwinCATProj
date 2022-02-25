@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.17">
+  <GVL Name="gc" Id="{3a813c74-b747-4ae2-9bd3-dc4b6d53c020}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	usiMaxNrOfAxes	: USINT	:= 2;
+	usiAxisIndex1	: USINT	:= 0;
+	usiAxisIndex2	: USINT	:= 1;
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

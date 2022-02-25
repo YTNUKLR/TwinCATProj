@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Single xml:space="preserve" Type="{11f2245b-f54d-41e7-8df5-0dc5948f8965}" Method="IArchivable">
+  <Single Name="MetaObject" Type="{81297157-7ec9-45ce-845e-84cab2b88ade}" Method="IArchivable">
+    <Single Name="Guid" Type="System.Guid">0c6fd7fa-97da-4733-abcf-b8642d7fda18</Single>
+    <Single Name="ParentGuid" Type="System.Guid">29d92b51-142d-457e-b3d8-97b1a4921932</Single>
+    <Single Name="Name" Type="string">PlcTask_Fast</Single>
+    <Dictionary Type="{2c41fa04-1834-41c1-816e-303c7aa2c05b}" Name="Properties" />
+    <Single Name="TypeGuid" Type="System.Guid">ad3f8c64-9196-466f-9c2f-a48f88f30140</Single>
+    <Array Name="EmbeddedTypeGuids" Type="System.Guid" />
+    <Single Name="Timestamp" Type="long">634903043188437500</Single>
+  </Single>
+  <Single Name="Object" Type="{ad3f8c64-9196-466f-9c2f-a48f88f30140}" Method="IArchivable">
+    <Single Name="CycleTime" Type="uint">20000</Single>
+    <Single Name="Priority" Type="uint">19</Single>
+    <List Name="PouList" Type="{802db863-56c9-4eec-a913-c5d49079955c}">
+      <Single Type="{eab66df8-8b98-4ec4-85de-fef9795ee343}" Method="IArchivable">
+        <Single Name="Name" Type="string">Background</Single>
+        <Single Name="Comment" Type="string"></Single>
+      </Single>
+    </List>
+    <Single Name="TaskFBGuid" Type="System.Guid">4b008d35-3d53-4b68-bb78-973acde79cec</Single>
+    <Single Name="FBInitGuid" Type="System.Guid">c8a32440-47fe-445c-8d72-f90fb2fd60fb</Single>
+    <Single Name="FBExitGuid" Type="System.Guid">26c446bf-865c-4310-a43b-b0beef2ed30d</Single>
+    <Single Name="CycleUpdateGuid" Type="System.Guid">635bba6b-12f0-4937-be92-f811e20bcb9f</Single>
+  </Single>
+</Single>
