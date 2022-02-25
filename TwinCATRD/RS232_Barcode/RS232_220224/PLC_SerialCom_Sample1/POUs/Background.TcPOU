@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.0.38">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
   <POU Name="Background" Id="{a474ab24-92b2-4faa-ab36-f1eb12602ab9}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Background
 VAR
@@ -19,7 +19,11 @@ which have a small process image (3 or 5 data bytes only)
 BackgroundEL();
 
 (* background communication with the KL6001 terminal (3byte) *)
-BackgroundKL();]]></ST>
+//BackgroundKL();]]></ST>
     </Implementation>
+    <LineIds Name="Background">
+      <LineId Id="3" Count="12" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

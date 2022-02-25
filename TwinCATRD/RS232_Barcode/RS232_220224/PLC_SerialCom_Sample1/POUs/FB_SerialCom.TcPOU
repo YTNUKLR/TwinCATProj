@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.0.38">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
   <POU Name="FB_SerialCom" Id="{181e7c70-138b-446a-a6f5-34e588388885}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_SerialCom
 VAR_IN_OUT
@@ -21,6 +21,9 @@ VAR
 	eReceiveErrorID	: ComError_t;
 	bReceiveTimeout	: BOOL;
 	nReceiveCounter	: UDINT;
+END_VAR
+VAR_OUTPUT
+		
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -45,7 +48,7 @@ fbReceive(
 	Suffix:= '$03',
 	Timeout:= T#1s,
 	ReceivedString:= sReceivedString,
-	RXbuffer:= RxBuffer,
+	Rxbuffer:= RxBuffer,
 	StringReceived=> bStringReceived,
 	Busy=> bReceiveBusy,
 	Error=> ,
@@ -59,5 +62,9 @@ IF bStringReceived THEN
 END_IF
 ]]></ST>
     </Implementation>
+    <LineIds Name="FB_SerialCom">
+      <LineId Id="3" Count="32" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

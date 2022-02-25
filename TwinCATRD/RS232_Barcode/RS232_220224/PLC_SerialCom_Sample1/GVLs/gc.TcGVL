@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="gc" Id="{f3c23654-364f-4a69-a1ae-64673b961970}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	MINDEVICEINDEX				: USINT	:= 0; //on EL6002
+	MAXDEVICEINDEX				: USINT	:= 1; //on EL6002
+	EL6002_INDEX1				: USINT	:= 0;
+	EL6002_INDEX2				: USINT	:= 1;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

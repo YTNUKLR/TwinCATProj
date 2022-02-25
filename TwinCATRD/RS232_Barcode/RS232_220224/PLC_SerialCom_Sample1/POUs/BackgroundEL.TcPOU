@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.0.38">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
   <POU Name="BackgroundEL" Id="{9a20473f-0d3f-4584-b429-33e10587a848}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM BackgroundEL
 VAR
-	(* background communication with the EL6001 terminal *)
-	fbEL6001Ctrl		: SerialLineControl;
-	bEL6001CtrlError	: BOOL;
-	eEL6001CtrlErrorID	: ComError_t;
+	(* background communication with the EL6001/EL6002 terminal *)
+	afbEL6002Ctrl			: ARRAY[gc.MINDEVICEINDEX..gc.MAXDEVICEINDEX] OF SerialLineControl;
+	abEL6002CtrlError		: ARRAY[gc.MINDEVICEINDEX..gc.MAXDEVICEINDEX] OF BOOL;
+	aeEL6002CtrlErrorID		: ARRAY[gc.MINDEVICEINDEX..gc.MAXDEVICEINDEX] OF ComError_t;
 	(* 	I/O variables for a EL6001 terminal*)
-	stIn_EL6001 AT %I*	: EL6inData22B;	(* linked to the EL6001 in the TwinCAT System Manager *)
-	stOut_EL6001 AT %Q*	: EL6outData22B;(* linked to the EL6001 in the TwinCAT System Manager *)
+	astIn_EL6002 AT %I*		: ARRAY[gc.MINDEVICEINDEX..gc.MAXDEVICEINDEX] OF EL6inData22B;	(* linked to the EL6001 in the TwinCAT System Manager *)
+	astOut_EL6002 AT %Q*	: ARRAY[gc.MINDEVICEINDEX..gc.MAXDEVICEINDEX] OF EL6outData22B;(* linked to the EL6001 in the TwinCAT System Manager *)
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[(*
@@ -21,20 +21,28 @@ A fast separate task will be necessary at high baud rates or with KL6001 termina
 which have a small process image (3 or 5 data bytes only)
 *)
 
-(* background communication with the EL6001 terminal *)
-fbEL6001Ctrl(
+(* background communication with the EL6002 terminal *)
+
+//use with type SerialLineControl
+afbEL6002Ctrl[gc.EL6002_INDEX1](
 	Mode:= SERIALLINEMODE_EL6_22B, 
-	pComIn:= ADR(stIn_EL6001), 
-	pComOut:= ADR(stOut_EL6001), 
-	SizeComIn:= SIZEOF(stIn_EL6001), 
+	pComIn:= ADR(astIn_EL6002[gc.EL6002_INDEX1]), 
+	pComOut:= ADR(astOut_EL6002[gc.EL6002_INDEX1]), 
+	SizeComIn:= SIZEOF(astIn_EL6002[gc.EL6002_INDEX1]), 
 	Error=> , 
 	ErrorID=> , 
-	TxBuffer:= TxBufferEL, 
-	RxBuffer:= RxBufferEL );
-IF fbEL6001Ctrl.Error THEN
-	bEL6001CtrlError := TRUE;
-	eEL6001CtrlErrorID := fbEL6001Ctrl.ErrorID;
+	TxBuffer:= aTxBufferEL[gc.EL6002_INDEX1], 
+	RxBuffer:= aRxBufferEL[gc.EL6002_INDEX1] );
+IF afbEL6002Ctrl[gc.EL6002_INDEX1].Error THEN
+	abEL6002CtrlError[gc.EL6002_INDEX1] := TRUE;
+	aeEL6002CtrlErrorID[gc.EL6002_INDEX1] := afbEL6002Ctrl[gc.EL6002_INDEX1].ErrorID;
 END_IF]]></ST>
     </Implementation>
+    <LineIds Name="BackgroundEL">
+      <LineId Id="3" Count="9" />
+      <LineId Id="65" Count="1" />
+      <LineId Id="13" Count="11" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.0.38">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
   <POU Name="BackgroundKL" Id="{acd81667-1820-401a-83c4-3bfc4226a8b5}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM BackgroundKL
 VAR
@@ -24,7 +24,7 @@ or in a separate fast task (e.g.for terminal usage) as well.
 A fast separate task will be necessary at high baud rates or with KL6001 terminals 
 which have a small process image (3 or 5 data bytes only)
 *)
-
+(*
 (* background communication with the KL6001 terminal (3byte) *)
 fbKL6001Config(
 	Execute:= bKL6001ConfigExe, 
@@ -63,7 +63,11 @@ IF NOT fbKL6001Config.Busy AND NOT bKL6001ConfigError THEN
 		eKL6001CtrlErrorID := fbKL6001Ctrl.ErrorID;
 	END_IF
 END_IF
-]]></ST>
+*)]]></ST>
     </Implementation>
+    <LineIds Name="BackgroundKL">
+      <LineId Id="3" Count="46" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
